@@ -99,7 +99,7 @@ STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
   STYLE.PLANT_PHOTO.MARKER.CIRCLE,
-  { color: "black" ,weight: 3}
+  { color: "black", weight: 3 }
 );
 
 STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign({}, STYLE.PLANT_PHOTO.TIME_STR, {
