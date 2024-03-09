@@ -11,14 +11,14 @@ const fixedCommon = {
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
-    bottom: "14%",
+    bottom: "15%",
   }),
   MIDDLE: Object.assign({}, fixedCommon, {
-    top: "14%",
-    bottom: "57%",
+    top: "15%",
+    bottom: "65%",
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: "57%",
+    top: "65%",
     bottom: 0,
   }),
 };
@@ -28,7 +28,7 @@ STYLE.PLANT_PHOTO = {
     top: STYLE.HOME_PAGE.MIDDLE.top,
     bottom: STYLE.HOME_PAGE.MIDDLE.bottom,    
     width: "100%",
-    height: "43%",
+    height: "50%",
     margin: 0,
     textAlign: "center",
   }),
