@@ -29,6 +29,7 @@ STYLE.PLANT_PHOTO = {
     height: "50%",
     margin: 0,
     textAlign: "center",
+    filter: "saturate(150%)",
   }),
 
   BOX_INFO: {
