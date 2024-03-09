@@ -4,11 +4,11 @@ import { WikiLink } from "../atoms";
 import STYLE from "../STYLE";
 export default function PlantPhotoView({ plantPhoto, onClickImage }) {
   const onClick = function () {
-    // reload 
+    // reload
     window.location.reload();
-  }
+  };
   return (
-    <Box >
+    <Box>
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}
