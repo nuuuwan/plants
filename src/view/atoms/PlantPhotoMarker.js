@@ -1,4 +1,4 @@
-import { Circle, SVGOverlay } from "react-leaflet";
+import { CircleMarker, SVGOverlay, Tooltip } from "react-leaflet";
 import STYLE from "../STYLE";
 export default function PlantPhotoMarker({
   plantPhoto,
@@ -16,21 +16,22 @@ export default function PlantPhotoMarker({
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
 
   return (
-    <>
-      <Circle
+
+      <CircleMarker
         center={plantPhoto.latlng}
-        radius={10}
+        radius={15}
         key={`circle-${plantPhoto.id}`}
         pathOptions={Object.assign({ fillColor: color }, styleCircle)}
         eventHandlers={{
           click: onClickInner,
         }}
-      />
-      <SVGOverlay bounds={plantPhoto.bounds}>
-        <text x="50%" y="51%" fill="black" textAnchor="middle">
-          {plantPhoto.shortText}
-        </text>
-      </SVGOverlay>
-    </>
+        
+      >
+          <Tooltip opacity={0.9} >
+            {plantPhoto.scientificName}
+          </Tooltip>
+        </CircleMarker>
+
+ 
   );
 }

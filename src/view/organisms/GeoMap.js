@@ -47,8 +47,8 @@ export default class GeoMap extends Component {
         center={center}
         zoom={zoom}
         zoomControl={false}
-        minZoom={18}
-        maxZoom={18}
+        minZoom={14}
+        maxZoom={22}
       >
         <EventComponent setCenterAndZoom={setCenterAndZoom} />
         <TileLayer url={URL_FORMAT} />

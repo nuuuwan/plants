@@ -50,12 +50,13 @@ export default class HomePage extends Component {
   }
 
   async componentDidMount() {
-    let { activePlantPhotoId } = this.state;
+    let { activePlantPhotoId, center } = this.state;
     const plantPhotoIdx = await PlantPhoto.idx();
     if (!activePlantPhotoId) {
       activePlantPhotoId = await PlantPhoto.getRandomId();
+      center = plantPhotoIdx[activePlantPhotoId].position;
     }
-    this.setState({ plantPhotoIdx, activePlantPhotoId });
+    this.setState({ plantPhotoIdx, activePlantPhotoId, center });
   }
 
   async onClickCenterOnCurrentLocation() {
