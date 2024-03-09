@@ -19,7 +19,7 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
         <WikiLink>{plantPhoto.family}</WikiLink>
       </Typography>
 
-      <Typography>
+      <Typography sx={STYLE.PLANT_PHOTO.GENUS}>
         <span style={STYLE.PLANT_PHOTO.GENUS}>
           <WikiLink> {plantPhoto.genus}</WikiLink>
         </span>

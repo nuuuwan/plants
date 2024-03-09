@@ -53,7 +53,7 @@ STYLE.PLANT_PHOTO = {
   },
   GENUS: {
     fontStyle: "italic",
-    fontSize: "150%",
+    fontSize: "120%",
     color: "#f80",
   },
 
@@ -101,7 +101,7 @@ STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
 });
 STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "gray",
-  fontSize: "100%",
+  fontSize: "67%",
 });
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
@@ -112,7 +112,7 @@ STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
 
 STYLE.WIKI_LINK = {
   color: "inherit",
-
+  fontSize: "inherit",
   textDecoration: "none",
 };
 
