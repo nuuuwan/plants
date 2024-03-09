@@ -5,7 +5,7 @@ export default function AlertLowConfidence({ plantPhoto }) {
     return null;
   }
   return (
-    <Alert severity="error" sx={{ m: 3, p: 1, fontSize: "100%" }}>
+    <Alert severity="error" sx={{ m: 3, p: 1, fontSize: "80%" }}>
       <strong>Identification Confidence for this Photo is too low.</strong>
       <br />
       {plantPhoto.confidenceStrAll}
