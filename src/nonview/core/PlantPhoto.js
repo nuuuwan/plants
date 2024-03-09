@@ -65,6 +65,14 @@ export default class PlantPhoto {
     return this.genus.substring(0, 1) + this.species.substring(0, 1);
   }
 
+  get commonNames() {
+    return this.bestGuess.commonNames;
+  }
+
+  get commonNamesStr() {
+    return this.commonNames.join(", ");
+  }
+
   get timeStr() {
     const date = new Date(this.ut * 1000);
     let dateOptions = { year: "numeric", month: "long", day: "numeric" };

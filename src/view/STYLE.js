@@ -28,10 +28,17 @@ STYLE.PLANT_PHOTO = {
   }),
   FAMILY: {
     fontSize: "100%",
+    color: "#084",
   },
   SCIENTIFIC_NAME: {
     fontStyle: "italic",
     fontSize: "150%",
+    color: "#f80",
+  },
+
+  COMMON_NAMES: {
+    fontSize: "80%",
+    color: "#800",
   },
 
   TIME_STR: {

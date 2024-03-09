@@ -1,10 +1,18 @@
 export default class PlantNetResult {
-  constructor(confidence, scientificName, authorship, genus, family) {
+  constructor(
+    confidence,
+    scientificName,
+    authorship,
+    genus,
+    family,
+    commonNames
+  ) {
     this.confidence = confidence;
     this.scientificName = scientificName;
     this.authorship = authorship;
     this.genus = genus;
     this.family = family;
+    this.commonNames = commonNames;
   }
 
   static fromDict(d) {
@@ -15,7 +23,8 @@ export default class PlantNetResult {
       species["scientificNameAuthorship"],
 
       species["genus"]["scientificName"],
-      species["family"]["scientificName"]
+      species["family"]["scientificName"],
+      species["commonNames"]
     );
   }
 }

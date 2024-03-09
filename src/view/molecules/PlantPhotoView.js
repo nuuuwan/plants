@@ -21,6 +21,9 @@ export default function PlantPhotoView({ plantPhoto }) {
             {" " + plantPhoto.authorship}
           </span>
         </Typography>
+        <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
+          {plantPhoto.commonNamesStr}
+        </Typography>
         <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
           {plantPhoto.timeStr}
         </Typography>
