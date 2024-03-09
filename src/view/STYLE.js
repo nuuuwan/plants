@@ -6,8 +6,6 @@ const fixedCommon = {
   right: 0,
 };
 
-
-
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
@@ -26,7 +24,7 @@ STYLE.HOME_PAGE = {
 STYLE.PLANT_PHOTO = {
   IMAGE: Object.assign({}, fixedCommon, {
     top: STYLE.HOME_PAGE.MIDDLE.top,
-    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,    
+    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
     width: "100%",
     height: "50%",
     margin: 0,
@@ -34,7 +32,6 @@ STYLE.PLANT_PHOTO = {
   }),
 
   BOX_INFO: {
-
     padding: 1,
 
     borderRadius: 5,
@@ -52,7 +49,6 @@ STYLE.PLANT_PHOTO = {
     fontSize: "200%",
     color: "#f80",
   },
-
 
   COMMON_NAMES: {
     fontSize: "100%",
