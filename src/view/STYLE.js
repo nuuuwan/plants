@@ -39,7 +39,7 @@ STYLE.PLANT_PHOTO = {
     flexDirection: "column",
     justifyContent: "center",
     height: p1pct,
-    padding: 2,
+    padding: 0.5,
     textAlign: "center",
   },
 
