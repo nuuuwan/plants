@@ -2,7 +2,6 @@ import { WWW, LngLat, Color, Random } from "../base";
 import PlantNetResult from "./PlantNetResult";
 
 export default class PlantPhoto {
-
   constructor(ut, lngLat, imagePath, plantResults) {
     this.ut = ut;
     this.lngLat = lngLat;
@@ -94,7 +93,7 @@ export default class PlantPhoto {
 
   get color() {
     const key = this.family.charCodeAt(0);
-    const RANDOM_PRIME= 100001 ;
+    const RANDOM_PRIME = 100001;
     const MAX_HUE = 360;
     const hue = (key * RANDOM_PRIME) % MAX_HUE;
     return Color.getHexFromHue(hue);

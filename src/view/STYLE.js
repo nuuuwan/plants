@@ -76,4 +76,13 @@ STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   { color: "red" }
 );
 
+STYLE.WIKI_LINK = {
+  color: "inherit",
+  textDecoration: "none",
+  backgroundColor: "#8881",
+  padding: 2,
+
+  borderRadius: 2,
+}
+
 export default STYLE;
