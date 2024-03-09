@@ -32,12 +32,12 @@ STYLE.PLANT_PHOTO = {
   }),
 
   BOX_INFO: {
-    padding: 1,
-
-
+    
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     height: "14%",
-    margin: "auto",
-
+    padding: 2,
     textAlign: "center",
   },
   FAMILY: {
