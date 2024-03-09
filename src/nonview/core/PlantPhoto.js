@@ -1,7 +1,7 @@
 import { WWW, LngLat, Color, Random } from "../base";
 import PlantNetResult from "./PlantNetResult";
 import { NAME_TRANSLATIONS } from "../constants";
-
+const MIN_CONFIDENCE = 0.1;
 export default class PlantPhoto {
   constructor(ut, lngLat, direction, imagePath, plantResults) {
     this.ut = ut;
@@ -46,13 +46,28 @@ export default class PlantPhoto {
     return this.plantResults[0];
   }
 
+  get isLowConfidence() {
+    return this.bestGuess.confidence < MIN_CONFIDENCE;
+  }
+
+
+  get confidenceStrAll() {
+   
+    return this.plantResults
+    
+      .map(function (plantResult) {
+        return plantResult.scientificNameAndConfidence;
+      })
+      .join(", ");
+  }
+
   get confidenceStr() {
-    const MIN_CONFIDENCE = 0.1;
+    
     return this.plantResults
       .filter(function (plantResult, iPlantResult) {
         return (
           iPlantResult < 3 &&
-          (iPlantResult < 1 || plantResult.confidence > MIN_CONFIDENCE)
+          ( plantResult.confidence > MIN_CONFIDENCE)
         );
       })
       .map(function (plantResult) {
@@ -172,6 +187,7 @@ export default class PlantPhoto {
   get cmp() {
     return this.ut;
   }
+
 
   getDistance(other) {
     if (this.scientificName === other.scientificName) {

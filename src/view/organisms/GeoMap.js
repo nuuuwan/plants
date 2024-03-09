@@ -6,8 +6,6 @@ import "./GeoMap.css";
 
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-
-
 export default class GeoMap extends Component {
   renderPlants() {
     const { plantPhotoIdx, onClickPlantPhoto, activePlantPhoto } = this.props;
@@ -40,7 +38,6 @@ export default class GeoMap extends Component {
         minZoom={10}
         maxZoom={20}
       >
-    
         <TileLayer url={URL_FORMAT} />
 
         {this.renderPlants()}

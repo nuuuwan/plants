@@ -4,7 +4,7 @@ import { Box, CircularProgress } from "@mui/material";
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { PlantPhoto } from "../../nonview/core";
-import { PlantPhotoView, PlantPhotoInfoView } from "../molecules";
+import { PlantPhotoView, PlantPhotoInfoView,AlertLowConfidence } from "../molecules";
 import { GeoMap } from "../organisms";
 
 import STYLE from "../STYLE";
@@ -15,7 +15,7 @@ export default class HomePage extends Component {
     zoom: GeoData.DEFAULT_ZOOM,
     activePlantPhotoId: null,
   };
-  static CONTEXT_STATE_KEYS = [ "activePlantPhotoId"];
+  static CONTEXT_STATE_KEYS = ["activePlantPhotoId"];
 
   static getContextFromState(state) {
     return Object.fromEntries(
@@ -47,7 +47,6 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = HomePage.getStateFromContext();
-
   }
 
   async componentDidMount() {
@@ -58,11 +57,7 @@ export default class HomePage extends Component {
       center = plantPhotoIdx[activePlantPhotoId].position;
     }
     this.setStateAndURLContext({ plantPhotoIdx, activePlantPhotoId, center });
-    
   }
-
-
-
 
   onClickPlantPhoto(activePlantPhotoId) {
     this.gotoNew(activePlantPhotoId);
@@ -128,6 +123,7 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}>
+          <AlertLowConfidence plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
           <PlantPhotoInfoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
         </Box>
 
@@ -144,7 +140,6 @@ export default class HomePage extends Component {
             center={center}
             zoom={zoom}
             plantPhotoIdx={plantPhotoIdx}
-
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
           />
