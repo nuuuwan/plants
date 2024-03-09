@@ -1,6 +1,6 @@
 import STYLE from "../STYLE";
 
-export default function WikiLink({ children, label=undefined }) {
+export default function WikiLink({ children, label = undefined }) {
   let searchTerm = "";
   if (typeof children === "string") {
     searchTerm = children;

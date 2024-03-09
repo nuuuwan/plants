@@ -82,7 +82,6 @@ STYLE.WIKI_LINK = {
   textDecoration: "none",
   padding: 2,
   margin: 2,
-
 };
 
 export default STYLE;
