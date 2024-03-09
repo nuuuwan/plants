@@ -6,39 +6,34 @@ const fixedCommon = {
   right: 0,
 };
 
-const RATIOS = [1,3,2];
+const RATIOS = [1, 3, 2];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
 const p1 = RATIOS[0] / sum;
 const p2 = RATIOS[1] / sum;
-const p3 = RATIOS[2] / sum;
+// const p3 = RATIOS[2] / sum;
 
 const p1pct = (p1 * 100).toFixed(0) + "%";
 const p2pct = (p2 * 100).toFixed(0) + "%";
-const p12pct = (((p1 + p2)) * 100).toFixed(0) + "%";
-const p12apct = ((p1 + p2) * 0.93 * 100 ).toFixed(0) + "%";
-const p12bpct = ((p1 ) * 1.17 * 100 ).toFixed(0) + "%";
+const p12pct = ((p1 + p2) * 100).toFixed(0) + "%";
+const p12apct = ((p1 + p2) * 0.93 * 100).toFixed(0) + "%";
+const p12bpct = (p1 * 1.17 * 100).toFixed(0) + "%";
 
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
-
     top: 0,
     bottom: p1pct,
   }),
   MIDDLE: Object.assign({}, fixedCommon, {
-
     top: p1pct,
     bottom: p12pct,
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-
     top: p12pct,
     bottom: 0,
   }),
 };
 
 STYLE.PLANT_PHOTO = {
-
-
   BOX_INFO: {
     display: "flex",
     flexDirection: "column",
@@ -63,7 +58,6 @@ STYLE.PLANT_PHOTO = {
     color: "#444",
   },
 
-
   IMAGE: Object.assign({}, fixedCommon, {
     top: STYLE.HOME_PAGE.MIDDLE.top,
     bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
@@ -78,7 +72,6 @@ STYLE.PLANT_PHOTO = {
   TIME_STR: Object.assign({}, fixedCommon, {
     top: p12apct,
 
-    
     margin: "auto",
     zIndex: 100,
     fontSize: "67%",
@@ -90,15 +83,10 @@ STYLE.PLANT_PHOTO = {
     backgroundColor: "#0006",
   }),
 
-
-
   MARKER: {
     CIRCLE: { color: "white", fillOpacity: 1 },
   },
 };
-
-
-
 
 STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "#082",
@@ -114,14 +102,9 @@ STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   { color: "black" }
 );
 
-STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign(
-  {},
-  STYLE.PLANT_PHOTO.TIME_STR,
- {
-    top: p12bpct,
-
-  }
-);
+STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign({}, STYLE.PLANT_PHOTO.TIME_STR, {
+  top: p12bpct,
+});
 
 STYLE.WIKI_LINK = {
   color: "inherit",

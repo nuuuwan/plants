@@ -3,7 +3,7 @@ import { Typography, Box } from "@mui/material";
 import STYLE from "../STYLE";
 export default function PlantPhotoView({ plantPhoto, onClickImage }) {
   return (
-    <Box >
+    <Box>
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}

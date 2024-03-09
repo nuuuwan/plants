@@ -11,9 +11,11 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
   };
 
   const wordCount = plantPhoto.commonNamesStr.length;
-  const fontSize = Math.min(12, 2400 / wordCount) + 'px';
-  
-  const styleCommonNames = Object.assign({},STYLE.PLANT_PHOTO.COMMON_NAMES,{fontSize});
+  const fontSize = Math.min(12, 2400 / wordCount) + "px";
+
+  const styleCommonNames = Object.assign({}, STYLE.PLANT_PHOTO.COMMON_NAMES, {
+    fontSize,
+  });
 
   return (
     <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} onClick={onClick}>
@@ -32,11 +34,7 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
           {"  " + plantPhoto.authorship}
         </span>
       </Typography>
-      <Typography sx={styleCommonNames}>
-        {plantPhoto.commonNamesStr}
-      </Typography>
-
-
+      <Typography sx={styleCommonNames}>{plantPhoto.commonNamesStr}</Typography>
     </Box>
   );
 }
