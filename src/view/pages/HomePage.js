@@ -79,8 +79,19 @@ export default class HomePage extends Component {
     let { activePlantPhotoId, plantPhotoIdx } = this.state;
     const plantPhotoIds = Object.keys(plantPhotoIdx);
     activePlantPhotoId = Random.choice(plantPhotoIds);
-    const center = plantPhotoIdx[activePlantPhotoId].position;
-    this.setStateAndURLContext({ activePlantPhotoId, center });
+
+    this.gotoNew(activePlantPhotoId);
+  }
+
+  gotoPrevious() {
+    let { activePlantPhotoId, plantPhotoIdx } = this.state;
+    const plantPhotoIds = Object.keys(plantPhotoIdx);
+    let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
+    iActivePlantPhoto -= 1;
+    iActivePlantPhoto %= plantPhotoIds.length;
+    activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
+
+    this.gotoNew(activePlantPhotoId);
   }
 
   gotoNext() {
@@ -91,13 +102,19 @@ export default class HomePage extends Component {
     iActivePlantPhoto %= plantPhotoIds.length;
     activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
 
+    this.gotoNew(activePlantPhotoId);
+  }
+
+  gotoNew(activePlantPhotoId) {
+
+    let { plantPhotoIdx } = this.state;
     const center = plantPhotoIdx[activePlantPhotoId].position;
     this.setStateAndURLContext({ activePlantPhotoId, center });
   }
 
   onClickImage(e) {
     if (e.clientX < 200) {
-      this.gotoRandom();
+      this.gotoPrevious();
     } else {
       this.gotoNext();
     }
@@ -134,6 +151,7 @@ export default class HomePage extends Component {
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
+            onClickMap={this.gotoRandom.bind(this)}
           />
         </Box>
       </Box>
