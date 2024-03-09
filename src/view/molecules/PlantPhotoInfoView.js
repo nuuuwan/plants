@@ -2,10 +2,12 @@ import { Box, Typography } from "@mui/material";
 import { WikiLink } from "../atoms";
 
 import STYLE from "../STYLE";
+
 export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
   const onClick = function () {
-    // reload
     window.location.reload();
+    localStorage.clear();
+    console.debug("localStorage cleared");
   };
 
   const wordCount = plantPhoto.commonNamesStr.length;
