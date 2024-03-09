@@ -35,7 +35,7 @@ STYLE.PLANT_PHOTO = {
     padding: 1,
 
 
-    maxHeight: "14%",
+    height: "14%",
     margin: "auto",
 
     textAlign: "center",
@@ -46,7 +46,7 @@ STYLE.PLANT_PHOTO = {
   },
   GENUS: {
     fontStyle: "italic",
-    fontSize: "200%",
+    fontSize: "150%",
     color: "#f80",
   },
 
@@ -72,6 +72,7 @@ STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
 });
 STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "gray",
+  fontSize: "100%",
 });
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
