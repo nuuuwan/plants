@@ -3,11 +3,13 @@ import PlantNetResult from "./PlantNetResult";
 import { NAME_TRANSLATIONS } from "../constants";
 
 export default class PlantPhoto {
-  constructor(ut, lngLat, imagePath, plantResults) {
+  constructor(ut, lngLat,direction, imagePath, plantResults) {
     this.ut = ut;
     this.lngLat = lngLat;
+    this.direction = direction;
     this.imagePath = imagePath;
     this.plantResults = plantResults;
+
   }
 
   get id() {
@@ -120,6 +122,26 @@ export default class PlantPhoto {
     return `${formattedTime} · ${formattedDate}`;
   }
 
+  get latLngStr() {
+    return `${this.latlng.lat.toFixed(4)}°N ${this.latlng.lng.toFixed(4)}°E`;
+  }
+
+  get directionStr() {
+    const DIRECTIONS = [
+      "N", "NNE", "NE", "ENE",
+      "E", "ESE", "SE", "SSE",
+      "S", "SSW", "SW", "WSW",
+      "W", "WNW", "NW", "NNW"
+    ];
+    const directionHumanized = DIRECTIONS[Math.round(this.direction / 22.5) % 16];
+      
+    return `${directionHumanized} (${this.direction}°)`;
+  }
+
+  get photoInfoStr() {
+    return `${this.timeStr} · ${this.latLngStr} · Facing ${this.directionStr}`;
+  }
+
   get color() {
     const key = this.family.charCodeAt(0);
     const RANDOM_PRIME = 100001;
@@ -163,11 +185,13 @@ export default class PlantPhoto {
     const lng = parseFloat(lngRaw);
     const lngLat = new LngLat(lng, lat);
 
+    const direction = parseInt(d["direction"]);
+
     const imagePath = d["image_path"];
 
     const plantResults = d["plantnet_results"].map(PlantNetResult.fromDict);
 
-    return new PlantPhoto(ut, lngLat, imagePath, plantResults);
+    return new PlantPhoto(ut, lngLat, direction, imagePath, plantResults);
   }
 
   static async getRandomId() {
