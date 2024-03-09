@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 import { WikiLink } from "../atoms";
 
 function ConfidenceViewItem({ plantResult }) {
