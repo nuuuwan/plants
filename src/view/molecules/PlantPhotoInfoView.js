@@ -4,7 +4,6 @@ import { WikiLink } from "../atoms";
 import STYLE from "../STYLE";
 
 export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
-
   if (plantPhoto.isLowConfidence) {
     return null;
   }

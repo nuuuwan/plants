@@ -4,7 +4,11 @@ import { Box, CircularProgress } from "@mui/material";
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { PlantPhoto } from "../../nonview/core";
-import { PlantPhotoView, PlantPhotoInfoView,AlertLowConfidence } from "../molecules";
+import {
+  PlantPhotoView,
+  PlantPhotoInfoView,
+  AlertLowConfidence,
+} from "../molecules";
 import { GeoMap } from "../organisms";
 
 import STYLE from "../STYLE";

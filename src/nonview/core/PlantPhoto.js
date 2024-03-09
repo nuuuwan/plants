@@ -50,11 +50,9 @@ export default class PlantPhoto {
     return this.bestGuess.confidence < MIN_CONFIDENCE;
   }
 
-
   get confidenceStrAll() {
-   
     return this.plantResults
-    
+
       .map(function (plantResult) {
         return plantResult.scientificNameAndConfidence;
       })
@@ -62,13 +60,9 @@ export default class PlantPhoto {
   }
 
   get confidenceStr() {
-    
     return this.plantResults
       .filter(function (plantResult, iPlantResult) {
-        return (
-          iPlantResult < 3 &&
-          ( plantResult.confidence > MIN_CONFIDENCE)
-        );
+        return iPlantResult < 3 && plantResult.confidence > MIN_CONFIDENCE;
       })
       .map(function (plantResult) {
         return plantResult.scientificNameAndConfidence;
@@ -187,7 +181,6 @@ export default class PlantPhoto {
   get cmp() {
     return this.ut;
   }
-
 
   getDistance(other) {
     if (this.scientificName === other.scientificName) {
