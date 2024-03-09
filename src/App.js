@@ -14,7 +14,7 @@ const THEME = createTheme({
     },
   },
   typography: {
-    fontFamily: ["Sofia Sans", "sans-serif"].join(","),
+    fontFamily: ["Afacad", "sans-serif"].join(","),
     fontSize: 14,
   },
 });
