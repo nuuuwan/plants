@@ -33,21 +33,21 @@ STYLE.PLANT_PHOTO = {
     backgroundColor: "#fffe",
     borderRadius: 5,
     width: "fit-content",
-    fontSize: "50%",
+
     maxWidth: "320px",
   },
   FAMILY: {
-    fontSize: "150%",
+    fontSize: "100%",
     color: "#084",
   },
   SCIENTIFIC_NAME: {
     fontStyle: "italic",
-    fontSize: "120%",
+    fontSize: "150%",
     color: "#f80",
   },
 
   COMMON_NAMES: {
-    fontSize: "150%",
+    fontSize: "100%",
     color: "#800",
   },
   CONFIDENCE: {
