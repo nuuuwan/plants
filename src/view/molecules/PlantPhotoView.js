@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { WikiLink } from "../atoms";
-import { ConfidenceView } from "../molecules";
+
 import STYLE from "../STYLE";
 export default function PlantPhotoView({ plantPhoto, onClickImage }) {
   const onClick = function () {
@@ -34,7 +34,7 @@ export default function PlantPhotoView({ plantPhoto, onClickImage }) {
         <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
           {plantPhoto.commonNamesStr}
         </Typography>
-        <ConfidenceView plantPhoto={plantPhoto} />
+
         <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
           {plantPhoto.timeStr}
         </Typography>
