@@ -3,13 +3,12 @@ import PlantNetResult from "./PlantNetResult";
 import { NAME_TRANSLATIONS } from "../constants";
 
 export default class PlantPhoto {
-  constructor(ut, lngLat,direction, imagePath, plantResults) {
+  constructor(ut, lngLat, direction, imagePath, plantResults) {
     this.ut = ut;
     this.lngLat = lngLat;
     this.direction = direction;
     this.imagePath = imagePath;
     this.plantResults = plantResults;
-
   }
 
   get id() {
@@ -128,13 +127,26 @@ export default class PlantPhoto {
 
   get directionStr() {
     const DIRECTIONS = [
-      "N", "NNE", "NE", "ENE",
-      "E", "ESE", "SE", "SSE",
-      "S", "SSW", "SW", "WSW",
-      "W", "WNW", "NW", "NNW"
+      "N",
+      "NNE",
+      "NE",
+      "ENE",
+      "E",
+      "ESE",
+      "SE",
+      "SSE",
+      "S",
+      "SSW",
+      "SW",
+      "WSW",
+      "W",
+      "WNW",
+      "NW",
+      "NNW",
     ];
-    const directionHumanized = DIRECTIONS[Math.round(this.direction / 22.5) % 16];
-      
+    const directionHumanized =
+      DIRECTIONS[Math.round(this.direction / 22.5) % 16];
+
     return `${directionHumanized} (${this.direction}°)`;
   }
 
