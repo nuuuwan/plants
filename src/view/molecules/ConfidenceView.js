@@ -24,8 +24,8 @@ export default function ConfidenceView({ plantPhoto }) {
   return (
     <Typography sx={{color: "gray"}}>
         Confidence: 
-      {plantPhoto.plantResults.map(function (plantResult) {
-        return <ConfidenceViewItem plantResult={plantResult} />;
+      {plantPhoto.plantResults.map(function (plantResult, i) {
+        return <ConfidenceViewItem key={'plant-result-' + i} plantResult={plantResult} />;
       })}
     </Typography>
   );
