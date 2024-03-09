@@ -6,7 +6,7 @@ import "./GeoMap.css";
 
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-function EventComponent({ setCenterAndZoom, onClickMap }) {
+function EventComponent({ setCenterAndZoom }) {
   useMapEvents({
     moveend: (e) => {
       const centerRaw = e.target.getCenter();
@@ -14,9 +14,7 @@ function EventComponent({ setCenterAndZoom, onClickMap }) {
       const zoom = e.target.getZoom();
       setCenterAndZoom(center, zoom);
     },
-    click: () => {
-      onClickMap();
-    }
+
   });
   return null;
 }
@@ -43,7 +41,7 @@ export default class GeoMap extends Component {
   }
 
   render() {
-    const { center, zoom, setCenterAndZoom, onClickMap } = this.props;
+    const { center, zoom, setCenterAndZoom } = this.props;
 
     return (
       <MapContainer
@@ -53,7 +51,7 @@ export default class GeoMap extends Component {
         minZoom={18}
         maxZoom={18}
       >
-        <EventComponent setCenterAndZoom={setCenterAndZoom} onClickMap={onClickMap} />
+        <EventComponent setCenterAndZoom={setCenterAndZoom}  />
         <TileLayer url={URL_FORMAT} />
 
         {this.renderPlants()}

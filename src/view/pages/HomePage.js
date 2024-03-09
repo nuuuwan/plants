@@ -113,10 +113,14 @@ export default class HomePage extends Component {
   }
 
   onClickImage(e) {
-    if (e.clientX < 200) {
+    const pX = e.clientX / window.innerWidth;
+
+    if (pX < 0.33) {
       this.gotoPrevious();
-    } else {
+    } else if (pX > 0.67){
       this.gotoNext();
+    } else {
+      this.gotoRandom();
     }
   }
 
@@ -151,7 +155,7 @@ export default class HomePage extends Component {
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
-            onClickMap={this.gotoRandom.bind(this)}
+
           />
         </Box>
       </Box>
