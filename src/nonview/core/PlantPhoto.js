@@ -1,13 +1,57 @@
-import { WWW, LngLat } from "../base";
+import { WWW, LngLat, Color } from "../base";
 import PlantNetResult from "./PlantNetResult";
 
 export default class PlantPhoto {
-  constructor(ut, latLng, imagePath, plantResults) {
+  static COLOR_IDX = {};
+  constructor(ut, lngLat, imagePath, plantResults) {
     this.ut = ut;
-    this.latLng = latLng;
+    this.lngLat = lngLat;
     this.imagePath = imagePath;
     this.plantResults = plantResults;
   }
+
+  get bounds() {
+    const SPAN = 0.001;
+    return [
+      [this.lngLat.lat - SPAN, this.lngLat.lng - SPAN],
+      [this.lngLat.lat + SPAN, this.lngLat.lng + SPAN],
+    ];
+  }
+
+  get bestGuess() {
+    return this.plantResults[0];
+  }
+
+  get scientificName() {
+    return this.bestGuess.scientificName;
+  }
+
+  get family() {
+    return this.bestGuess.family;
+  }
+
+  get genus() {
+    return this.bestGuess.genus;
+  }
+
+  get species() {
+    return this.bestGuess.scientificName.split(" ")[1];
+  }
+
+  get shortText() {
+    return this.genus.substring(0, 1) + this.species.substring(0, 1);
+  }
+
+  get colorHex() {
+    const key = this.scientificName;
+    if (!PlantPhoto.COLOR_IDX[key]) {
+      PlantPhoto.COLOR_IDX[key] = Color.getRandomHex();
+    }
+
+    return PlantPhoto.COLOR_IDX[key];
+  }
+
+  // Static
 
   static fromDict(d) {
     const ut = parseInt(d["ut"]);
@@ -15,13 +59,13 @@ export default class PlantPhoto {
     const [latRaw, lngRaw] = d["latlng"];
     const lat = parseFloat(latRaw);
     const lng = parseFloat(lngRaw);
-    const latLng = new LngLat(lng, lat);
+    const lngLat = new LngLat(lng, lat);
 
     const imagePath = d["image_path"];
 
     const plantResults = d["plantnet_results"].map(PlantNetResult.fromDict);
 
-    return new PlantPhoto(ut, latLng, imagePath, plantResults);
+    return new PlantPhoto(ut, lngLat, imagePath, plantResults);
   }
 
   static async listAll() {

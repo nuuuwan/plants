@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
-
+import { PlantPhotoMarker } from "../atoms";
 import "./GeoMap.css";
 
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -18,6 +18,18 @@ function EventComponent({ setCenterAndZoom }) {
 }
 
 export default class GeoMap extends Component {
+  renderPlants() {
+    const { plantPhotoList } = this.props;
+    if (!plantPhotoList) {
+      return null;
+    }
+    return plantPhotoList.map(function (plantPhoto, i) {
+      return (
+        <PlantPhotoMarker key={"plant-photo-" + i} plantPhoto={plantPhoto} />
+      );
+    });
+  }
+
   render() {
     const { center, zoom, setCenterAndZoom } = this.props;
 
@@ -25,6 +37,8 @@ export default class GeoMap extends Component {
       <MapContainer center={center} zoom={zoom} zoomControl={false}>
         <EventComponent setCenterAndZoom={setCenterAndZoom} />
         <TileLayer url={URL_FORMAT} />
+
+        {this.renderPlants()}
       </MapContainer>
     );
   }

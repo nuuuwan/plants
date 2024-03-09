@@ -45,7 +45,7 @@ export default class HomePage extends Component {
 
   async componentDidMount() {
     const plantPhotoList = await PlantPhoto.listAll();
-    console.log({ plantPhotoList });
+    this.setState({ plantPhotoList });
   }
 
   async onClickCenterOnCurrentLocation() {
@@ -62,16 +62,17 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const { center, zoom } = this.state;
+    const { center, zoom, plantPhotoList } = this.state;
 
     return (
       <Box>
         <Box sx={STYLE_BODY}>
           <GeoMap
-            center={center}
             key={`geo-map-${center}-${zoom}`}
-            setCenterAndZoom={this.setCenterAndZoom.bind(this)}
+            center={center}
             zoom={zoom}
+            plantPhotoList={plantPhotoList}
+            setCenterAndZoom={this.setCenterAndZoom.bind(this)}
           />
         </Box>
 
