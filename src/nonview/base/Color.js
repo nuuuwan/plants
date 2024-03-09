@@ -1,7 +1,7 @@
 import Random from "./Random.js";
 
 export default class Color {
-  static hsla(h, s, l,a) {
+  static hsla(h, s, l, a) {
     return `hsla(${h},${s}%,${l}%,${a})`;
   }
   static getRandomHSLTuple() {

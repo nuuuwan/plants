@@ -30,10 +30,7 @@ export default class PlantPhoto {
   }
 
   get position() {
-    return [
-      this.lngLat.lat - 0.001,
-      this.lngLat.lng,
-    ];
+    return [this.lngLat.lat - 0.001, this.lngLat.lng];
   }
 
   get latlng() {
@@ -111,28 +108,24 @@ export default class PlantPhoto {
   }
 
   getDistance(other) {
-    
     if (this.scientificName === other.scientificName) {
       return 0;
     }
-    
+
     if (this.genus === other.genus) {
       return 1;
     }
-    
+
     if (this.family === other.family) {
       return 2;
     }
-      return 3;
-
-
-  
+    return 3;
   }
 
   getRelativeColor(other) {
     const distance = this.getDistance(other);
-   
-    return ['#082', '#f80', '#800', '#888'][distance]
+
+    return ["#082", "#f80", "#800", "#888"][distance];
   }
 
   // Static
@@ -160,11 +153,13 @@ export default class PlantPhoto {
 
   static async listAll() {
     const rawDataList = await PlantPhoto.getRawDataList();
-    return rawDataList.map(function (d) {
-      return PlantPhoto.fromDict(d);
-    }).sort(function (a, b) {
-      return b.cmp - a.cmp;
-    });
+    return rawDataList
+      .map(function (d) {
+        return PlantPhoto.fromDict(d);
+      })
+      .sort(function (a, b) {
+        return b.cmp - a.cmp;
+      });
   }
 
   static async idx() {
@@ -213,10 +208,8 @@ export default class PlantPhoto {
   }
 
   static sortBy(arr, activePlantPhoto) {
-    return arr.sort(
-      function (a, b) {
-        return b.getDistance(activePlantPhoto) - a.getDistance(activePlantPhoto);
-      }
-    )
+    return arr.sort(function (a, b) {
+      return b.getDistance(activePlantPhoto) - a.getDistance(activePlantPhoto);
+    });
   }
 }

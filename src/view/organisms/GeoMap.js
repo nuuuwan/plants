@@ -24,7 +24,10 @@ export default class GeoMap extends Component {
     if (!plantPhotoIdx) {
       return null;
     }
-    return PlantPhoto.sortBy(Object.values(plantPhotoIdx), activePlantPhoto).map(function (plantPhoto) {
+    return PlantPhoto.sortBy(
+      Object.values(plantPhotoIdx),
+      activePlantPhoto
+    ).map(function (plantPhoto) {
       return (
         <PlantPhotoMarker
           key={"plant-photo-" + plantPhoto.id}

@@ -76,8 +76,7 @@ export default class HomePage extends Component {
   }
 
   onClickImage() {
-
-    let {activePlantPhotoId , plantPhotoIdx} = this.state;
+    let { activePlantPhotoId, plantPhotoIdx } = this.state;
     const plantPhotoIds = Object.keys(plantPhotoIdx);
     let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
     iActivePlantPhoto += 1;
@@ -85,7 +84,7 @@ export default class HomePage extends Component {
     activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
 
     const center = plantPhotoIdx[activePlantPhotoId].position;
-    this.setStateAndURLContext({ activePlantPhotoId, center});
+    this.setStateAndURLContext({ activePlantPhotoId, center });
   }
 
   render() {
@@ -95,12 +94,13 @@ export default class HomePage extends Component {
       return <CircularProgress />;
     }
 
-    const activePlantPhoto= plantPhotoIdx[activePlantPhotoId];
+    const activePlantPhoto = plantPhotoIdx[activePlantPhotoId];
 
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}>
-          <PlantPhotoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} 
+          <PlantPhotoView
+            plantPhoto={plantPhotoIdx[activePlantPhotoId]}
             onClickImage={this.onClickImage.bind(this)}
           />
         </Box>

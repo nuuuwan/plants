@@ -6,14 +6,14 @@ function ConfidenceViewItem({ plantResult }) {
   let a;
   if (confidence > 0.75) {
     a = "f";
-  } else if (confidence > 0.50) {
+  } else if (confidence > 0.5) {
     a = "8";
   } else if (confidence > 0.25) {
     a = "4";
   } else {
     a = "1";
   }
-  const color  = '#000' + a;
+  const color = "#000" + a;
   return (
     <span style={{ color }}>
       <WikiLink label={plantResult.scientificNameAndConfidence}>

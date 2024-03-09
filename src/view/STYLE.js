@@ -69,11 +69,9 @@ STYLE.PLANT_PHOTO = {
   },
 };
 
-STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign(
-  {},
-  STYLE.PLANT_PHOTO.SPECIES,
-  { color: "gray" }
-);
+STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.SPECIES, {
+  color: "gray",
+});
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
@@ -85,7 +83,6 @@ STYLE.WIKI_LINK = {
   color: "inherit",
 
   textDecoration: "none",
-
 };
 
 export default STYLE;

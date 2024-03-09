@@ -3,15 +3,19 @@ import { WikiLink } from "../atoms";
 import { ConfidenceView } from "../molecules";
 import STYLE from "../STYLE";
 export default function PlantPhotoView({ plantPhoto, onClickImage }) {
+  const onClick = function () {
+    // reload 
+    window.location.reload();
+  }
   return (
-    <Box>
+    <Box >
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}
         style={STYLE.PLANT_PHOTO.IMAGE}
         onClick={onClickImage}
       />
-      <Box sx={STYLE.PLANT_PHOTO.BOX_INFO}>
+      <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} onClick={onClick}>
         <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
           <WikiLink>{plantPhoto.family}</WikiLink>
         </Typography>
