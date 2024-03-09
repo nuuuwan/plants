@@ -46,7 +46,12 @@ export default class PlantPhoto {
   }
 
   get confidenceStr() {
-    return this.plantResults
+    const MIN_CONFIDENCE = 0.1;
+    return this.plantResults.filter(
+      function(plantResult, iPlantResult) {
+        return iPlantResult < 3 && (iPlantResult < 1 || plantResult.confidence > MIN_CONFIDENCE);
+      },  
+    )
       .map(function (plantResult) {
         return plantResult.scientificNameAndConfidence;
       })

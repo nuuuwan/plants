@@ -13,6 +13,9 @@ export default function PlantPhotoView({ plantPhoto, onClickImage }) {
       <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
         {plantPhoto.timeStr}
       </Typography>
+      <Typography sx={STYLE.PLANT_PHOTO.CONFIDENCE}>
+        {plantPhoto.confidenceStr}
+      </Typography>
     </Box>
   );
 }

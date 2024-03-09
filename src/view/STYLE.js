@@ -10,12 +10,13 @@ const RATIOS = [1,3,2];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
 const p1 = RATIOS[0] / sum;
 const p2 = RATIOS[1] / sum;
+const p3 = RATIOS[2] / sum;
 
 const p1pct = (p1 * 100).toFixed(0) + "%";
 const p2pct = (p2 * 100).toFixed(0) + "%";
 const p12pct = (((p1 + p2)) * 100).toFixed(0) + "%";
-const p12apct = (((p1 + p2)*0.93) *100 ).toFixed(0) + "%";
-
+const p12apct = ((p1 + p2) * 0.93 * 100 ).toFixed(0) + "%";
+const p12bpct = ((p1 ) * 1.17 * 100 ).toFixed(0) + "%";
 
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
@@ -61,10 +62,7 @@ STYLE.PLANT_PHOTO = {
     fontSize: "100%",
     color: "#444",
   },
-  CONFIDENCE: {
-    fontSize: "100%",
-    color: "#000",
-  },
+
 
   IMAGE: Object.assign({}, fixedCommon, {
     top: STYLE.HOME_PAGE.MIDDLE.top,
@@ -89,13 +87,19 @@ STYLE.PLANT_PHOTO = {
     padding: 0.5,
     borderRadius: 2,
     color: "white",
-    backgroundColor: "#0004",
+    backgroundColor: "#0006",
   }),
+
+
 
   MARKER: {
     CIRCLE: { color: "white", fillOpacity: 1 },
   },
 };
+
+
+
+
 STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "#082",
 });
@@ -108,6 +112,15 @@ STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
   STYLE.PLANT_PHOTO.MARKER.CIRCLE,
   { color: "black" }
+);
+
+STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign(
+  {},
+  STYLE.PLANT_PHOTO.TIME_STR,
+ {
+    top: p12bpct,
+
+  }
 );
 
 STYLE.WIKI_LINK = {
