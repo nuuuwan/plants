@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Box, CircularProgress } from "@mui/material";
 
-import { GeoLocation, URLContext, GeoData, Random } from "../../nonview/base";
+import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { PlantPhoto } from "../../nonview/core";
 import { PlantPhotoView, PlantPhotoInfoView } from "../molecules";
@@ -15,7 +15,7 @@ export default class HomePage extends Component {
     zoom: GeoData.DEFAULT_ZOOM,
     activePlantPhotoId: null,
   };
-  static CONTEXT_STATE_KEYS = ["center", "zoom", "activePlantPhotoId"];
+  static CONTEXT_STATE_KEYS = [ "activePlantPhotoId"];
 
   static getContextFromState(state) {
     return Object.fromEntries(
@@ -47,6 +47,7 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = HomePage.getStateFromContext();
+
   }
 
   async componentDidMount() {
@@ -56,24 +57,15 @@ export default class HomePage extends Component {
       activePlantPhotoId = await PlantPhoto.getRandomId();
       center = plantPhotoIdx[activePlantPhotoId].position;
     }
-    this.setState({ plantPhotoIdx, activePlantPhotoId, center });
+    this.setStateAndURLContext({ plantPhotoIdx, activePlantPhotoId, center });
+    
   }
 
-  async onClickCenterOnCurrentLocation() {
-    const centerGeo = await GeoLocation.getLatLng();
-    const center = centerGeo ? centerGeo : GeoData.DEFAULT_CENTER;
-    this.setStateAndURLContext({
-      center,
-      zoom: GeoData.DEFAULT_ZOOM,
-    });
-  }
 
-  setCenterAndZoom(center, zoom) {
-    this.setStateAndURLContext({ center, zoom });
-  }
+
 
   onClickPlantPhoto(activePlantPhotoId) {
-    this.setStateAndURLContext({ activePlantPhotoId });
+    this.gotoNew(activePlantPhotoId);
   }
 
   gotoRandom() {
@@ -152,7 +144,7 @@ export default class HomePage extends Component {
             center={center}
             zoom={zoom}
             plantPhotoIdx={plantPhotoIdx}
-            setCenterAndZoom={this.setCenterAndZoom.bind(this)}
+
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
           />

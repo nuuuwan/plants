@@ -32,7 +32,7 @@ export default class PlantPhoto {
   }
 
   get position() {
-    return [this.lngLat.lat - 0.001, this.lngLat.lng];
+    return [this.lngLat.lat - 0.0015, this.lngLat.lng];
   }
 
   get latlng() {

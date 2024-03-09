@@ -1,4 +1,4 @@
-import { CircleMarker, SVGOverlay, Tooltip } from "react-leaflet";
+import { CircleMarker, Tooltip } from "react-leaflet";
 import STYLE from "../STYLE";
 export default function PlantPhotoMarker({
   plantPhoto,
