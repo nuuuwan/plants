@@ -74,35 +74,33 @@ export default class HomePage extends Component {
   onClickPlantPhoto(activePlantPhotoId) {
     this.setStateAndURLContext({ activePlantPhotoId });
   }
- 
+
   gotoRandom() {
     let { activePlantPhotoId, plantPhotoIdx } = this.state;
     const plantPhotoIds = Object.keys(plantPhotoIdx);
-    activePlantPhotoId = Random.choice(plantPhotoIds)
-  const center = plantPhotoIdx[activePlantPhotoId].position;
-  this.setStateAndURLContext({ activePlantPhotoId, center });
+    activePlantPhotoId = Random.choice(plantPhotoIds);
+    const center = plantPhotoIdx[activePlantPhotoId].position;
+    this.setStateAndURLContext({ activePlantPhotoId, center });
   }
-  
-gotoNext() {
-  let { activePlantPhotoId, plantPhotoIdx } = this.state;
-  const plantPhotoIds = Object.keys(plantPhotoIdx);
-  let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
-  iActivePlantPhoto += 1;
-  iActivePlantPhoto %= plantPhotoIds.length;
-  activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
 
-  const center = plantPhotoIdx[activePlantPhotoId].position;
-  this.setStateAndURLContext({ activePlantPhotoId, center });
-}
+  gotoNext() {
+    let { activePlantPhotoId, plantPhotoIdx } = this.state;
+    const plantPhotoIds = Object.keys(plantPhotoIdx);
+    let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
+    iActivePlantPhoto += 1;
+    iActivePlantPhoto %= plantPhotoIds.length;
+    activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
+
+    const center = plantPhotoIdx[activePlantPhotoId].position;
+    this.setStateAndURLContext({ activePlantPhotoId, center });
+  }
 
   onClickImage(e) {
     if (e.clientX < 200) {
       this.gotoRandom();
     } else {
       this.gotoNext();
-    
     }
-
   }
 
   render() {
