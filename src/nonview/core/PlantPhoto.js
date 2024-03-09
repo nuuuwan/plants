@@ -176,7 +176,7 @@ export default class PlantPhoto {
         return PlantPhoto.fromDict(d);
       })
       .sort(function (a, b) {
-        return b.cmp - a.cmp;
+        return a.cmp - b.cmp;
       });
   }
 
