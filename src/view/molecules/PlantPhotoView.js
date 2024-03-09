@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import {WikiLink} from "../atoms";
+import { WikiLink } from "../atoms";
+import {ConfidenceView} from "../molecules";
 import STYLE from "../STYLE";
 export default function PlantPhotoView({ plantPhoto }) {
   return (
@@ -14,13 +15,12 @@ export default function PlantPhotoView({ plantPhoto }) {
           {plantPhoto.timeStr}
         </Typography>
         <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
-        <WikiLink>{plantPhoto.family}</WikiLink>
+          <WikiLink>{plantPhoto.family}</WikiLink>
         </Typography>
 
         <Typography>
           <span style={STYLE.PLANT_PHOTO.SCIENTIFIC_NAME}>
-            <WikiLink>      {plantPhoto.scientificName}</WikiLink>
-      
+            <WikiLink> {plantPhoto.scientificName}</WikiLink>
           </span>
           <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
             {" " + plantPhoto.authorship}
@@ -29,9 +29,7 @@ export default function PlantPhotoView({ plantPhoto }) {
         <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
           {plantPhoto.commonNamesStr}
         </Typography>
-        <Typography sx={STYLE.PLANT_PHOTO.CONFIDENCE}>
-          {"Confidence: " + plantPhoto.confidenceStr}
-        </Typography>
+        <ConfidenceView plantPhoto={plantPhoto} />
       </Box>
     </Box>
   );

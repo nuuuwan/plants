@@ -1,18 +1,21 @@
-import { Tune } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
+import { WikiLink } from "../atoms";
 
-export default function ConfidenceView({plantPhoto}) {
-    return (
-        <Box>
-            {plantPhoto.plantResults.map(function(plantResult) {
-                return (
-                    <ConfidenceViewItem>
-                        <span>
-                            {plantResult}
-                        </span>
-                    </ConfidenceViewItem>
-                )
-            })}
-        </Box>
-    );
+function ConfidenceViewItem({ plantResult }) {
+  return (
+    <WikiLink label={plantResult.scientificNameAndConfidence}>
+    {plantResult.scientificName}
+</WikiLink>
+  )
+}
+
+export default function ConfidenceView({ plantPhoto }) {
+  return (
+    <Typography sx={{color: "gray"}}>
+        Confidence: 
+      {plantPhoto.plantResults.map(function (plantResult) {
+        return <ConfidenceViewItem plantResult={plantResult} />;
+      })}
+    </Typography>
+  );
 }
