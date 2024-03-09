@@ -74,6 +74,15 @@ export default class PlantPhoto {
     return this.bestGuess.scientificName;
   }
 
+  get scientificNameOrNoConfidence() {
+    return (
+      <span>
+        {this.isLowConfidence ? "Not sure. Could be ": ""}
+        <span style={{fontStyle: "italic"}}> {this.scientificName}</span>
+      </span>
+    )
+  }
+
   get family() {
     return this.bestGuess.family;
   }
@@ -183,6 +192,10 @@ export default class PlantPhoto {
   }
 
   getDistance(other) {
+    if (this.isLowConfidence) {
+      return 4;
+    }
+
     if (this.scientificName === other.scientificName) {
       return 0;
     }
@@ -200,7 +213,7 @@ export default class PlantPhoto {
   getRelativeColor(other) {
     const distance = this.getDistance(other);
 
-    return ["#082", "#f80", "#800", "#888"][distance];
+    return ["#082", "#f80", "#800", "#888", "#eee"][distance];
   }
 
   // Static
