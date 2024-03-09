@@ -44,8 +44,14 @@ STYLE.PLANT_PHOTO = {
     width: "fit-content",
   },
   MARKER: {
-    CIRCLE: { color: "gray", fillOpacity: 0.8 },
+    CIRCLE: { color: "white", fillOpacity: 0.8 },
   },
 };
+
+STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
+  {},
+  STYLE.PLANT_PHOTO.MARKER.CIRCLE,
+  { color: "red" }
+);
 
 export default STYLE;

@@ -90,12 +90,13 @@ export default class HomePage extends Component {
 
         <Box sx={STYLE.HOME_PAGE.BOTTOM}>
           <GeoMap
-            key={`geo-map-${center}-${zoom}`}
+            key={`geo-map-${center}-${zoom}-${activePlantPhotoId}`}
             center={center}
             zoom={zoom}
             plantPhotoIdx={plantPhotoIdx}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
+            activePlantPhotoId={activePlantPhotoId}
           />
         </Box>
       </Box>

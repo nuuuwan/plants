@@ -19,7 +19,7 @@ function EventComponent({ setCenterAndZoom }) {
 
 export default class GeoMap extends Component {
   renderPlants() {
-    const { plantPhotoIdx, onClickPlantPhoto } = this.props;
+    const { plantPhotoIdx, onClickPlantPhoto, activePlantPhotoId } = this.props;
     if (!plantPhotoIdx) {
       return null;
     }
@@ -32,6 +32,7 @@ export default class GeoMap extends Component {
           key={"plant-photo-" + plantPhotoID}
           plantPhoto={plantPhoto}
           onClick={onClickPlantPhoto}
+          activePlantPhotoId={activePlantPhotoId}
         />
       );
     });
@@ -41,7 +42,13 @@ export default class GeoMap extends Component {
     const { center, zoom, setCenterAndZoom } = this.props;
 
     return (
-      <MapContainer center={center} zoom={zoom} zoomControl={false}>
+      <MapContainer
+        center={center}
+        zoom={zoom}
+        zoomControl={false}
+        minZoom={18}
+        maxZoom={18}
+      >
         <EventComponent setCenterAndZoom={setCenterAndZoom} />
         <TileLayer url={URL_FORMAT} />
 

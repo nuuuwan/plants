@@ -1,10 +1,20 @@
 import { Circle, SVGOverlay } from "react-leaflet";
 import STYLE from "../STYLE";
-export default function PlantPhotoMarker({ plantPhoto, onClick }) {
+export default function PlantPhotoMarker({
+  plantPhoto,
+  onClick,
+  activePlantPhotoId,
+}) {
   const onClickInner = function () {
     onClick(plantPhoto.id);
   };
   const color = plantPhoto.color;
+
+  const isActive = plantPhoto.id === activePlantPhotoId;
+  const styleCircle = isActive
+    ? STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE
+    : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
+  if (isActive) console.debug(styleCircle);
 
   return (
     <>
@@ -17,10 +27,7 @@ export default function PlantPhotoMarker({ plantPhoto, onClick }) {
         center={plantPhoto.latlng}
         radius={10}
         key={`circle-${plantPhoto.id}`}
-        pathOptions={Object.assign(
-          { fillColor: color },
-          STYLE.PLANT_PHOTO.MARKER.CIRCLE
-        )}
+        pathOptions={Object.assign({ fillColor: color }, styleCircle)}
         eventHandlers={{
           click: onClickInner,
         }}
