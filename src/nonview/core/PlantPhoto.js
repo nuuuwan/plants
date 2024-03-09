@@ -94,7 +94,7 @@ export default class PlantPhoto {
     if (!nameTranslations) {
       return [];
     }
-    return Object.values(nameTranslations);
+    return Object.entries(nameTranslations).filter(([k,_]) => ['sinhala', 'tamil'].includes(k)).map(([k,v]) => v);
   }
 
   get commonNamesCombined() {
@@ -102,7 +102,12 @@ export default class PlantPhoto {
   }
 
   get commonNamesStr() {
-    return this.commonNamesCombined.join(", ");
+    const MAX_LEN = 80;
+    const s =  this.commonNamesCombined.join(", ");
+    if (s.length > MAX_LEN) {
+      return s.substring(0, MAX_LEN) + "…";
+    }
+    return s;
   }
 
   get timeStr() {
