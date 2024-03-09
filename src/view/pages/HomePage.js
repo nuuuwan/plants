@@ -106,7 +106,6 @@ export default class HomePage extends Component {
   }
 
   gotoNew(activePlantPhotoId) {
-
     let { plantPhotoIdx } = this.state;
     const center = plantPhotoIdx[activePlantPhotoId].position;
     this.setStateAndURLContext({ activePlantPhotoId, center });
@@ -117,7 +116,7 @@ export default class HomePage extends Component {
 
     if (pX < 0.33) {
       this.gotoPrevious();
-    } else if (pX > 0.67){
+    } else if (pX > 0.67) {
       this.gotoNext();
     } else {
       this.gotoRandom();
@@ -155,7 +154,6 @@ export default class HomePage extends Component {
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
-
           />
         </Box>
       </Box>

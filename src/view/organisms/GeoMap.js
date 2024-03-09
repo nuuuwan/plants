@@ -14,7 +14,6 @@ function EventComponent({ setCenterAndZoom }) {
       const zoom = e.target.getZoom();
       setCenterAndZoom(center, zoom);
     },
-
   });
   return null;
 }
@@ -51,7 +50,7 @@ export default class GeoMap extends Component {
         minZoom={18}
         maxZoom={18}
       >
-        <EventComponent setCenterAndZoom={setCenterAndZoom}  />
+        <EventComponent setCenterAndZoom={setCenterAndZoom} />
         <TileLayer url={URL_FORMAT} />
 
         {this.renderPlants()}

@@ -10,7 +10,6 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
     console.debug("localStorage cleared");
   };
 
-
   return (
     <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} onClick={onClick}>
       <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
@@ -22,13 +21,19 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
           <WikiLink> {plantPhoto.genus}</WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.SPECIES}>
-          {" "}<WikiLink label={plantPhoto.species}> {plantPhoto.scientificName}</WikiLink>
+          {" "}
+          <WikiLink label={plantPhoto.species}>
+            {" "}
+            {plantPhoto.scientificName}
+          </WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
           {"  " + plantPhoto.authorship}
         </span>
       </Typography>
-      <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>{plantPhoto.commonNamesStr}</Typography>
+      <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
+        {plantPhoto.commonNamesStr}
+      </Typography>
     </Box>
   );
 }
