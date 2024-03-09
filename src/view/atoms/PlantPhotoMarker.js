@@ -3,14 +3,14 @@ import STYLE from "../STYLE";
 export default function PlantPhotoMarker({
   plantPhoto,
   onClick,
-  activePlantPhotoId,
+  activePlantPhoto,
 }) {
   const onClickInner = function () {
     onClick(plantPhoto.id);
   };
-  const color = plantPhoto.color;
+  const color = plantPhoto.getRelativeColor(activePlantPhoto);
 
-  const isActive = plantPhoto.id === activePlantPhotoId;
+  const isActive = plantPhoto.id === activePlantPhoto.id;
   const styleCircle = isActive
     ? STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;

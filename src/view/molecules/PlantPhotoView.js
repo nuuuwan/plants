@@ -17,11 +17,14 @@ export default function PlantPhotoView({ plantPhoto, onClickImage }) {
         </Typography>
 
         <Typography>
-          <span style={STYLE.PLANT_PHOTO.SCIENTIFIC_NAME}>
-            <WikiLink> {plantPhoto.scientificName}</WikiLink>
+          <span style={STYLE.PLANT_PHOTO.GENUS}>
+            <WikiLink> {plantPhoto.genus}</WikiLink>
+          </span>
+          <span style={STYLE.PLANT_PHOTO.SPECIES}>
+            <WikiLink> {plantPhoto.species}</WikiLink>
           </span>
           <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
-            {" " + plantPhoto.authorship}
+            {"  " + plantPhoto.authorship}
           </span>
         </Typography>
         <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>

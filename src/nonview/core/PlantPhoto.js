@@ -103,6 +103,31 @@ export default class PlantPhoto {
     return this.lngLat.lat;
   }
 
+  getDistance(other) {
+    
+    if (this.scientificName === other.scientificName) {
+      return 0;
+    }
+    
+    if (this.genus === other.genus) {
+      return 1;
+    }
+    
+    if (this.family === other.family) {
+      return 2;
+    }
+      return 3;
+
+
+  
+  }
+
+  getRelativeColor(other) {
+    const distance = this.getDistance(other);
+   
+    return ['#082', '#f80', '#800', '#888'][distance] + '8'
+  }
+
   // Static
 
   static fromDict(d) {
@@ -178,5 +203,13 @@ export default class PlantPhoto {
       "/nuuuwan/lk_plants/main/data" +
       "/metadata.idx_summary.json";
     return await WWW.json(URL);
+  }
+
+  static sortBy(arr, activePlantPhoto) {
+    return arr.sort(
+      function (a, b) {
+        return b.getDistance(activePlantPhoto) - a.getDistance(activePlantPhoto);
+      }
+    )
   }
 }

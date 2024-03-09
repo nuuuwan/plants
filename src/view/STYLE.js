@@ -38,17 +38,22 @@ STYLE.PLANT_PHOTO = {
   },
   FAMILY: {
     fontSize: "100%",
-    color: "#084",
+    color: "#800",
   },
-  SCIENTIFIC_NAME: {
+  GENUS: {
     fontStyle: "italic",
     fontSize: "150%",
     color: "#f80",
   },
+  SPECIES: {
+    fontStyle: "italic",
+    fontSize: "150%",
+    color: "#082",
+  },
 
   COMMON_NAMES: {
     fontSize: "100%",
-    color: "#800",
+    color: "#444",
   },
   CONFIDENCE: {
     fontSize: "100%",
@@ -66,22 +71,21 @@ STYLE.PLANT_PHOTO = {
 
 STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign(
   {},
-  STYLE.PLANT_PHOTO.SCIENTIFIC_NAME,
+  STYLE.PLANT_PHOTO.SPECIES,
   { color: "gray" }
 );
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
   STYLE.PLANT_PHOTO.MARKER.CIRCLE,
-  { color: "red" }
+  { color: "black" }
 );
 
 STYLE.WIKI_LINK = {
   color: "inherit",
 
   textDecoration: "none",
-  padding: 2,
-  margin: 2,
+
 };
 
 export default STYLE;

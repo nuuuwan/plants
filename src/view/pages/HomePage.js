@@ -92,6 +92,8 @@ export default class HomePage extends Component {
       return <CircularProgress />;
     }
 
+    const activePlantPhoto= plantPhotoIdx[activePlantPhotoId];
+
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}>
@@ -108,7 +110,7 @@ export default class HomePage extends Component {
             plantPhotoIdx={plantPhotoIdx}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
-            activePlantPhotoId={activePlantPhotoId}
+            activePlantPhoto={activePlantPhoto}
           />
         </Box>
       </Box>

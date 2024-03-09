@@ -3,14 +3,17 @@ import { WikiLink } from "../atoms";
 
 function ConfidenceViewItem({ plantResult }) {
   const confidence = plantResult.confidence;
-  let color;
-  if (confidence > 0.67) {
-    color = "#082";
-  } else if (confidence > 0.33) {
-    color = "#f80";
+  let a;
+  if (confidence > 0.75) {
+    a = "f";
+  } else if (confidence > 0.50) {
+    a = "8";
+  } else if (confidence > 0.25) {
+    a = "4";
   } else {
-    color = "#800";
+    a = "1";
   }
+  const color  = '#000' + a;
   return (
     <span style={{ color }}>
       <WikiLink label={plantResult.scientificNameAndConfidence}>
