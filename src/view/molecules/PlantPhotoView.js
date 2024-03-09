@@ -9,6 +9,9 @@ export default function PlantPhotoView({ plantPhoto }) {
         style={STYLE.PLANT_PHOTO.IMAGE}
       />
       <Box sx={STYLE.PLANT_PHOTO.BOX_INFO}>
+      <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
+          {plantPhoto.timeStr}
+        </Typography>
         <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
           {plantPhoto.family}
         </Typography>
@@ -24,9 +27,7 @@ export default function PlantPhotoView({ plantPhoto }) {
         <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
           {plantPhoto.commonNamesStr}
         </Typography>
-        <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
-          {plantPhoto.timeStr}
-        </Typography>
+
       </Box>
     </Box>
   );
