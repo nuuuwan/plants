@@ -35,9 +35,7 @@ export default function PlantPhotoView({ plantPhoto, onClickImage }) {
           {plantPhoto.commonNamesStr}
         </Typography>
 
-        <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
-          {plantPhoto.timeStr}
-        </Typography>
+
       </Box>
     </Box>
   );

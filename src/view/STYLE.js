@@ -34,7 +34,7 @@ STYLE.PLANT_PHOTO = {
   BOX_INFO: {
     padding: 1,
 
-    borderRadius: 5,
+
     maxHeight: "14%",
     margin: "auto",
 
