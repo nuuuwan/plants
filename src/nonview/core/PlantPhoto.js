@@ -77,10 +77,10 @@ export default class PlantPhoto {
   get scientificNameOrNoConfidence() {
     return (
       <span>
-        {this.isLowConfidence ? "Not sure. Could be ": ""}
-        <span style={{fontStyle: "italic"}}> {this.scientificName}</span>
+        {this.isLowConfidence ? "Not sure. Could be " : ""}
+        <span style={{ fontStyle: "italic" }}> {this.scientificName}</span>
       </span>
-    )
+    );
   }
 
   get family() {

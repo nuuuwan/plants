@@ -25,9 +25,14 @@ export default function PlantPhotoMarker({
         click: onClickInner,
       }}
     >
-      <Tooltip opacity={0.9}  eventHandlers={{
-        click: onClickInner,
-      }}>{plantPhoto.scientificNameOrNoConfidence}</Tooltip>
+      <Tooltip
+        opacity={0.9}
+        eventHandlers={{
+          click: onClickInner,
+        }}
+      >
+        {plantPhoto.scientificNameOrNoConfidence}
+      </Tooltip>
     </CircleMarker>
   );
 }
