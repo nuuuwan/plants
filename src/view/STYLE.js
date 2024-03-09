@@ -6,37 +6,44 @@ const fixedCommon = {
   right: 0,
 };
 
-const Y_SPLIT = 450;
+
 
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
-    bottom: Y_SPLIT,
+    bottom: "20%",
+  }),
+  MIDDLE: Object.assign({}, fixedCommon, {
+    top: "20%",
+    bottom: "40%",
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: Y_SPLIT,
+    top: "60%",
     bottom: 0,
   }),
 };
 
 STYLE.PLANT_PHOTO = {
   IMAGE: Object.assign({}, fixedCommon, {
-    top: 0,
-    bottom: "50%",
+    top: STYLE.HOME_PAGE.MIDDLE.top,
+    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
+    
+    objectFit: "contain",
     width: "100%",
-    height: "100%",
-    zIndex: -1,
+    margin: "auto",
     textAlign: "center",
   }),
 
   BOX_INFO: {
-    margin: 1,
+
     padding: 1,
-    backgroundColor: "#fffe",
+
     borderRadius: 5,
     width: "fit-content",
-
+    margin: "auto",
+    marginTop: 1,
     maxWidth: "320px",
+    textAlign: "center",
   },
   FAMILY: {
     fontSize: "100%",
