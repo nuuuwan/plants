@@ -28,7 +28,7 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
           <WikiLink> {plantPhoto.genus}</WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.SPECIES}>
-          <WikiLink> {plantPhoto.species}</WikiLink>
+          {" "}<WikiLink label={plantPhoto.species}> {plantPhoto.scientificName}</WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
           {"  " + plantPhoto.authorship}

@@ -14,7 +14,7 @@ export default function WikiLink({ children, label = undefined }) {
     label = searchTerm;
   }
 
-  const url = "https://en.wikipedia.org/wiki/" + searchTerm.replace(" ", "_");
+  const url = "https://en.wikipedia.org/wiki/" + searchTerm.trim().replace(" ", "_");
   return (
     <a href={url} target="_blank" rel="noreferrer" style={STYLE.WIKI_LINK}>
       {label}
