@@ -99,7 +99,12 @@ export default class PlantPhoto {
 
   get timeStr() {
     const date = new Date(this.ut * 1000);
-    let dateOptions = { year: "numeric", month: "long", day: "numeric" , weekday: "long"};
+    let dateOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long",
+    };
     let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
 
     let formattedDate = date.toLocaleDateString("en-US", dateOptions);

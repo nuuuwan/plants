@@ -30,6 +30,7 @@ STYLE.PLANT_PHOTO = {
     margin: 0,
     textAlign: "center",
     filter: "saturate(150%)",
+    objectFit: "cover",
   }),
 
   BOX_INFO: {
