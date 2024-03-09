@@ -27,4 +27,12 @@ export default class PlantNetResult {
       species["commonNames"]
     );
   }
+
+  get confidenceStr() {
+    return (this.confidence * 100).toFixed(0) + "%";
+  }
+
+  get scientificNameAndConfidence() {
+    return this.scientificName + " (" + this.confidenceStr + ")";
+  }
 }

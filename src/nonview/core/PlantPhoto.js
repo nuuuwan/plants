@@ -41,6 +41,14 @@ export default class PlantPhoto {
     return this.plantResults[0];
   }
 
+  get confidenceStr() {
+    return this.plantResults
+      .map(function (plantResult) {
+        return plantResult.scientificNameAndConfidence;
+      })
+      .join(", ");
+  }
+
   get scientificName() {
     return this.bestGuess.scientificName;
   }

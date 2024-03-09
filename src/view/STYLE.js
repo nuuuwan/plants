@@ -26,31 +26,39 @@ STYLE.PLANT_PHOTO = {
     zIndex: -1,
     textAlign: "center",
   }),
+
+  BOX_INFO: {
+    margin: 1,
+    padding: 1,
+    backgroundColor: "#fffe",
+    borderRadius: 5,
+    width: "fit-content",
+    fontSize: "50%",
+    maxWidth: "320px",
+  },
   FAMILY: {
-    fontSize: "100%",
+    fontSize: "150%",
     color: "#084",
   },
   SCIENTIFIC_NAME: {
     fontStyle: "italic",
-    fontSize: "150%",
+    fontSize: "120%",
     color: "#f80",
   },
 
   COMMON_NAMES: {
-    fontSize: "80%",
+    fontSize: "150%",
     color: "#800",
+  },
+  CONFIDENCE: {
+    fontSize: "100%",
+    color: "#000",
   },
 
   TIME_STR: {
     fontSize: "67%",
   },
-  BOX_INFO: {
-    margin: 1,
-    padding: 1,
-    backgroundColor: "#fffc",
-    borderRadius: 5,
-    width: "fit-content",
-  },
+
   MARKER: {
     CIRCLE: { color: "white", fillOpacity: 0.8 },
   },
