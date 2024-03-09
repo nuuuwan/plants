@@ -9,10 +9,10 @@ const fixedCommon = {
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
-    bottom: "50%",
+    bottom: "67%",
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: "50%",
+    top: "67%",
     bottom: 0,
   }),
 };
