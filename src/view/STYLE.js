@@ -11,14 +11,14 @@ const fixedCommon = {
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
-    bottom: "20%",
+    bottom: "14%",
   }),
   MIDDLE: Object.assign({}, fixedCommon, {
-    top: "20%",
-    bottom: "40%",
+    top: "14%",
+    bottom: "57%",
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: "60%",
+    top: "57%",
     bottom: 0,
   }),
 };
@@ -26,11 +26,10 @@ STYLE.HOME_PAGE = {
 STYLE.PLANT_PHOTO = {
   IMAGE: Object.assign({}, fixedCommon, {
     top: STYLE.HOME_PAGE.MIDDLE.top,
-    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
-    
-    objectFit: "contain",
+    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,    
     width: "100%",
-    margin: "auto",
+    height: "43%",
+    margin: 0,
     textAlign: "center",
   }),
 
@@ -39,10 +38,9 @@ STYLE.PLANT_PHOTO = {
     padding: 1,
 
     borderRadius: 5,
-    width: "fit-content",
+    maxHeight: "14%",
     margin: "auto",
-    marginTop: 1,
-    maxWidth: "320px",
+
     textAlign: "center",
   },
   FAMILY: {
@@ -51,14 +49,10 @@ STYLE.PLANT_PHOTO = {
   },
   GENUS: {
     fontStyle: "italic",
-    fontSize: "150%",
+    fontSize: "200%",
     color: "#f80",
   },
-  SPECIES: {
-    fontStyle: "italic",
-    fontSize: "150%",
-    color: "#082",
-  },
+
 
   COMMON_NAMES: {
     fontSize: "100%",
@@ -77,8 +71,10 @@ STYLE.PLANT_PHOTO = {
     CIRCLE: { color: "white", fillOpacity: 1 },
   },
 };
-
-STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.SPECIES, {
+STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
+  color: "#082",
+});
+STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "gray",
 });
 
