@@ -66,4 +66,9 @@ export default class Color {
     const [r, g, b] = Color.getRandomRGBATuple();
     return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
   }
+
+  static getHexFromHue(hue) {
+    const [r, g, b] = Color.hsl2rgb([hue, 100, 75]);
+    return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+  }
 }
