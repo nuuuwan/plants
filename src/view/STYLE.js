@@ -32,7 +32,6 @@ STYLE.PLANT_PHOTO = {
   }),
 
   BOX_INFO: {
-    
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

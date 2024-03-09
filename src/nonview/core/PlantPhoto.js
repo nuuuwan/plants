@@ -1,5 +1,6 @@
 import { WWW, LngLat, Color, Random } from "../base";
 import PlantNetResult from "./PlantNetResult";
+import { NAME_TRANSLATIONS } from "../constants";
 
 export default class PlantPhoto {
   constructor(ut, lngLat, imagePath, plantResults) {
@@ -80,8 +81,20 @@ export default class PlantPhoto {
     return this.bestGuess.commonNames;
   }
 
+  get commonNames2() {
+    const nameTranslations = NAME_TRANSLATIONS[this.scientificName];
+    if (!nameTranslations) {
+      return [];
+    }
+    return Object.values(nameTranslations);
+  }
+
+  get commonNamesCombined() {
+    return [].concat(this.commonNames2, this.commonNames);
+  }
+
   get commonNamesStr() {
-    return this.commonNames.join(", ");
+    return this.commonNamesCombined.join(", ");
   }
 
   get timeStr() {
