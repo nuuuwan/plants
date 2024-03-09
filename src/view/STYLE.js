@@ -6,13 +6,15 @@ const fixedCommon = {
   right: 0,
 };
 
+const Y_SPLIT = 450;
+
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
     top: 0,
-    bottom: 500,
+    bottom: Y_SPLIT,
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: 500,
+    top: Y_SPLIT,
     bottom: 0,
   }),
 };
