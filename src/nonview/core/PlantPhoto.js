@@ -99,6 +99,10 @@ export default class PlantPhoto {
     return Color.getHexFromHue(hue);
   }
 
+  get cmp() {
+    return this.lngLat.lat;
+  }
+
   // Static
 
   static fromDict(d) {
@@ -126,6 +130,8 @@ export default class PlantPhoto {
     const rawDataList = await PlantPhoto.getRawDataList();
     return rawDataList.map(function (d) {
       return PlantPhoto.fromDict(d);
+    }).sort(function (a, b) {
+      return b.cmp - a.cmp;
     });
   }
 

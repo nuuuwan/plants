@@ -75,6 +75,16 @@ export default class HomePage extends Component {
     this.setStateAndURLContext({ activePlantPhotoId });
   }
 
+  onClickImage() {
+    let {activePlantPhotoId , plantPhotoIdx} = this.state;
+    const plantPhotoIds = Object.keys(plantPhotoIdx);
+    let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
+    iActivePlantPhoto += 1;
+    iActivePlantPhoto %= plantPhotoIds.length;
+    activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
+    this.setStateAndURLContext({ activePlantPhotoId });
+  }
+
   render() {
     const { center, zoom, plantPhotoIdx, activePlantPhotoId } = this.state;
 
@@ -85,7 +95,9 @@ export default class HomePage extends Component {
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}>
-          <PlantPhotoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
+          <PlantPhotoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} 
+            onClickImage={this.onClickImage.bind(this)}
+          />
         </Box>
 
         <Box sx={STYLE.HOME_PAGE.BOTTOM}>

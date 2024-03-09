@@ -2,13 +2,14 @@ import { Box, Typography } from "@mui/material";
 import { WikiLink } from "../atoms";
 import { ConfidenceView } from "../molecules";
 import STYLE from "../STYLE";
-export default function PlantPhotoView({ plantPhoto }) {
+export default function PlantPhotoView({ plantPhoto, onClickImage }) {
   return (
     <Box>
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}
         style={STYLE.PLANT_PHOTO.IMAGE}
+        onClick={onClickImage}
       />
       <Box sx={STYLE.PLANT_PHOTO.BOX_INFO}>
         <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
