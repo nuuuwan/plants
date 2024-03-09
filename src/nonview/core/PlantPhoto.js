@@ -122,7 +122,7 @@ export default class PlantPhoto {
   }
 
   get cmp() {
-    return this.lngLat.lat;
+    return this.ut;
   }
 
   getDistance(other) {
