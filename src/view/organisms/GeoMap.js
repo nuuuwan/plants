@@ -19,13 +19,20 @@ function EventComponent({ setCenterAndZoom }) {
 
 export default class GeoMap extends Component {
   renderPlants() {
-    const { plantPhotoList } = this.props;
-    if (!plantPhotoList) {
+    const { plantPhotoIdx, onClickPlantPhoto } = this.props;
+    if (!plantPhotoIdx) {
       return null;
     }
-    return plantPhotoList.map(function (plantPhoto, i) {
+    return Object.entries(plantPhotoIdx).map(function ([
+      plantPhotoID,
+      plantPhoto,
+    ]) {
       return (
-        <PlantPhotoMarker key={"plant-photo-" + i} plantPhoto={plantPhoto} />
+        <PlantPhotoMarker
+          key={"plant-photo-" + plantPhotoID}
+          plantPhoto={plantPhoto}
+          onClick={onClickPlantPhoto}
+        />
       );
     });
   }

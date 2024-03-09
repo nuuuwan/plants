@@ -5,7 +5,7 @@ export default class Color {
     return `hsla(${h},${s}%,${l}%)`;
   }
   static getRandomHSLTuple() {
-    const h = Random.randomInt(120 - 60, 120 + 60);
+    const h = Random.int(0, 240);
     const s = 100;
     const l = 75;
 

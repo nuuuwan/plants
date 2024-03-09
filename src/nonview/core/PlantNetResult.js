@@ -13,8 +13,9 @@ export default class PlantNetResult {
       d["score"],
       species["scientificNameWithoutAuthor"],
       species["scientificNameAuthorship"],
-      species["family"]["scientificName"],
-      species["genus"]["scientificName"]
+
+      species["genus"]["scientificName"],
+      species["family"]["scientificName"]
     );
   }
 }

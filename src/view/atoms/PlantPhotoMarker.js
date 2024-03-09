@@ -1,19 +1,30 @@
-import { SVGOverlay } from "react-leaflet";
+import { Circle, SVGOverlay } from "react-leaflet";
+import STYLE from "../STYLE";
+export default function PlantPhotoMarker({ plantPhoto, onClick }) {
+  const onClickInner = function () {
+    onClick(plantPhoto.id);
+  };
+  const color = plantPhoto.color;
 
-export default function PlantPhotoMarker({ plantPhoto }) {
   return (
-    <SVGOverlay bounds={plantPhoto.bounds}>
-      <circle
-        r="10"
-        cx="50%"
-        cy="50%"
-        fill={plantPhoto.colorHex + "88"}
-        stroke="#888"
-        strokeWidth="2"
+    <>
+      <SVGOverlay bounds={plantPhoto.bounds}>
+        <text x="50%" y="51%" fill="black" textAnchor="middle">
+          {plantPhoto.shortText}
+        </text>
+      </SVGOverlay>
+      <Circle
+        center={plantPhoto.latlng}
+        radius={10}
+        key={`circle-${plantPhoto.id}`}
+        pathOptions={Object.assign(
+          { fillColor: color },
+          STYLE.PLANT_PHOTO.MARKER.CIRCLE
+        )}
+        eventHandlers={{
+          click: onClickInner,
+        }}
       />
-      <text x="50%" y="51%" fill="black" textAnchor="middle">
-        {plantPhoto.shortText}
-      </text>
-    </SVGOverlay>
+    </>
   );
 }

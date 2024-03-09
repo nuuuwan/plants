@@ -1,51 +1,61 @@
 import React, { Component } from "react";
-import { Box, Paper } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
+
 import { GeoLocation, URLContext, GeoData } from "../../nonview/base";
-import { CustomBottomNavigation } from "../molecules";
-import { GeoMap } from "../organisms";
-import { STYLE_BODY, STYLE_FOOTER } from "../pages/STYLES_HOME_PAGE";
+
 import { PlantPhoto } from "../../nonview/core";
+import { PlantPhotoView } from "../molecules";
+import { GeoMap } from "../organisms";
+
+import STYLE from "../STYLE";
 
 export default class HomePage extends Component {
   static DEFAULT_STATE = {
     center: GeoData.DEFAULT_CENTER,
     zoom: GeoData.DEFAULT_ZOOM,
+    activePlantPhotoId: null,
   };
+  static CONTEXT_STATE_KEYS = ["center", "zoom", "activePlantPhotoId"];
 
-  constructor(props) {
-    super(props);
+  static getContextFromState(state) {
+    return Object.fromEntries(
+      HomePage.CONTEXT_STATE_KEYS.map((key) => [key, state[key]])
+    );
+  }
 
-    let initState = HomePage.DEFAULT_STATE;
-
+  static getStateFromContext() {
     const context = URLContext.getContext();
-
-    if (context.center) {
-      initState.center = context.center;
+    const state = HomePage.DEFAULT_STATE;
+    for (const key of HomePage.CONTEXT_STATE_KEYS) {
+      if (context[key]) {
+        state[key] = context[key];
+      }
     }
-    if (context.zoom) {
-      initState.zoom = context.zoom;
-    }
-
-    this.state = initState;
+    return state;
   }
 
   setStateAndURLContext(state) {
     this.setState(
       state,
       function () {
-        const { center, zoom } = this.state;
-        const context = {
-          center,
-          zoom,
-        };
+        const context = HomePage.getContextFromState(this.state);
         URLContext.setContext(context);
       }.bind(this)
     );
   }
 
+  constructor(props) {
+    super(props);
+    this.state = HomePage.getStateFromContext();
+  }
+
   async componentDidMount() {
-    const plantPhotoList = await PlantPhoto.listAll();
-    this.setState({ plantPhotoList });
+    let { activePlantPhotoId } = this.state;
+    const plantPhotoIdx = await PlantPhoto.idx();
+    if (!activePlantPhotoId) {
+      activePlantPhotoId = await PlantPhoto.getRandomId();
+    }
+    this.setState({ plantPhotoIdx, activePlantPhotoId });
   }
 
   async onClickCenterOnCurrentLocation() {
@@ -61,28 +71,33 @@ export default class HomePage extends Component {
     this.setStateAndURLContext({ center, zoom });
   }
 
+  onClickPlantPhoto(activePlantPhotoId) {
+    this.setStateAndURLContext({ activePlantPhotoId });
+  }
+
   render() {
-    const { center, zoom, plantPhotoList } = this.state;
+    const { center, zoom, plantPhotoIdx, activePlantPhotoId } = this.state;
+
+    if (!plantPhotoIdx) {
+      return <CircularProgress />;
+    }
 
     return (
       <Box>
-        <Box sx={STYLE_BODY}>
+        <Box sx={STYLE.HOME_PAGE.TOP}>
+          <PlantPhotoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
+        </Box>
+
+        <Box sx={STYLE.HOME_PAGE.BOTTOM}>
           <GeoMap
             key={`geo-map-${center}-${zoom}`}
             center={center}
             zoom={zoom}
-            plantPhotoList={plantPhotoList}
+            plantPhotoIdx={plantPhotoIdx}
             setCenterAndZoom={this.setCenterAndZoom.bind(this)}
+            onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
           />
         </Box>
-
-        <Paper sx={STYLE_FOOTER}>
-          <CustomBottomNavigation
-            onClickCenterOnCurrentLocation={this.onClickCenterOnCurrentLocation.bind(
-              this
-            )}
-          />
-        </Paper>
       </Box>
     );
   }

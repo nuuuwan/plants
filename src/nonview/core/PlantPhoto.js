@@ -1,4 +1,4 @@
-import { WWW, LngLat, Color } from "../base";
+import { WWW, LngLat, Color, Random } from "../base";
 import PlantNetResult from "./PlantNetResult";
 
 export default class PlantPhoto {
@@ -10,12 +10,31 @@ export default class PlantPhoto {
     this.plantResults = plantResults;
   }
 
+  get id() {
+    return this.imagePath;
+  }
+
+  get urlImage() {
+    return (
+      "https://raw.githubusercontent.com" +
+      "/nuuuwan/lk_plants/main/" +
+      this.imagePath
+    );
+  }
+
   get bounds() {
     const SPAN = 0.001;
     return [
       [this.lngLat.lat - SPAN, this.lngLat.lng - SPAN],
       [this.lngLat.lat + SPAN, this.lngLat.lng + SPAN],
     ];
+  }
+
+  get latlng() {
+    return {
+      lat: this.lngLat.lat,
+      lng: this.lngLat.lng,
+    };
   }
 
   get bestGuess() {
@@ -38,12 +57,21 @@ export default class PlantPhoto {
     return this.bestGuess.scientificName.split(" ")[1];
   }
 
+  get authorship() {
+    return this.bestGuess.authorship;
+  }
+
   get shortText() {
     return this.genus.substring(0, 1) + this.species.substring(0, 1);
   }
 
-  get colorHex() {
-    const key = this.scientificName;
+  get timeStr() {
+    const date = new Date(this.ut * 1000);
+    return date.toLocaleString();
+  }
+
+  get color() {
+    const key = this.family;
     if (!PlantPhoto.COLOR_IDX[key]) {
       PlantPhoto.COLOR_IDX[key] = Color.getRandomHex();
     }
@@ -68,11 +96,26 @@ export default class PlantPhoto {
     return new PlantPhoto(ut, lngLat, imagePath, plantResults);
   }
 
+  static async getRandomId() {
+    const idx = await PlantPhoto.idx();
+    const ids = Object.keys(idx);
+    return Random.choice(ids);
+  }
+
   static async listAll() {
     const rawDataList = await PlantPhoto.getRawDataList();
     return rawDataList.map(function (d) {
       return PlantPhoto.fromDict(d);
     });
+  }
+
+  static async idx() {
+    const arr = await PlantPhoto.listAll();
+    return Object.fromEntries(
+      arr.map(function (plantPhoto) {
+        return [plantPhoto.id, plantPhoto];
+      })
+    );
   }
 
   static async getRawDataList() {

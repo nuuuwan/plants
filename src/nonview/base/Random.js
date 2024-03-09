@@ -1,9 +1,13 @@
 export default class Random {
-  static randomFloat(minValue, maxValue) {
+  static float(minValue, maxValue) {
     return minValue + Math.random() * (maxValue - minValue);
   }
 
-  static randomInt(minValue, maxValue) {
-    return parseInt(Random.randomFloat(minValue, maxValue));
+  static int(minValue, maxValue) {
+    return parseInt(Random.float(minValue, maxValue));
+  }
+
+  static choice(arr) {
+    return arr[Random.int(0, arr.length)];
   }
 }
