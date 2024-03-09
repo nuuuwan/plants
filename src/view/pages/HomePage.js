@@ -76,13 +76,16 @@ export default class HomePage extends Component {
   }
 
   onClickImage() {
+
     let {activePlantPhotoId , plantPhotoIdx} = this.state;
     const plantPhotoIds = Object.keys(plantPhotoIdx);
     let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
     iActivePlantPhoto += 1;
     iActivePlantPhoto %= plantPhotoIds.length;
     activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
-    this.setStateAndURLContext({ activePlantPhotoId });
+
+    const center = plantPhotoIdx[activePlantPhotoId].position;
+    this.setStateAndURLContext({ activePlantPhotoId, center});
   }
 
   render() {

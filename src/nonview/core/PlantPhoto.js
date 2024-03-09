@@ -29,6 +29,13 @@ export default class PlantPhoto {
     ];
   }
 
+  get position() {
+    return [
+      this.lngLat.lat - 0.001,
+      this.lngLat.lng,
+    ];
+  }
+
   get latlng() {
     return {
       lat: this.lngLat.lat,
@@ -125,7 +132,7 @@ export default class PlantPhoto {
   getRelativeColor(other) {
     const distance = this.getDistance(other);
    
-    return ['#082', '#f80', '#800', '#888'][distance] + '8'
+    return ['#082', '#f80', '#800', '#888'][distance]
   }
 
   // Static

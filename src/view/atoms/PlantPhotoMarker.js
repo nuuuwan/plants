@@ -17,11 +17,7 @@ export default function PlantPhotoMarker({
 
   return (
     <>
-      <SVGOverlay bounds={plantPhoto.bounds}>
-        <text x="50%" y="51%" fill="black" textAnchor="middle">
-          {plantPhoto.shortText}
-        </text>
-      </SVGOverlay>
+     
       <Circle
         center={plantPhoto.latlng}
         radius={10}
@@ -31,6 +27,11 @@ export default function PlantPhotoMarker({
           click: onClickInner,
         }}
       />
+       <SVGOverlay bounds={plantPhoto.bounds}>
+        <text x="50%" y="51%" fill="black" textAnchor="middle" >
+          {plantPhoto.shortText}
+        </text>
+      </SVGOverlay>
     </>
   );
 }

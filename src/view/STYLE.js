@@ -65,7 +65,7 @@ STYLE.PLANT_PHOTO = {
   },
 
   MARKER: {
-    CIRCLE: { color: "white", fillOpacity: 0.8 },
+    CIRCLE: { color: "white", fillOpacity: 1 },
   },
 };
 
