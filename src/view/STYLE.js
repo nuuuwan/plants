@@ -78,8 +78,8 @@ STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
 
 STYLE.WIKI_LINK = {
   color: "inherit",
-  textDecoration: "none",
 
+  textDecoration: "none",
   padding: 2,
   margin: 2,
 
