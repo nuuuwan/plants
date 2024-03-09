@@ -12,8 +12,14 @@ export default function PlantPhotoView({ plantPhoto }) {
         <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
           {plantPhoto.family}
         </Typography>
-        <Typography sx={STYLE.PLANT_PHOTO.SCIENTIFIC_NAME}>
-          {plantPhoto.scientificName + " " + plantPhoto.authorship}
+
+        <Typography>
+          <span style={STYLE.PLANT_PHOTO.SCIENTIFIC_NAME}>
+            {plantPhoto.scientificName}
+          </span>
+          <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
+            {" " + plantPhoto.authorship}
+          </span>
         </Typography>
         <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
           {plantPhoto.timeStr}

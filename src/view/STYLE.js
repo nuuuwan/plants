@@ -33,6 +33,7 @@ STYLE.PLANT_PHOTO = {
     fontStyle: "italic",
     fontSize: "150%",
   },
+
   TIME_STR: {
     fontSize: "67%",
   },
@@ -47,6 +48,12 @@ STYLE.PLANT_PHOTO = {
     CIRCLE: { color: "white", fillOpacity: 0.8 },
   },
 };
+
+STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign(
+  {},
+  STYLE.PLANT_PHOTO.SCIENTIFIC_NAME,
+  { color: "gray" }
+);
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
