@@ -1,23 +1,33 @@
 let STYLE = {};
 
 const fixedCommon = {
-  position: "fixed",
-  left: 0,
-  right: 0,
+  // position: "fixed",
+  // left: 0,
+  // right: 0,
 };
+
+const RATIOS = [1,3,2];
+const sum = RATIOS.reduce((a, b) => a + b, 0);
+const p1 = RATIOS[0] / sum;
+const p2 = RATIOS[1] / sum;
+
+
+const p1pct = (p1 * 100).toFixed(0) + "%";
+const p2pct = (p2 * 100).toFixed(0) + "%";
+// const p12pct = ((p1 + p2) * 100).toFixed(0) + "%";
 
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
-    top: 0,
-    bottom: "15%",
+    // top: 0,
+    // bottom: p1pct,
   }),
   MIDDLE: Object.assign({}, fixedCommon, {
-    top: "15%",
-    bottom: "65%",
+    // top: p1pct,
+    // bottom: p12pct,
   }),
   BOTTOM: Object.assign({}, fixedCommon, {
-    top: "65%",
-    bottom: 0,
+    // top: p12pct,
+    // bottom: 0,
   }),
 };
 
@@ -26,7 +36,7 @@ STYLE.PLANT_PHOTO = {
     top: STYLE.HOME_PAGE.MIDDLE.top,
     bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
     width: "100%",
-    height: "50%",
+    height: p2pct,
     margin: 0,
     textAlign: "center",
     filter: "saturate(150%)",
@@ -37,7 +47,7 @@ STYLE.PLANT_PHOTO = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    height: "14%",
+    minHeight: p1pct,
     padding: 2,
     textAlign: "center",
   },
