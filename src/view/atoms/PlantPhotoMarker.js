@@ -14,7 +14,6 @@ export default function PlantPhotoMarker({
   const styleCircle = isActive
     ? STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
-  if (isActive) console.debug(styleCircle);
 
   return (
     <>
