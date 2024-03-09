@@ -99,13 +99,13 @@ export default class PlantPhoto {
 
   get timeStr() {
     const date = new Date(this.ut * 1000);
-    let dateOptions = { year: "numeric", month: "long", day: "numeric" };
+    let dateOptions = { year: "numeric", month: "long", day: "numeric" , weekday: "long"};
     let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
 
     let formattedDate = date.toLocaleDateString("en-US", dateOptions);
     let formattedTime = date.toLocaleTimeString("en-US", timeOptions);
 
-    return `${formattedTime} (${formattedDate})`;
+    return `${formattedTime} · ${formattedDate}`;
   }
 
   get color() {
