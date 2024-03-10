@@ -73,7 +73,6 @@ export default class HomePage extends Component {
     this.gotoNew(activeEPPId);
   }
 
-
   gotoNew(activeEPPId) {
     let { eppIdx } = this.state;
     const center = eppIdx[activeEPPId].plantPhoto.latLng.position;
@@ -86,7 +85,7 @@ export default class HomePage extends Component {
     const pY1 = e.clientY / window.innerHeight;
     const pY0 = 1 - (pY1 - p1) / p2;
 
-    const trans = function(x) {
+    const trans = function (x) {
       if (x > 0.67) {
         return 1;
       }
@@ -94,46 +93,38 @@ export default class HomePage extends Component {
         return -1;
       }
       return 0;
-    }
+    };
 
-    const pX = 1- trans(pX0);
-    const pY = 1- trans(pY0);
+    const pX = 1 - trans(pX0);
+    const pY = 1 - trans(pY0);
 
-    console.debug(pX, pY);
-
-    if (pX ===  0 && pY === 0) {
+    if (pX === 0 && pY === 0) {
       this.gotoRandom();
       return;
     }
 
-    console.debug(pX, pY);
-
-    const cmp = function(epp) {
+    const cmp = function (epp) {
       const latLng = epp.plantPhoto.latLng;
       const lat = latLng.lat;
       const lng = latLng.lng;
       const k = pY * lat + pX * lng;
       console.debug(lat, lng, k);
       return k;
-    }
+    };
 
     const eppList = Object.values(eppIdx);
-    const sortedEppList = eppList.sort(
-      function(a,b) {
-        return cmp(b) - cmp(a);
-      }
-    )
+    const sortedEppList = eppList.sort(function (a, b) {
+      return cmp(b) - cmp(a);
+    });
     const sortedEppIdList = sortedEppList.map(function (epp) {
       return epp.id;
     });
-    const iEpp = sortedEppIdList.indexOf(activeEPPId); 
+    const iEpp = sortedEppIdList.indexOf(activeEPPId);
     const iNext = (iEpp + 1) % sortedEppIdList.length;
     const nextEPPId = sortedEppIdList[iNext];
 
     this.gotoNew(nextEPPId);
-
   }
-  
 
   render() {
     const { center, zoom, eppIdx, activeEPPId } = this.state;

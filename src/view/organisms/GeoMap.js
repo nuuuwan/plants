@@ -13,20 +13,20 @@ export default class GeoMap extends Component {
       return null;
     }
     const eppList = Object.values(eppIdx);
-    return eppList.sort(
-      function(a,b) {
+    return eppList
+      .sort(function (a, b) {
         return b.getDistance(activeEPP) - a.getDistance(activeEPP);
-      }
-    ).map(function (epp) {
-      return (
-        <PlantPhotoMarker
-          key={"plant-photo-" + epp.id}
-          epp={epp}
-          onClick={onClickPlantPhoto}
-          activeEPP={activeEPP}
-        />
-      );
-    });
+      })
+      .map(function (epp) {
+        return (
+          <PlantPhotoMarker
+            key={"plant-photo-" + epp.id}
+            epp={epp}
+            onClick={onClickPlantPhoto}
+            activeEPP={activeEPP}
+          />
+        );
+      });
   }
 
   render() {
