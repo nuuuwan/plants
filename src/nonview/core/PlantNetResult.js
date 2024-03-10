@@ -13,6 +13,14 @@ export default class PlantNetResult {
     return Object.keys(this.speciesNameToScore)[0];
   }
 
+  get speciesNameConditioned() {
+    let s = this.speciesName;
+    if (this.isLowConfidence) {
+      s += '❓'
+    }
+    return s;
+  }
+
   get confidence() {
     return this.speciesNameToScore[this.speciesName];
   }

@@ -28,7 +28,7 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
           click: onClickInner,
         }}
       >
-        {epp.plantPhoto.scientificNameOrNoConfidence}
+        {epp.plantNetResult.speciesNameConditioned}
       </Tooltip>
     </CircleMarker>
   );
