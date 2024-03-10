@@ -193,31 +193,31 @@ export default class PlantPhoto {
 
   getDistance(other) {
     if (this.id === other.id) {
-      return 1;
+      return 0;
     }
 
     if (this.isLowConfidence) {
-      return 6;
+      return 5;
     }
 
     if (this.scientificName === other.scientificName) {
-      return 2;
+      return 1;
     }
 
     if (this.genus === other.genus) {
-      return 3;
+      return 2;
     }
 
     if (this.family === other.family) {
-      return 4;
+      return 3;
     }
-    return 5;
+    return 4;
   }
 
   getRelativeColor(other) {
     const distance = this.getDistance(other);
 
-    return ["#060", "#0a4", "#f80", "#800", "#888", "#eee"][distance - 1];
+    return ["#060", "#0a4", "#f80", "#800", "#888", "#eee"][distance];
   }
 
   // Static
