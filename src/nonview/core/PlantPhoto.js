@@ -192,7 +192,6 @@ export default class PlantPhoto {
   }
 
   getDistance(other) {
-
     if (this.id === other.id) {
       return 1;
     }
@@ -200,8 +199,6 @@ export default class PlantPhoto {
     if (this.isLowConfidence) {
       return 6;
     }
-
- 
 
     if (this.scientificName === other.scientificName) {
       return 2;
@@ -220,7 +217,7 @@ export default class PlantPhoto {
   getRelativeColor(other) {
     const distance = this.getDistance(other);
 
-    return ["#060", "#0a4", "#f80", "#800", "#888", "#eee"][distance-1];
+    return ["#060", "#0a4", "#f80", "#800", "#888", "#eee"][distance - 1];
   }
 
   // Static
