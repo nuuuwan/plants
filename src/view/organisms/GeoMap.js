@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
-import { PlantPhoto } from "../../nonview/core";
+
 import "./GeoMap.css";
 
 const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -12,10 +12,7 @@ export default class GeoMap extends Component {
     if (!plantPhotoIdx) {
       return null;
     }
-    return PlantPhoto.sortBy(
-      Object.values(plantPhotoIdx),
-      activePlantPhoto
-    ).map(function (plantPhoto) {
+    return Object.values(plantPhotoIdx).map(function (plantPhoto) {
       return (
         <PlantPhotoMarker
           key={"plant-photo-" + plantPhoto.id}

@@ -1,18 +1,12 @@
-import { WWW, LngLat, Color, Random } from "../base";
-import PlantNetResult from "./PlantNetResult";
-import { NAME_TRANSLATIONS } from "../constants";
-const MIN_CONFIDENCE = 0.1;
+import { WWW, LngLat, Random } from "../base";
+
 export default class PlantPhoto {
-  constructor(ut, lngLat, direction, imagePath, plantResults) {
+  constructor(id, ut, lngLat, direction, imagePath) {
+    this.id = id;
     this.ut = ut;
     this.lngLat = lngLat;
     this.direction = direction;
     this.imagePath = imagePath;
-    this.plantResults = plantResults;
-  }
-
-  get id() {
-    return this.imagePath;
   }
 
   get urlImage() {
@@ -40,94 +34,6 @@ export default class PlantPhoto {
       lat: this.lngLat.lat,
       lng: this.lngLat.lng,
     };
-  }
-
-  get bestGuess() {
-    return this.plantResults[0];
-  }
-
-  get isLowConfidence() {
-    return this.bestGuess.confidence < MIN_CONFIDENCE;
-  }
-
-  get confidenceStrAll() {
-    return this.plantResults
-
-      .map(function (plantResult) {
-        return plantResult.scientificNameAndConfidence;
-      })
-      .join(", ");
-  }
-
-  get confidenceStr() {
-    return this.plantResults
-      .filter(function (plantResult, iPlantResult) {
-        return iPlantResult < 3 && plantResult.confidence > MIN_CONFIDENCE;
-      })
-      .map(function (plantResult) {
-        return plantResult.scientificNameAndConfidence;
-      })
-      .join(", ");
-  }
-
-  get scientificName() {
-    return this.bestGuess.scientificName;
-  }
-
-  get scientificNameOrNoConfidence() {
-    return (
-      <span>
-        {this.isLowConfidence ? "Not sure. Could be " : ""}
-        <span style={{ fontStyle: "italic" }}> {this.scientificName}</span>
-      </span>
-    );
-  }
-
-  get family() {
-    return this.bestGuess.family;
-  }
-
-  get genus() {
-    return this.bestGuess.genus;
-  }
-
-  get species() {
-    return this.bestGuess.scientificName.split(" ")[1];
-  }
-
-  get authorship() {
-    return this.bestGuess.authorship;
-  }
-
-  get shortText() {
-    return this.genus.substring(0, 1) + this.species.substring(0, 1);
-  }
-
-  get commonNames() {
-    return this.bestGuess.commonNames;
-  }
-
-  get commonNames2() {
-    const nameTranslations = NAME_TRANSLATIONS[this.scientificName];
-    if (!nameTranslations) {
-      return [];
-    }
-    return Object.entries(nameTranslations)
-      .filter(([k, _]) => ["sinhala", "tamil"].includes(k))
-      .map(([k, v]) => v);
-  }
-
-  get commonNamesCombined() {
-    return [].concat(this.commonNames2, this.commonNames);
-  }
-
-  get commonNamesStr() {
-    const MAX_LEN = 80;
-    const s = this.commonNamesCombined.join(", ");
-    if (s.length > MAX_LEN) {
-      return s.substring(0, MAX_LEN) + "…";
-    }
-    return s;
   }
 
   get timeStr() {
@@ -179,64 +85,24 @@ export default class PlantPhoto {
     return `${this.timeStr} · ${this.latLngStr} · Facing ${this.directionStr}`;
   }
 
-  get color() {
-    const key = this.family.charCodeAt(0);
-    const RANDOM_PRIME = 100001;
-    const MAX_HUE = 360;
-    const hue = (key * RANDOM_PRIME) % MAX_HUE;
-    return Color.getHexFromHue(hue);
-  }
-
-  get cmp() {
-    return this.ut;
-  }
-
-  getDistance(other) {
-    if (this.id === other.id) {
-      return 0;
-    }
-
-    if (this.isLowConfidence) {
-      return 5;
-    }
-
-    if (this.scientificName === other.scientificName) {
-      return 1;
-    }
-
-    if (this.genus === other.genus) {
-      return 2;
-    }
-
-    if (this.family === other.family) {
-      return 3;
-    }
-    return 4;
-  }
-
-  getRelativeColor(other) {
-    const distance = this.getDistance(other);
-
-    return ["#060", "#0a4", "#f80", "#800", "#888", "#eee"][distance];
-  }
-
   // Static
 
   static fromDict(d) {
+    const id = d["id"];
     const ut = parseInt(d["ut"]);
 
-    const [latRaw, lngRaw] = d["latlng"];
-    const lat = parseFloat(latRaw);
-    const lng = parseFloat(lngRaw);
+    const latLng = d["latlng"];
+    const lat = parseFloat(latLng["lat"]);
+    const lng = parseFloat(latLng["lng"]);
     const lngLat = new LngLat(lng, lat);
 
-    const direction = parseInt(d["direction"]);
-
+    // const originalImagePath = d["original_image_path"];
     const imagePath = d["image_path"];
 
-    const plantResults = d["plantnet_results"].map(PlantNetResult.fromDict);
+    // const alt = parseFloat(d["alt"]);
+    const direction = parseInt(d["direction"]);
 
-    return new PlantPhoto(ut, lngLat, direction, imagePath, plantResults);
+    return new PlantPhoto(id, ut, lngLat, direction, imagePath);
   }
 
   static async getRandomId() {
@@ -245,15 +111,30 @@ export default class PlantPhoto {
     return Random.choice(ids);
   }
 
-  static async listAll() {
-    const rawDataList = await PlantPhoto.getRawDataList();
-    return rawDataList
-      .map(function (d) {
-        return PlantPhoto.fromDict(d);
+  static async getPlantPhotoIds() {
+    const URL =
+      "https://raw.githubusercontent.com" +
+      "/nuuuwan/lk_plants/main/data" +
+      "/plant_photos.contents.json";
+    return await WWW.json(URL);
+  }
+
+  static async getPlantPhotoRawDataList() {
+    const plantPhotoIds = await PlantPhoto.getPlantPhotoIds();
+    return await Promise.all(
+      plantPhotoIds.map(async function (plantPhotoId) {
+        const URL = `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_photos/${plantPhotoId}.json`;
+        return await WWW.json(URL);
       })
-      .sort(function (a, b) {
-        return a.cmp - b.cmp;
-      });
+    );
+  }
+
+  static async listAll() {
+    const rawDataList = await PlantPhoto.getPlantPhotoRawDataList();
+    console.debug(`Loaded ${rawDataList.length} plant photos`);
+    return rawDataList.map(function (d) {
+      return PlantPhoto.fromDict(d);
+    });
   }
 
   static async idx() {
@@ -263,47 +144,5 @@ export default class PlantPhoto {
         return [plantPhoto.id, plantPhoto];
       })
     );
-  }
-
-  static async getRawDataList() {
-    const metadataPathList = await PlantPhoto.getMetaDataPathList();
-    return await Promise.all(
-      metadataPathList.map(async function (metadataPath) {
-        const URL =
-          "https://raw.githubusercontent.com" +
-          "/nuuuwan/lk_plants/main/" +
-          metadataPath;
-        return await WWW.json(URL);
-      })
-    );
-  }
-
-  static async getMetaDataPathList() {
-    const idxByFamily = await PlantPhoto.getIdxSummary();
-    return Object.values(idxByFamily).reduce(function (arr, idxByGenus) {
-      return Object.values(idxByGenus).reduce(function (arr, idxBySpecies) {
-        return Object.values(idxBySpecies).reduce(function (
-          arr,
-          arrForSpecies
-        ) {
-          return arr.concat(arrForSpecies);
-        },
-        arr);
-      }, arr);
-    }, []);
-  }
-
-  static async getIdxSummary() {
-    const URL =
-      "https://raw.githubusercontent.com" +
-      "/nuuuwan/lk_plants/main/data" +
-      "/metadata.idx_summary.json";
-    return await WWW.json(URL);
-  }
-
-  static sortBy(arr, activePlantPhoto) {
-    return arr.sort(function (a, b) {
-      return b.getDistance(activePlantPhoto) - a.getDistance(activePlantPhoto);
-    });
   }
 }

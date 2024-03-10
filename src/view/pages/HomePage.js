@@ -4,11 +4,7 @@ import { Box, CircularProgress } from "@mui/material";
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { PlantPhoto } from "../../nonview/core";
-import {
-  PlantPhotoView,
-  PlantPhotoInfoView,
-  AlertLowConfidence,
-} from "../molecules";
+import { PlantPhotoView } from "../molecules";
 import { GeoMap } from "../organisms";
 
 import STYLE from "../STYLE";
@@ -126,10 +122,7 @@ export default class HomePage extends Component {
 
     return (
       <Box>
-        <Box sx={STYLE.HOME_PAGE.TOP}>
-          <AlertLowConfidence plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
-          <PlantPhotoInfoView plantPhoto={plantPhotoIdx[activePlantPhotoId]} />
-        </Box>
+        <Box sx={STYLE.HOME_PAGE.TOP}></Box>
 
         <Box sx={STYLE.HOME_PAGE.MIDDLE}>
           <PlantPhotoView

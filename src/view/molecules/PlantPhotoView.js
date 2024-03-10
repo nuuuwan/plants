@@ -10,9 +10,7 @@ export default function PlantPhotoView({ plantPhoto, onClickImage }) {
         style={STYLE.PLANT_PHOTO.IMAGE}
         onClick={onClickImage}
       />
-      <Typography sx={STYLE.PLANT_PHOTO.CONFIDENCE}>
-        {plantPhoto.confidenceStr}
-      </Typography>
+
       <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>
         {plantPhoto.photoInfoStr}
       </Typography>

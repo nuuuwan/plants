@@ -8,7 +8,7 @@ export default function PlantPhotoMarker({
   const onClickInner = function () {
     onClick(plantPhoto.id);
   };
-  const color = plantPhoto.getRelativeColor(activePlantPhoto);
+  const color = "#080";
 
   const isActive = plantPhoto.id === activePlantPhoto.id;
   const styleCircle = isActive
