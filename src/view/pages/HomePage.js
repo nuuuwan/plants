@@ -7,6 +7,8 @@ import { ExtendedPlantPhoto } from "../../nonview/core";
 import { AlertLowConfidence, PlantPhotoView, SpeciesView } from "../molecules";
 import { GeoMap } from "../organisms";
 
+import { p1, p2 } from "../STYLE";
+
 import STYLE from "../STYLE";
 
 export default class HomePage extends Component {
@@ -65,33 +67,12 @@ export default class HomePage extends Component {
 
   gotoRandom() {
     let { activeEPPId, eppIdx } = this.state;
-    const plantPhotoIds = Object.keys(eppIdx);
-    activeEPPId = Random.choice(plantPhotoIds);
+    const eppIds = Object.keys(eppIdx);
+    activeEPPId = Random.choice(eppIds);
 
     this.gotoNew(activeEPPId);
   }
 
-  gotoPrevious() {
-    let { activeEPPId, eppIdx } = this.state;
-    const plantPhotoIds = Object.keys(eppIdx);
-    let iActivePlantPhoto = plantPhotoIds.indexOf(activeEPPId);
-    iActivePlantPhoto -= 1;
-    iActivePlantPhoto %= plantPhotoIds.length;
-    activeEPPId = plantPhotoIds[iActivePlantPhoto];
-
-    this.gotoNew(activeEPPId);
-  }
-
-  gotoNext() {
-    let { activeEPPId, eppIdx } = this.state;
-    const plantPhotoIds = Object.keys(eppIdx);
-    let iActivePlantPhoto = plantPhotoIds.indexOf(activeEPPId);
-    iActivePlantPhoto += 1;
-    iActivePlantPhoto %= plantPhotoIds.length;
-    activeEPPId = plantPhotoIds[iActivePlantPhoto];
-
-    this.gotoNew(activeEPPId);
-  }
 
   gotoNew(activeEPPId) {
     let { eppIdx } = this.state;
@@ -100,16 +81,59 @@ export default class HomePage extends Component {
   }
 
   onClickImage(e) {
-    const pX = e.clientX / window.innerWidth;
+    let { eppIdx, activeEPPId } = this.state;
+    const pX0 = e.clientX / window.innerWidth;
+    const pY1 = e.clientY / window.innerHeight;
+    const pY0 = 1 - (pY1 - p1) / p2;
 
-    if (pX < 0.33) {
-      this.gotoPrevious();
-    } else if (pX > 0.67) {
-      this.gotoNext();
-    } else {
-      this.gotoRandom();
+    const trans = function(x) {
+      if (x > 0.67) {
+        return 1;
+      }
+      if (x < 0.33) {
+        return -1;
+      }
+      return 0;
     }
+
+    const pX = 1- trans(pX0);
+    const pY = 1- trans(pY0);
+
+    console.debug(pX, pY);
+
+    if (pX ===  0 && pY === 0) {
+      this.gotoRandom();
+      return;
+    }
+
+    console.debug(pX, pY);
+
+    const cmp = function(epp) {
+      const latLng = epp.plantPhoto.latLng;
+      const lat = latLng.lat;
+      const lng = latLng.lng;
+      const k = pY * lat + pX * lng;
+      console.debug(lat, lng, k);
+      return k;
+    }
+
+    const eppList = Object.values(eppIdx);
+    const sortedEppList = eppList.sort(
+      function(a,b) {
+        return cmp(b) - cmp(a);
+      }
+    )
+    const sortedEppIdList = sortedEppList.map(function (epp) {
+      return epp.id;
+    });
+    const iEpp = sortedEppIdList.indexOf(activeEPPId); 
+    const iNext = (iEpp + 1) % sortedEppIdList.length;
+    const nextEPPId = sortedEppIdList[iNext];
+
+    this.gotoNew(nextEPPId);
+
   }
+  
 
   render() {
     const { center, zoom, eppIdx, activeEPPId } = this.state;

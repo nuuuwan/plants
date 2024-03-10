@@ -8,8 +8,8 @@ const fixedCommon = {
 
 const RATIOS = [1, 3, 2];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
-const p1 = RATIOS[0] / sum;
-const p2 = RATIOS[1] / sum;
+export const p1 = RATIOS[0] / sum;
+export const p2 = RATIOS[1] / sum;
 // const p3 = RATIOS[2] / sum;
 
 const p1pct = (p1 * 100).toFixed(0) + "%";
