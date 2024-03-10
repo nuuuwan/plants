@@ -108,7 +108,6 @@ export default class HomePage extends Component {
       const lat = latLng.lat;
       const lng = latLng.lng;
       const k = pY * lat + pX * lng;
-      console.debug(lat, lng, k);
       return k;
     };
 

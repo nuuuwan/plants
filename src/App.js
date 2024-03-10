@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import HomePage from "./view/pages/HomePage.js";
 
-localStorage.clear();
+// localStorage.clear();
 
 const THEME = createTheme({
   palette: {
