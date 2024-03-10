@@ -4,7 +4,7 @@ import { Box, CircularProgress } from "@mui/material";
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { ExtendedPlantPhoto } from "../../nonview/core";
-import { PlantPhotoView } from "../molecules";
+import { AlertLowConfidence, PlantPhotoView , SpeciesView} from "../molecules";
 import { GeoMap } from "../organisms";
 
 import STYLE from "../STYLE";
@@ -120,9 +120,22 @@ export default class HomePage extends Component {
 
     const activeEPP = eppIdx[activeEPPId];
     const activePlantPhoto = activeEPP.plantPhoto;
+    const plantNetResult = activeEPP.plantNetResult;
     return (
       <Box>
-        <Box sx={STYLE.HOME_PAGE.TOP}></Box>
+        <Box sx={STYLE.HOME_PAGE.TOP}>
+          {plantNetResult.isLowConfidence ? (
+ <AlertLowConfidence
+ plantNetResult={plantNetResult}
+/>
+          ):(
+            <SpeciesView species={activeEPP.species} onClickImage={this.onClickImage.bind(this)} />
+
+          )}
+         
+         
+
+        </Box>
 
         <Box sx={STYLE.HOME_PAGE.MIDDLE}>
           <PlantPhotoView

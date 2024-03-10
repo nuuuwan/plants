@@ -3,11 +3,8 @@ import { WikiLink } from "../atoms";
 
 import STYLE from "../STYLE";
 
-export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
-  if (plantPhoto.isLowConfidence) {
-    return null;
-  }
-
+export default function SpeciesView({ species, onClickImage }) {
+ 
   const onClick = function () {
     window.location.reload();
     localStorage.clear();
@@ -17,27 +14,29 @@ export default function PlantPhotoInfoView({ plantPhoto, onClickImage }) {
   return (
     <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} onClick={onClick}>
       <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
-        <WikiLink>{plantPhoto.family}</WikiLink>
+        <WikiLink>{species.familyName}</WikiLink>
       </Typography>
 
       <Typography sx={STYLE.PLANT_PHOTO.GENUS}>
         <span style={STYLE.PLANT_PHOTO.GENUS}>
-          <WikiLink> {plantPhoto.genus}</WikiLink>
+          <WikiLink> {species.genusName}</WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.SPECIES}>
           {" "}
-          <WikiLink label={plantPhoto.species}>
+          <WikiLink label={species.speciesName}>
             {" "}
-            {plantPhoto.scientificName}
+            {species.name}
           </WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
-          {"  " + plantPhoto.authorship}
+          {"  " + species.authorship}
         </span>
       </Typography>
+
       <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
-        {plantPhoto.commonNamesStr}
+        {species.commonNames.join(", ")}
       </Typography>
+
     </Box>
   );
 }

@@ -13,6 +13,22 @@ export default class ExtendedPlantPhoto {
     return this.plantPhoto.id;
   }
 
+  get speciesIdx() {
+    return Object.fromEntries(
+      this.speciesList.map(function (species) {
+        return [species.name, species];
+      })
+    );
+  }
+
+  get speciesName() {
+    return Object.keys(this.plantNetResult.speciesNameToScore)[0];
+  }
+
+  get species() {
+    return this.speciesIdx[this.speciesName];
+  }
+
   static async fromPlantPhoto(plantPhoto) {
     const plantNetResult = await PlantNetResult.fromPlantPhoto(plantPhoto);
     const speciesNameToScore = plantNetResult.speciesNameToScore;

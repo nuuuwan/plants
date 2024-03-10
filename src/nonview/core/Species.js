@@ -8,7 +8,8 @@ export default class Species {
     gbifId,
     powoId,
     iucnId,
-    iucnCategory
+    iucnCategory,
+    commonNames,
   ) {
     this.name = name;
     this.authorship = authorship;
@@ -18,6 +19,11 @@ export default class Species {
     this.powoId = powoId;
     this.iucnId = iucnId;
     this.iucnCategory = iucnCategory;
+    this.commonNames = commonNames;
+  }
+
+  get speciesName() {
+    return this.name.split(" ")[1];
   }
 
   static fromDict(d) {
@@ -29,7 +35,8 @@ export default class Species {
       d["gbif_id"],
       d["powo_id"],
       d["iucn_id"],
-      d["iucn_category"]
+      d["iucn_category"],
+      d["common_names"],
     );
   }
 
@@ -40,7 +47,8 @@ export default class Species {
 
   static async fromName(name) {
     const url = Species.getURLFromName(name);
-    return await WWW.json(url);
+    const d =  await WWW.json(url);
+    return Species.fromDict(d);
   }
 
   static async listFromNames(names) {

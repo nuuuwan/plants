@@ -1,16 +1,39 @@
 import { WWW } from "../base";
 
 export default class PlantNetResult {
+  static LIMIT_LOW_CONFIDENCE = 0.2;
+
   constructor(utAPICall, plantPhotoId, speciesNameToScore) {
     this.utAPICall = utAPICall;
     this.plantPhotoId = plantPhotoId;
     this.speciesNameToScore = speciesNameToScore;
   }
 
+  get speciesName() {
+    return Object.keys(this.speciesNameToScore)[0];
+  }
+
+  get confidence() {
+    return this.speciesNameToScore[this.speciesName];
+  }
+
+  get isLowConfidence() {
+    return this.confidence < PlantNetResult.LIMIT_LOW_CONFIDENCE;
+  }
+
+  get confidenceStrAll() {
+    return Object.entries(this.speciesNameToScore)
+      .map(function ([speciesName, confidence]) {
+        const pConfidence = (confidence * 100).toFixed(2) + "%";
+        return `${speciesName} ${pConfidence}`;
+      })
+      .join(", ");
+  }
+
   static fromDict(d) {
     return new PlantNetResult(
       d["ut_api_call"],
-      d["[plant_photo_id"],
+      d["plant_photo_id"],
       d["species_name_to_score"]
     );
   }

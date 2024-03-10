@@ -1,14 +1,16 @@
 import { Alert } from "@mui/material";
+import { PlantNetResult } from "../../nonview/core";
 
-export default function AlertLowConfidence({ plantPhoto }) {
-  if (!plantPhoto.isLowConfidence) {
-    return null;
-  }
+export default function AlertLowConfidence({ plantNetResult }) {
+
+  const pLimit = (PlantNetResult.LIMIT_LOW_CONFIDENCE * 100).toFixed(2) + "%";
+
   return (
-    <Alert severity="error" sx={{ m: 2, p: 1, fontSize: "70%" }}>
-      <strong>Identification Confidence for this Photo is too low.</strong>
-      <br />
-      {plantPhoto.confidenceStrAll}
+    <Alert severity="error" sx={{ m: 2, fontSize: "80%" }}>
+
+      Identification Confidence for this Photo is <strong>less than {pLimit}</strong>.
+      <br/>
+      {plantNetResult.confidenceStrAll}
     </Alert>
   );
 }
