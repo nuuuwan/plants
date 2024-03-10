@@ -60,11 +60,14 @@ export default class ExtendedPlantPhoto {
 
   static async listAll() {
     const plantPhotos = await PlantPhoto.listAll();
-    return await Promise.all(
+    console.debug(`Loaded ${plantPhotos.length} plant photos`);
+    const eppList = await Promise.all(
       plantPhotos.map(async function (plantPhoto) {
         return await ExtendedPlantPhoto.fromPlantPhoto(plantPhoto);
       })
     );
+    console.debug(`Loaded ${eppList.length} extended plant photos`);
+    return eppList;
   }
 
   static async idx() {

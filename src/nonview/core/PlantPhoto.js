@@ -113,12 +113,11 @@ export default class PlantPhoto {
       "/nuuuwan/lk_plants/main/data" +
       "/plant_photos.contents.json";
     const plantPhotoIds = await WWW.json(URL);
-    return plantPhotoIds.splice(0, 10);
+    return plantPhotoIds;
   }
 
   static async listAll() {
     const rawDataList = await PlantPhoto.getPlantPhotoRawDataList();
-    console.debug(`Loaded ${rawDataList.length} plant photos`);
     return rawDataList.map(function (d) {
       return PlantPhoto.fromDict(d);
     });
