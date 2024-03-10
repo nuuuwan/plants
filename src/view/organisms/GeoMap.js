@@ -8,17 +8,17 @@ const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 export default class GeoMap extends Component {
   renderPlants() {
-    const { eppIdx, onClickPlantPhoto, activePlantPhoto } = this.props;
+    const { eppIdx, onClickPlantPhoto, activeEPP } = this.props;
     if (!eppIdx) {
       return null;
     }
-    return Object.values(eppIdx).map(function (extendedPlantPhoto) {
+    return Object.values(eppIdx).map(function (epp) {
       return (
         <PlantPhotoMarker
-          key={"plant-photo-" + extendedPlantPhoto.id}
-          plantPhoto={extendedPlantPhoto.plantPhoto}
+          key={"plant-photo-" + epp.id}
+          epp={epp}
           onClick={onClickPlantPhoto}
-          activePlantPhoto={activePlantPhoto}
+          activeEPP={activeEPP}
         />
       );
     });

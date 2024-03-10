@@ -29,6 +29,27 @@ export default class ExtendedPlantPhoto {
     return this.speciesIdx[this.speciesName];
   }
 
+  getDistance(other) {
+    if (this.id === other.id) {
+      return 0;
+    }
+
+    if (this.plantNetResult.isLowConfidence) {
+      return 5;
+    }
+
+    if (this.speciesName === other.speciesName) {
+      return 1;
+    }
+    if (this.species.genusName === other.species.genusName) {
+      return 2;
+    }
+    if (this.species.familyName === other.species.familyName) {
+      return 3;
+    }
+    return 4;
+  }
+
   static async fromPlantPhoto(plantPhoto) {
     const plantNetResult = await PlantNetResult.fromPlantPhoto(plantPhoto);
     const speciesNameToScore = plantNetResult.speciesNameToScore;

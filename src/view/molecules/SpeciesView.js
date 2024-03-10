@@ -4,7 +4,6 @@ import { WikiLink } from "../atoms";
 import STYLE from "../STYLE";
 
 export default function SpeciesView({ species, onClickImage }) {
- 
   const onClick = function () {
     window.location.reload();
     localStorage.clear();
@@ -23,10 +22,7 @@ export default function SpeciesView({ species, onClickImage }) {
         </span>
         <span style={STYLE.PLANT_PHOTO.SPECIES}>
           {" "}
-          <WikiLink label={species.speciesName}>
-            {" "}
-            {species.name}
-          </WikiLink>
+          <WikiLink label={species.speciesName}> {species.name}</WikiLink>
         </span>
         <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
           {"  " + species.authorship}
@@ -36,7 +32,6 @@ export default function SpeciesView({ species, onClickImage }) {
       <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
         {species.commonNames.join(", ")}
       </Typography>
-
     </Box>
   );
 }

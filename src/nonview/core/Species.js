@@ -9,7 +9,7 @@ export default class Species {
     powoId,
     iucnId,
     iucnCategory,
-    commonNames,
+    commonNames
   ) {
     this.name = name;
     this.authorship = authorship;
@@ -36,7 +36,7 @@ export default class Species {
       d["powo_id"],
       d["iucn_id"],
       d["iucn_category"],
-      d["common_names"],
+      d["common_names"]
     );
   }
 
@@ -47,7 +47,7 @@ export default class Species {
 
   static async fromName(name) {
     const url = Species.getURLFromName(name);
-    const d =  await WWW.json(url);
+    const d = await WWW.json(url);
     return Species.fromDict(d);
   }
 

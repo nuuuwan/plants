@@ -1,25 +1,22 @@
 import { CircleMarker, Tooltip } from "react-leaflet";
 import STYLE from "../STYLE";
-export default function PlantPhotoMarker({
-  plantPhoto,
-  onClick,
-  activePlantPhoto,
-}) {
+export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
   const onClickInner = function () {
-    onClick(plantPhoto.id);
+    onClick(epp.id);
   };
-  const color = "#080";
+  const distance = epp.getDistance(activeEPP);
+  const color = STYLE.COLORS_BY_DISTANCE[distance];
 
-  const isActive = plantPhoto.id === activePlantPhoto.id;
+  const isActive = epp.id === activeEPP.id;
   const styleCircle = isActive
     ? STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
 
   return (
     <CircleMarker
-      center={plantPhoto.latLng}
+      center={epp.plantPhoto.latLng}
       radius={15}
-      key={`circle-${plantPhoto.id}`}
+      key={`circle-${epp.id}`}
       pathOptions={Object.assign({ fillColor: color }, styleCircle)}
       eventHandlers={{
         click: onClickInner,
@@ -31,7 +28,7 @@ export default function PlantPhotoMarker({
           click: onClickInner,
         }}
       >
-        {plantPhoto.scientificNameOrNoConfidence}
+        {epp.plantPhoto.scientificNameOrNoConfidence}
       </Tooltip>
     </CircleMarker>
   );
