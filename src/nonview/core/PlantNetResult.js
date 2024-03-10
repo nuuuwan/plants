@@ -1,38 +1,27 @@
+import { WWW } from "../base";
+
 export default class PlantNetResult {
-  constructor(
-    confidence,
-    scientificName,
-    authorship,
-    genus,
-    family,
-    commonNames
-  ) {
-    this.confidence = confidence;
-    this.scientificName = scientificName;
-    this.authorship = authorship;
-    this.genus = genus;
-    this.family = family;
-    this.commonNames = commonNames;
+  constructor(utAPICall, plantPhotoId, speciesNameToScore) {
+    this.utAPICall = utAPICall;
+    this.plantPhotoId = plantPhotoId;
+    this.speciesNameToScore = speciesNameToScore;
   }
 
   static fromDict(d) {
-    const species = d["species"];
     return new PlantNetResult(
-      d["score"],
-      species["scientificNameWithoutAuthor"],
-      species["scientificNameAuthorship"],
-
-      species["genus"]["scientificName"],
-      species["family"]["scientificName"],
-      species["commonNames"]
+      d["ut_api_call"],
+      d["[plant_photo_id"],
+      d["species_name_to_score"]
     );
   }
 
-  get confidenceStr() {
-    return (this.confidence * 100).toFixed(0) + "%";
+  static getURLFromId(id) {
+    return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_net_results/${id}.json`;
   }
 
-  get scientificNameAndConfidence() {
-    return this.scientificName + " (" + this.confidenceStr + ")";
+  static async fromPlantPhoto(plant_photo) {
+    const url = PlantNetResult.getURLFromId(plant_photo.id);
+    const d = await WWW.json(url);
+    return PlantNetResult.fromDict(d);
   }
 }

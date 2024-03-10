@@ -3,7 +3,7 @@ import { Box, CircularProgress } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
-import { PlantPhoto } from "../../nonview/core";
+import { ExtendedPlantPhoto } from "../../nonview/core";
 import { PlantPhotoView } from "../molecules";
 import { GeoMap } from "../organisms";
 
@@ -13,9 +13,9 @@ export default class HomePage extends Component {
   static DEFAULT_STATE = {
     center: GeoData.DEFAULT_CENTER,
     zoom: GeoData.DEFAULT_ZOOM,
-    activePlantPhotoId: null,
+    activeEPPId: null,
   };
-  static CONTEXT_STATE_KEYS = ["activePlantPhotoId"];
+  static CONTEXT_STATE_KEYS = ["activeEPPId"];
 
   static getContextFromState(state) {
     return Object.fromEntries(
@@ -50,53 +50,53 @@ export default class HomePage extends Component {
   }
 
   async componentDidMount() {
-    let { activePlantPhotoId, center } = this.state;
-    const plantPhotoIdx = await PlantPhoto.idx();
-    if (!activePlantPhotoId) {
-      activePlantPhotoId = await PlantPhoto.getRandomId();
-      center = plantPhotoIdx[activePlantPhotoId].position;
+    let { activeEPPId, center } = this.state;
+    const eppIdx = await ExtendedPlantPhoto.idx();
+    if (!activeEPPId) {
+      activeEPPId = Object.keys(eppIdx)[0];
+      center = eppIdx[activeEPPId].plantPhoto.latLng.position;
     }
-    this.setStateAndURLContext({ plantPhotoIdx, activePlantPhotoId, center });
+    this.setStateAndURLContext({ eppIdx, activeEPPId, center });
   }
 
-  onClickPlantPhoto(activePlantPhotoId) {
-    this.gotoNew(activePlantPhotoId);
+  onClickPlantPhoto(activeEPPId) {
+    this.gotoNew(activeEPPId);
   }
 
   gotoRandom() {
-    let { activePlantPhotoId, plantPhotoIdx } = this.state;
-    const plantPhotoIds = Object.keys(plantPhotoIdx);
-    activePlantPhotoId = Random.choice(plantPhotoIds);
+    let { activeEPPId, eppIdx } = this.state;
+    const plantPhotoIds = Object.keys(eppIdx);
+    activeEPPId = Random.choice(plantPhotoIds);
 
-    this.gotoNew(activePlantPhotoId);
+    this.gotoNew(activeEPPId);
   }
 
   gotoPrevious() {
-    let { activePlantPhotoId, plantPhotoIdx } = this.state;
-    const plantPhotoIds = Object.keys(plantPhotoIdx);
-    let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
+    let { activeEPPId, eppIdx } = this.state;
+    const plantPhotoIds = Object.keys(eppIdx);
+    let iActivePlantPhoto = plantPhotoIds.indexOf(activeEPPId);
     iActivePlantPhoto -= 1;
     iActivePlantPhoto %= plantPhotoIds.length;
-    activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
+    activeEPPId = plantPhotoIds[iActivePlantPhoto];
 
-    this.gotoNew(activePlantPhotoId);
+    this.gotoNew(activeEPPId);
   }
 
   gotoNext() {
-    let { activePlantPhotoId, plantPhotoIdx } = this.state;
-    const plantPhotoIds = Object.keys(plantPhotoIdx);
-    let iActivePlantPhoto = plantPhotoIds.indexOf(activePlantPhotoId);
+    let { activeEPPId, eppIdx } = this.state;
+    const plantPhotoIds = Object.keys(eppIdx);
+    let iActivePlantPhoto = plantPhotoIds.indexOf(activeEPPId);
     iActivePlantPhoto += 1;
     iActivePlantPhoto %= plantPhotoIds.length;
-    activePlantPhotoId = plantPhotoIds[iActivePlantPhoto];
+    activeEPPId = plantPhotoIds[iActivePlantPhoto];
 
-    this.gotoNew(activePlantPhotoId);
+    this.gotoNew(activeEPPId);
   }
 
-  gotoNew(activePlantPhotoId) {
-    let { plantPhotoIdx } = this.state;
-    const center = plantPhotoIdx[activePlantPhotoId].position;
-    this.setStateAndURLContext({ activePlantPhotoId, center });
+  gotoNew(activeEPPId) {
+    let { eppIdx } = this.state;
+    const center = eppIdx[activeEPPId].plantPhoto.latLng.position;
+    this.setStateAndURLContext({ activeEPPId, center });
   }
 
   onClickImage(e) {
@@ -112,31 +112,31 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const { center, zoom, plantPhotoIdx, activePlantPhotoId } = this.state;
+    const { center, zoom, eppIdx, activeEPPId } = this.state;
 
-    if (!plantPhotoIdx) {
+    if (!eppIdx) {
       return <CircularProgress />;
     }
 
-    const activePlantPhoto = plantPhotoIdx[activePlantPhotoId];
-
+    const activeEPP = eppIdx[activeEPPId];
+    const activePlantPhoto = activeEPP.plantPhoto;
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}></Box>
 
         <Box sx={STYLE.HOME_PAGE.MIDDLE}>
           <PlantPhotoView
-            plantPhoto={plantPhotoIdx[activePlantPhotoId]}
+            plantPhoto={activePlantPhoto}
             onClickImage={this.onClickImage.bind(this)}
           />
         </Box>
 
         <Box sx={STYLE.HOME_PAGE.BOTTOM}>
           <GeoMap
-            key={`geo-map-${center}-${zoom}-${activePlantPhotoId}`}
+            key={`geo-map-${center}-${zoom}-${activeEPPId}`}
             center={center}
             zoom={zoom}
-            plantPhotoIdx={plantPhotoIdx}
+            eppIdx={eppIdx}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
             activePlantPhoto={activePlantPhoto}
           />

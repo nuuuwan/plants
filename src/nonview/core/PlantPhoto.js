@@ -1,39 +1,16 @@
-import { WWW, LngLat, Random } from "../base";
+import { WWW, LatLng, Random } from "../base";
 
 export default class PlantPhoto {
-  constructor(id, ut, lngLat, direction, imagePath) {
+  constructor(id, ut, latLng, direction, imagePath) {
     this.id = id;
     this.ut = ut;
-    this.lngLat = lngLat;
+    this.latLng = latLng;
     this.direction = direction;
     this.imagePath = imagePath;
   }
 
   get urlImage() {
-    return (
-      "https://raw.githubusercontent.com" +
-      "/nuuuwan/lk_plants/main/" +
-      this.imagePath
-    );
-  }
-
-  get bounds() {
-    const SPAN = 0.001;
-    return [
-      [this.lngLat.lat - SPAN, this.lngLat.lng - SPAN],
-      [this.lngLat.lat + SPAN, this.lngLat.lng + SPAN],
-    ];
-  }
-
-  get position() {
-    return [this.lngLat.lat - 0.0015, this.lngLat.lng];
-  }
-
-  get latlng() {
-    return {
-      lat: this.lngLat.lat,
-      lng: this.lngLat.lng,
-    };
+    return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/images/${this.id}.jpg`;
   }
 
   get timeStr() {
@@ -53,7 +30,7 @@ export default class PlantPhoto {
   }
 
   get latLngStr() {
-    return `${this.latlng.lat.toFixed(4)}°N ${this.latlng.lng.toFixed(4)}°E`;
+    return `${this.latLng.lat.toFixed(4)}°N ${this.latLng.lng.toFixed(4)}°E`;
   }
 
   get directionStr() {
@@ -91,10 +68,10 @@ export default class PlantPhoto {
     const id = d["id"];
     const ut = parseInt(d["ut"]);
 
-    const latLng = d["latlng"];
-    const lat = parseFloat(latLng["lat"]);
-    const lng = parseFloat(latLng["lng"]);
-    const lngLat = new LngLat(lng, lat);
+    const dLatLng = d["latlng"];
+    const lat = parseFloat(dLatLng["lat"]);
+    const lng = parseFloat(dLatLng["lng"]);
+    const latLng = new LatLng(lat, lng);
 
     // const originalImagePath = d["original_image_path"];
     const imagePath = d["image_path"];
@@ -102,7 +79,7 @@ export default class PlantPhoto {
     // const alt = parseFloat(d["alt"]);
     const direction = parseInt(d["direction"]);
 
-    return new PlantPhoto(id, ut, lngLat, direction, imagePath);
+    return new PlantPhoto(id, ut, latLng, direction, imagePath);
   }
 
   static async getRandomId() {
@@ -111,11 +88,12 @@ export default class PlantPhoto {
     return Random.choice(ids);
   }
 
-  static async getPlantPhotoIds() {
-    const URL =
-      "https://raw.githubusercontent.com" +
-      "/nuuuwan/lk_plants/main/data" +
-      "/plant_photos.contents.json";
+  static getURLFromId(id) {
+    return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_photos/${id}.json`;
+  }
+
+  static async fromId(id) {
+    const URL = PlantPhoto.getURLFromId(id);
     return await WWW.json(URL);
   }
 
@@ -123,10 +101,19 @@ export default class PlantPhoto {
     const plantPhotoIds = await PlantPhoto.getPlantPhotoIds();
     return await Promise.all(
       plantPhotoIds.map(async function (plantPhotoId) {
-        const URL = `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_photos/${plantPhotoId}.json`;
+        const URL = PlantPhoto.getURLFromId(plantPhotoId);
         return await WWW.json(URL);
       })
     );
+  }
+
+  static async getPlantPhotoIds() {
+    const URL =
+      "https://raw.githubusercontent.com" +
+      "/nuuuwan/lk_plants/main/data" +
+      "/plant_photos.contents.json";
+    const plantPhotoIds = await WWW.json(URL);
+    return plantPhotoIds.splice(0, 10);
   }
 
   static async listAll() {
@@ -135,14 +122,5 @@ export default class PlantPhoto {
     return rawDataList.map(function (d) {
       return PlantPhoto.fromDict(d);
     });
-  }
-
-  static async idx() {
-    const arr = await PlantPhoto.listAll();
-    return Object.fromEntries(
-      arr.map(function (plantPhoto) {
-        return [plantPhoto.id, plantPhoto];
-      })
-    );
   }
 }

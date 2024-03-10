@@ -17,7 +17,7 @@ export default function PlantPhotoMarker({
 
   return (
     <CircleMarker
-      center={plantPhoto.latlng}
+      center={plantPhoto.latLng}
       radius={15}
       key={`circle-${plantPhoto.id}`}
       pathOptions={Object.assign({ fillColor: color }, styleCircle)}

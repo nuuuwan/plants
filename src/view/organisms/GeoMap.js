@@ -8,15 +8,15 @@ const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 export default class GeoMap extends Component {
   renderPlants() {
-    const { plantPhotoIdx, onClickPlantPhoto, activePlantPhoto } = this.props;
-    if (!plantPhotoIdx) {
+    const { eppIdx, onClickPlantPhoto, activePlantPhoto } = this.props;
+    if (!eppIdx) {
       return null;
     }
-    return Object.values(plantPhotoIdx).map(function (plantPhoto) {
+    return Object.values(eppIdx).map(function (extendedPlantPhoto) {
       return (
         <PlantPhotoMarker
-          key={"plant-photo-" + plantPhoto.id}
-          plantPhoto={plantPhoto}
+          key={"plant-photo-" + extendedPlantPhoto.id}
+          plantPhoto={extendedPlantPhoto.plantPhoto}
           onClick={onClickPlantPhoto}
           activePlantPhoto={activePlantPhoto}
         />
