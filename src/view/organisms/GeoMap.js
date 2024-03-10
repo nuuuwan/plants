@@ -12,7 +12,12 @@ export default class GeoMap extends Component {
     if (!eppIdx) {
       return null;
     }
-    return Object.values(eppIdx).map(function (epp) {
+    const eppList = Object.values(eppIdx);
+    return eppList.sort(
+      function(a,b) {
+        return b.getDistance(activeEPP) - a.getDistance(activeEPP);
+      }
+    ).map(function (epp) {
       return (
         <PlantPhotoMarker
           key={"plant-photo-" + epp.id}
