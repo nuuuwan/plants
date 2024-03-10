@@ -1,4 +1,4 @@
-import { WWW } from "../base";
+import { WWW , Format} from "../base";
 
 export default class PlantNetResult {
   static LIMIT_LOW_CONFIDENCE = 0.2;
@@ -24,8 +24,8 @@ export default class PlantNetResult {
   get confidenceStrAll() {
     return Object.entries(this.speciesNameToScore)
       .map(function ([speciesName, confidence]) {
-        const pConfidence = (confidence * 100).toFixed(2) + "%";
-        return `${speciesName} ${pConfidence}`;
+        
+        return `${speciesName} ${Format.percent(confidence)}`;
       })
       .join(", ");
   }
