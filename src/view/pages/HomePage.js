@@ -7,8 +7,6 @@ import { ExtendedPlantPhoto } from "../../nonview/core";
 import { AlertLowConfidence, PlantPhotoView, SpeciesView } from "../molecules";
 import { GeoMap } from "../organisms";
 
-
-
 import STYLE from "../STYLE";
 
 export default class HomePage extends Component {
@@ -82,7 +80,7 @@ export default class HomePage extends Component {
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
     const pX = e.clientX / window.innerWidth;
-    
+
     if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
       return;
@@ -106,7 +104,7 @@ export default class HomePage extends Component {
     const { center, zoom, eppIdx, activeEPPId } = this.state;
 
     if (!eppIdx) {
-      return <CircularProgress sx={{m:2}} />;
+      return <CircularProgress sx={{ m: 2 }} />;
     }
 
     const activeEPP = eppIdx[activeEPPId];

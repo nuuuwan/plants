@@ -16,20 +16,18 @@ export default class GeoMap extends Component {
     if (activeEPP.plantNetResult.hasResults) {
       eppList = eppList.sort(function (a, b) {
         return b.getDistance(activeEPP) - a.getDistance(activeEPP);
-      })
-    }
-    return eppList
-
-      .map(function (epp) {
-        return (
-          <PlantPhotoMarker
-            key={"plant-photo-" + epp.id}
-            epp={epp}
-            onClick={onClickPlantPhoto}
-            activeEPP={activeEPP}
-          />
-        );
       });
+    }
+    return eppList.map(function (epp) {
+      return (
+        <PlantPhotoMarker
+          key={"plant-photo-" + epp.id}
+          epp={epp}
+          onClick={onClickPlantPhoto}
+          activeEPP={activeEPP}
+        />
+      );
+    });
   }
 
   render() {

@@ -1,38 +1,24 @@
 import PlantNetResult from "./PlantNetResult";
 import Species from "./Species";
 import PlantPhoto from "./PlantPhoto";
+import { WWW } from "../base";
 
 export default class ExtendedPlantPhoto {
-  constructor(plantPhoto, plantNetResult, speciesList) {
+  constructor(plantPhoto, plantNetResult, species) {
     this.plantPhoto = plantPhoto;
     this.plantNetResult = plantNetResult;
-    this.speciesList = speciesList;
+    this.species = species;
   }
 
   get id() {
     return this.plantPhoto.id;
   }
 
-  get speciesIdx() {
-    return Object.fromEntries(
-      this.speciesList.map(function (species) {
-        return [species.name, species];
-      })
-    );
-  }
-
   get speciesName() {
-    return Object.keys(this.plantNetResult.speciesNameToScore)[0];
-  }
-
-  get species() {
-    return this.speciesIdx[this.speciesName];
+    return this.species.name;
   }
 
   getDistance(other) {
-
-    
-    
     if (this.id === other.id) {
       return 0;
     }
@@ -61,32 +47,30 @@ export default class ExtendedPlantPhoto {
     return 4;
   }
 
-  static async fromPlantPhoto(plantPhoto) {
-    const plantNetResult = await PlantNetResult.fromPlantPhoto(plantPhoto);
-    const speciesNameToScore = plantNetResult.speciesNameToScore;
-    const speciesNames = Object.keys(speciesNameToScore);
-    const speciesList = await Species.listFromNames(speciesNames);
-    return new ExtendedPlantPhoto(plantPhoto, plantNetResult, speciesList);
+  static async listAll() {
+    const idx = await ExtendedPlantPhoto.idx();
+    return Object.values(idx);
   }
 
-  static async listAll() {
-    const plantPhotos = await PlantPhoto.listAll();
-    console.debug(`Loaded ${plantPhotos.length} plant photos`);
-    const eppList = await Promise.all(
-      plantPhotos.map(async function (plantPhoto) {
-        return await ExtendedPlantPhoto.fromPlantPhoto(plantPhoto);
-      })
-    );
-
-    console.debug(`Loaded ${eppList.length} extended plant photos`);
-    return eppList;
+  static async idxRaw() {
+    const urlIdx =
+      "https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data_app/ext_plant_photo_idx.json";
+    return await WWW.json(urlIdx);
   }
 
   static async idx() {
-    const arr = await ExtendedPlantPhoto.listAll();
+    const idxRaw = await ExtendedPlantPhoto.idxRaw();
     return Object.fromEntries(
-      arr.map(function (arrItem) {
-        return [arrItem.id, arrItem];
+      Object.entries(idxRaw).map(function ([id, eppRaw]) {
+        const plantPhoto = PlantPhoto.fromDict(eppRaw);
+        const plantNetResult = PlantNetResult.fromDict(
+          eppRaw["plant_net_result"]
+        );
+        const species = Species.fromDict(eppRaw["species"]);
+        return [
+          id,
+          new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
+        ];
       })
     );
   }

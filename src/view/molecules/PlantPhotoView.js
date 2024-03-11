@@ -12,7 +12,7 @@ export default function PlantPhotoView({ activeEPP, onClickImage }) {
         style={STYLE.PLANT_PHOTO.IMAGE}
         onClick={onClickImage}
       />
-   <Typography sx={STYLE.PLANT_PHOTO.CONFIDENCE}>
+      <Typography sx={STYLE.PLANT_PHOTO.CONFIDENCE}>
         {plantNetResult.confidenceStrImportant}
       </Typography>
       <Typography sx={STYLE.PLANT_PHOTO.TIME_STR}>

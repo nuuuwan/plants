@@ -1,9 +1,9 @@
-import { WWW, Format } from "../base";
+import { Format } from "../base";
 
 export default class PlantNetResult {
   static LIMIT_LOW_CONFIDENCE = 0.2;
   static MAX_DISPLAY_COUNT = 2;
-  static EMOJI_UNKNOWN = "❔"
+  static EMOJI_UNKNOWN = "❔";
 
   constructor(utAPICall, plantPhotoId, speciesNameToScore) {
     this.utAPICall = utAPICall;
@@ -16,16 +16,13 @@ export default class PlantNetResult {
   }
 
   get speciesNameInitials() {
-    
     if (!this.hasResults) {
       return PlantNetResult.EMOJI_UNKNOWN;
     }
     const speciesName = this.speciesName;
     const words = speciesName.split(" ");
-    return words[0].substring(0,1) + words[1].substring(0,1);
+    return words[0].substring(0, 1) + words[1].substring(0, 1);
   }
-
-
 
   get confidence() {
     return this.speciesNameToScore[this.speciesName];
@@ -34,10 +31,10 @@ export default class PlantNetResult {
     return Object.keys(this.speciesNameToScore).length > 0;
   }
   get isLowConfidence() {
-    return !this.hasResults || this.confidence < PlantNetResult.LIMIT_LOW_CONFIDENCE;
+    return (
+      !this.hasResults || this.confidence < PlantNetResult.LIMIT_LOW_CONFIDENCE
+    );
   }
-
-
 
   static speciesScoreStr(speciesName, score) {
     return `${speciesName} ${Format.percent(score)}`;
@@ -52,9 +49,13 @@ export default class PlantNetResult {
   }
 
   get confidenceStrImportant() {
-    return Object.entries(this.speciesNameToScore).filter(function([speciesName, confidence], i) {
-      return confidence > PlantNetResult.LIMIT_LOW_CONFIDENCE || i < PlantNetResult.MAX_DISPLAY_COUNT;
-    })
+    return Object.entries(this.speciesNameToScore)
+      .filter(function ([speciesName, confidence], i) {
+        return (
+          confidence > PlantNetResult.LIMIT_LOW_CONFIDENCE ||
+          i < PlantNetResult.MAX_DISPLAY_COUNT
+        );
+      })
       .map(function ([speciesName, confidence]) {
         return PlantNetResult.speciesScoreStr(speciesName, confidence);
       })
@@ -67,15 +68,5 @@ export default class PlantNetResult {
       d["plant_photo_id"],
       d["species_name_to_score"]
     );
-  }
-
-  static getURLFromId(id) {
-    return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_net_results/${id}.json`;
-  }
-
-  static async fromPlantPhoto(plant_photo) {
-    const url = PlantNetResult.getURLFromId(plant_photo.id);
-    const d = await WWW.json(url);
-    return PlantNetResult.fromDict(d);
   }
 }

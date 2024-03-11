@@ -1,4 +1,4 @@
-import { WWW, LatLng, Random } from "../base";
+import { LatLng, Random } from "../base";
 
 export default class PlantPhoto {
   constructor(id, ut, latLng, direction, imagePath) {
@@ -86,40 +86,5 @@ export default class PlantPhoto {
     const idx = await PlantPhoto.idx();
     const ids = Object.keys(idx);
     return Random.choice(ids);
-  }
-
-  static getURLFromId(id) {
-    return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/plant_photos/${id}.json`;
-  }
-
-  static async fromId(id) {
-    const URL = PlantPhoto.getURLFromId(id);
-    return await WWW.json(URL);
-  }
-
-  static async getPlantPhotoRawDataList() {
-    const plantPhotoIds = await PlantPhoto.getPlantPhotoIds();
-    return await Promise.all(
-      plantPhotoIds.map(async function (plantPhotoId) {
-        const URL = PlantPhoto.getURLFromId(plantPhotoId);
-        return await WWW.json(URL);
-      })
-    );
-  }
-
-  static async getPlantPhotoIds() {
-    const URL =
-      "https://raw.githubusercontent.com" +
-      "/nuuuwan/lk_plants/main/data" +
-      "/plant_photos.contents.json";
-    const plantPhotoIds = await WWW.json(URL);
-    return plantPhotoIds;
-  }
-
-  static async listAll() {
-    const rawDataList = await PlantPhoto.getPlantPhotoRawDataList();
-    return rawDataList.map(function (d) {
-      return PlantPhoto.fromDict(d);
-    });
   }
 }
