@@ -84,7 +84,7 @@ STYLE.PLANT_PHOTO = {
   }),
 
   MARKER: {
-    CIRCLE: { color: "#222", weight: 0, fillOpacity: 0.75 },
+    CIRCLE: { color: "#222", weight: 0, fillOpacity: 1 },
   },
 };
 
@@ -112,6 +112,6 @@ STYLE.WIKI_LINK = {
   textDecoration: "none",
 };
 
-STYLE.COLORS_BY_DISTANCE = ["#0a8", "#080", "#f80", "#800", "#aaa", "#ddd","#eee"];
+STYLE.COLORS_BY_DISTANCE = ["#0a8", "#080", "#f80", "#800", "#ddd", "#fff","#fff"];
 
 export default STYLE;
