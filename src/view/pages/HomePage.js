@@ -81,48 +81,42 @@ export default class HomePage extends Component {
 
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
-    const pX0 = e.clientX / window.innerWidth;
+    const pX0 = 1- e.clientX / window.innerWidth;
     const pY1 = e.clientY / window.innerHeight;
-    const pY0 = 1 - (pY1 - p1) / p2;
+    const pY0 = (pY1 - p1) / p2;
+    const pX = 4*(pX0 - 0.5);
+    const pY = 4*(pY0 - 0.5);
+    const r = Math.sqrt(pX * pX + pY * pY);
 
-    const trans = function (x) {
-      if (x > 0.67) {
-        return 1;
-      }
-      if (x < 0.33) {
-        return -1;
-      }
-      return 0;
-    };
+    console.debug(pX, pY, r);
 
-    const pX = 1 - trans(pX0);
-    const pY = 1 - trans(pY0);
-
-    if (pX === 0 && pY === 0) {
+    if (r <= 1) {
       this.gotoRandom();
       return;
     }
 
-    const cmp = function (epp) {
-      const latLng = epp.plantPhoto.latLng;
-      const lat = latLng.lat;
-      const lng = latLng.lng;
-      const k = pY * lat + pX * lng;
-      return k;
-    };
+    const activeEpp = eppIdx[activeEPPId];
+    const sortedEppIdAndDistance = Object.values(eppIdx).map(function (epp) {
+      const latlngActive = activeEpp.plantPhoto.latLng;
+      const latlng = epp.plantPhoto.latLng;
+      const distance = latlngActive.distanceTo(latlng, pY, pX);
+      return [epp.id, distance]
+    }).sort(
+      function (a, b) {
+        return a[1] - b[1];
+      }
+    ).filter(
+      function(a) {
+        return a[1] >  0;
+      }
+    );
 
-    const eppList = Object.values(eppIdx);
-    const sortedEppList = eppList.sort(function (a, b) {
-      return cmp(b) - cmp(a);
-    });
-    const sortedEppIdList = sortedEppList.map(function (epp) {
-      return epp.id;
-    });
-    const iEpp = sortedEppIdList.indexOf(activeEPPId);
-    const iNext = (iEpp + 1) % sortedEppIdList.length;
-    const nextEPPId = sortedEppIdList[iNext];
+    console.debug(sortedEppIdAndDistance.slice(0,10));
+  
 
-    this.gotoNew(nextEPPId);
+    const newEppId = sortedEppIdAndDistance[1][0];
+
+    this.gotoNew(newEppId);
   }
 
   render() {
