@@ -113,13 +113,15 @@ STYLE.WIKI_LINK = {
 };
 
 STYLE.COLORS_BY_DISTANCE = [
+  // Related
   "#0a8",
   "#080",
   "#f80",
   "#800",
-  "#ddd",
-  "#fff",
-  "#fff",
+  // Unrelated
+  "#fefeff",
+  "#fefeff",
+  "#fefeff",
 ];
 
 export default STYLE;
