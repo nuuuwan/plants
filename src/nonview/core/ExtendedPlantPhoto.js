@@ -30,9 +30,15 @@ export default class ExtendedPlantPhoto {
   }
 
   getDistance(other) {
+
+    
     
     if (this.id === other.id) {
       return 0;
+    }
+
+    if (!other.plantNetResult.hasResults) {
+      return 5;
     }
 
     if (!this.plantNetResult.hasResults) {

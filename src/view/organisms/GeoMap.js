@@ -12,11 +12,14 @@ export default class GeoMap extends Component {
     if (!eppIdx) {
       return null;
     }
-    const eppList = Object.values(eppIdx);
-    return eppList
-      .sort(function (a, b) {
+    let eppList = Object.values(eppIdx);
+    if (activeEPP.plantNetResult.hasResults) {
+      eppList = eppList.sort(function (a, b) {
         return b.getDistance(activeEPP) - a.getDistance(activeEPP);
       })
+    }
+    return eppList
+
       .map(function (epp) {
         return (
           <PlantPhotoMarker

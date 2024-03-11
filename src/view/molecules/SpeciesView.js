@@ -3,7 +3,11 @@ import { WikiLink } from "../atoms";
 
 import STYLE from "../STYLE";
 
-export default function SpeciesView({ species, onClickImage }) {
+export default function SpeciesView({ species }) {
+  if (!species) {
+    return null;
+  }
+
   const onClick = function () {
     window.location.reload();
     localStorage.clear();

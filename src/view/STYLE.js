@@ -112,6 +112,6 @@ STYLE.WIKI_LINK = {
   textDecoration: "none",
 };
 
-STYLE.COLORS_BY_DISTANCE = ["#0a8", "#080", "#f80", "#800", "#888", "#ddd","#eee"];
+STYLE.COLORS_BY_DISTANCE = ["#0a8", "#080", "#f80", "#800", "#aaa", "#ddd","#eee"];
 
 export default STYLE;
