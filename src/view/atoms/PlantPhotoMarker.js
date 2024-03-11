@@ -30,6 +30,7 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
         permanent
         direction="center"
         className={className}
+        opacity={1}
       >
         {epp.plantNetResult.speciesNameInitials}
       </Tooltip>
