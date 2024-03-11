@@ -88,8 +88,6 @@ export default class HomePage extends Component {
     const pY = 4*(pY0 - 0.5);
     const r = Math.sqrt(pX * pX + pY * pY);
 
-    console.debug(pX, pY, r);
-
     if (r <= 1) {
       this.gotoRandom();
       return;
