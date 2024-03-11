@@ -7,7 +7,7 @@ import { ExtendedPlantPhoto } from "../../nonview/core";
 import { AlertLowConfidence, PlantPhotoView, SpeciesView } from "../molecules";
 import { GeoMap } from "../organisms";
 
-import { p1, p2 } from "../STYLE";
+
 
 import STYLE from "../STYLE";
 
@@ -110,7 +110,7 @@ export default class HomePage extends Component {
     }
 
     const activeEPP = eppIdx[activeEPPId];
-    const activePlantPhoto = activeEPP.plantPhoto;
+
     const plantNetResult = activeEPP.plantNetResult;
     return (
       <Box>
