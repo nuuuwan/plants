@@ -106,7 +106,7 @@ export default class HomePage extends Component {
     const { center, zoom, eppIdx, activeEPPId } = this.state;
 
     if (!eppIdx) {
-      return <CircularProgress />;
+      return <CircularProgress sx={{m:2}} />;
     }
 
     const activeEPP = eppIdx[activeEPPId];
