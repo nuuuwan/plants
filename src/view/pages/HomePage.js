@@ -81,40 +81,25 @@ export default class HomePage extends Component {
 
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
-    const pX0 = 1- e.clientX / window.innerWidth;
-    const pY1 = e.clientY / window.innerHeight;
-    const pY0 = (pY1 - p1) / p2;
-    const pX = 4*(pX0 - 0.5);
-    const pY = 4*(pY0 - 0.5);
-    const r = Math.sqrt(pX * pX + pY * pY);
-
-    if (r <= 1) {
+    const pX = e.clientX / window.innerWidth;
+    
+    if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
       return;
     }
 
-    const activeEpp = eppIdx[activeEPPId];
-    const sortedEppIdAndDistance = Object.values(eppIdx).map(function (epp) {
-      const latlngActive = activeEpp.plantPhoto.latLng;
-      const latlng = epp.plantPhoto.latLng;
-      const distance = latlngActive.distanceTo(latlng, pY, pX);
-      return [epp.id, distance]
-    }).sort(
-      function (a, b) {
-        return a[1] - b[1];
-      }
-    ).filter(
-      function(a) {
-        return a[1] >  0;
-      }
-    );
+    const eppIdList = Object.values(eppIdx).map((epp) => epp.id);
+    let iActiveEpp = eppIdList.indexOf(activeEPPId);
 
-    console.debug(sortedEppIdAndDistance.slice(0,10));
-  
+    if (pX < 0.33) {
+      iActiveEpp -= 1;
+    } else {
+      iActiveEpp += 1;
+    }
 
-    const newEppId = sortedEppIdAndDistance[1][0];
-
-    this.gotoNew(newEppId);
+    iActiveEpp = (iActiveEpp + eppIdList.length) % eppIdList.length;
+    activeEPPId = eppIdList[iActiveEpp];
+    this.gotoNew(activeEPPId);
   }
 
   render() {
