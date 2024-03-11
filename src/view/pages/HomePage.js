@@ -127,7 +127,7 @@ export default class HomePage extends Component {
 
         <Box sx={STYLE.HOME_PAGE.MIDDLE}>
           <PlantPhotoView
-            plantPhoto={activePlantPhoto}
+            activeEPP={activeEPP}
             onClickImage={this.onClickImage.bind(this)}
           />
         </Box>

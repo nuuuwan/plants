@@ -74,7 +74,7 @@ STYLE.PLANT_PHOTO = {
 
     margin: "auto",
     zIndex: 100,
-    fontSize: "67%",
+    fontSize: "80%",
     textAlign: "center",
     width: "fit-content",
     padding: 0.5,

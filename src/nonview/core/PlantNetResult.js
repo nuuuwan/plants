@@ -2,7 +2,7 @@ import { WWW, Format } from "../base";
 
 export default class PlantNetResult {
   static LIMIT_LOW_CONFIDENCE = 0.2;
-  static MAX_DISPLAY_COUNT = 5;
+  static MAX_DISPLAY_COUNT = 3;
   static EMOJI_UNKNOWN = "❔"
 
   constructor(utAPICall, plantPhotoId, speciesNameToScore) {
