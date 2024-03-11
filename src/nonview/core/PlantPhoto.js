@@ -59,7 +59,7 @@ export default class PlantPhoto {
   }
 
   get photoInfoStr() {
-    return `${this.timeStr} · ${this.latLngStr} · Facing ${this.directionStr}`;
+    return `${this.timeStr} · ${this.latLngStr} · ${this.directionStr}`;
   }
 
   // Static
