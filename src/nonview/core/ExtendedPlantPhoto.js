@@ -30,8 +30,13 @@ export default class ExtendedPlantPhoto {
   }
 
   getDistance(other) {
+    
     if (this.id === other.id) {
       return 0;
+    }
+
+    if (!this.plantNetResult.hasResults) {
+      return 6;
     }
 
     if (this.plantNetResult.isLowConfidence) {
@@ -66,6 +71,7 @@ export default class ExtendedPlantPhoto {
         return await ExtendedPlantPhoto.fromPlantPhoto(plantPhoto);
       })
     );
+
     console.debug(`Loaded ${eppList.length} extended plant photos`);
     return eppList;
   }

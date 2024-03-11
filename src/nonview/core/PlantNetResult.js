@@ -29,6 +29,10 @@ export default class PlantNetResult {
     return this.confidence < PlantNetResult.LIMIT_LOW_CONFIDENCE;
   }
 
+  get hasResults() {
+    return Object.keys(this.speciesNameToScore).length > 0;
+  }
+
   get confidenceStrAll() {
     return Object.entries(this.speciesNameToScore)
       .map(function ([speciesName, confidence]) {
