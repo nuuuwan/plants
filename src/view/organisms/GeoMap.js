@@ -41,7 +41,7 @@ export default class GeoMap extends Component {
         zoom={zoom}
         zoomControl={false}
         minZoom={10}
-        maxZoom={20}
+        maxZoom={22}
       >
         <TileLayer url={URL_FORMAT} />
 
