@@ -9,7 +9,7 @@ export default function AlertLowConfidence({ plantNetResult }) {
       Identification Confidence for this Photo is{" "}
       <strong>less than {pLimit}</strong>.
       <br />
-      {plantNetResult.confidenceStrAll}
+      {plantNetResult.confidenceStrImportant}
     </Alert>
   );
 }
