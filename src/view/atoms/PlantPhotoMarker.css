@@ -1,0 +1,9 @@
+.leaflet-tooltip {
+    background: #fff0;
+    font-family: Afacad;
+    padding: 0;
+    margin: 0;
+    
+    border: none;
+    box-shadow: none;
+}

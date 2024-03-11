@@ -14,6 +14,16 @@ export default class PlantNetResult {
     return Object.keys(this.speciesNameToScore)[0];
   }
 
+  get speciesNameInitials() {
+    const speciesName = this.speciesName;
+    if (!speciesName) {
+      return "❓";
+    }
+    const words = speciesName.split(" ");
+    return words[0].substring(0,1) + words[1].substring(0,1);
+  }
+
+
   get speciesNameConditioned() {
     let s = this.speciesName;
     if (this.isLowConfidence) {
