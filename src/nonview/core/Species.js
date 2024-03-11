@@ -54,4 +54,13 @@ export default class Species {
   static async listFromNames(names) {
     return await Promise.all(names.map(Species.fromName));
   }
+
+  get commonNamesStr() {
+    const MAX_LEN = 120;
+    let s = this.commonNames.join(", ");
+    if (s.length > MAX_LEN) {
+      s = s.substring(0, MAX_LEN) + "...";
+    }
+    return s;
+  }
 }
