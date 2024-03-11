@@ -17,9 +17,9 @@ export default class PlantPhoto {
     const date = new Date(this.ut * 1000);
     let dateOptions = {
       year: "numeric",
-      month: "long",
+      month: "short",
       day: "numeric",
-      weekday: "long",
+      weekday: "short",
     };
     let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
 
@@ -30,7 +30,7 @@ export default class PlantPhoto {
   }
 
   get latLngStr() {
-    return `${this.latLng.lat.toFixed(4)}°N ${this.latLng.lng.toFixed(4)}°E`;
+    return `${this.latLng.lat.toFixed(2)}°N ${this.latLng.lng.toFixed(2)}°E`;
   }
 
   get directionStr() {
