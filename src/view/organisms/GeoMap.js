@@ -19,22 +19,50 @@ export default class GeoMap extends Component {
     if (!eppIdx) {
       return null;
     }
-    let eppList = Object.values(eppIdx);
-    if (activeEPP.plantNetResult.hasResults) {
-      eppList = eppList.sort(function (a, b) {
-        return b.getDistance(activeEPP) - a.getDistance(activeEPP);
-      });
+    if (!activeEPP.plantNetResult.hasResults) {
+      return null;
     }
-    return eppList.map(function (epp) {
-      return (
-        <PlantPhotoMarker
-          key={"plant-photo-" + epp.id}
-          epp={epp}
-          onClick={onClickPlantPhoto}
-          activeEPP={activeEPP}
-        />
-      );
+
+    let eppList = Object.values(eppIdx);
+    
+    eppList = eppList.sort(function (a, b) {
+      return a.getDistance(activeEPP) - b.getDistance(activeEPP);
     });
+
+    const distanceToEppList = eppList.reduce(
+      function (distanceToEppList, epp) {
+        const distance =100 -  epp.getDistance(activeEPP);
+        if (!distanceToEppList[distance]) {
+          distanceToEppList[distance] = [];
+        }
+        distanceToEppList[distance].push(epp);
+        return distanceToEppList;
+      },
+      {}
+    );
+
+    return Object.entries(distanceToEppList).map(function ([distance, eppListForDistance]) {
+      const layerName = "layer-distance-" + distance;
+      return (
+        <LayerGroup key={"layer-group-" + distance} name={layerName}>
+          {
+                eppListForDistance.map(function (epp) {
+                  return (
+                    <PlantPhotoMarker
+                      key={"plant-photo-" + epp.id}
+                      epp={epp}
+                      onClick={onClickPlantPhoto}
+                      activeEPP={activeEPP}
+                    />
+                  );
+                })
+          }
+        </LayerGroup>
+      );
+    }, this);
+
+    
+
   }
 
   render() {
