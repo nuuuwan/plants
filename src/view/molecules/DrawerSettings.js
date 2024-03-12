@@ -6,8 +6,8 @@ import STYLE from "../STYLE.js";
 function LabelledStat({ label, stat, color, blurb }) {
   return (
     <Box sx={{ color, marginBottom: 1 }}>
-      <Typography variant="h4">{stat}</Typography>
-      <Typography variant="h6" sx={{ opacity: 0.5 }}>
+      <Typography variant="h5">{stat}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.8 }}>
         {label}
       </Typography>
       {blurb && (
@@ -23,20 +23,20 @@ export default function DrawerSettings({ eppIdx }) {
   const stats = Statistics.fromExtendedPlantPhotoIdx(eppIdx);
   return (
     <Box sx={STYLE.DRAWER_SETTINGS}>
-      <Box sx={{ marginBottom: 5 }}>
+      <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="App"
           stat={"https://nuuuwan.github.io/plants"}
-          color="#ccc"
+          color="#468"
         />
         <LabelledStat
           label="App Version"
           stat={"v" + DATETIME_STR}
-          color="#ccc"
+          color="#468"
         />
       </Box>
 
-      <Box sx={{ marginBottom: 5 }}>
+      <Box sx={{ marginBottom:1  }}>
         <LabelledStat label="Photos" stat={stats.nPhotos} color="black" />
         <LabelledStat
           label="Photo Days"
@@ -50,7 +50,7 @@ export default function DrawerSettings({ eppIdx }) {
         />
       </Box>
 
-      <Box sx={{ marginBottom: 5 }}>
+      <Box sx={{ marginBottom: 1}}>
         <LabelledStat
           label="Unique Species"
           stat={stats.nSpecies}

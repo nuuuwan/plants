@@ -148,7 +148,7 @@ STYLE.SETTINGS_BUTTON = {
 STYLE.DRAWER_SETTINGS = {
   margin: 1,
   padding: 1,
-  width: 320,
+  maxWidth: 260,
 };
 
 export default STYLE;
