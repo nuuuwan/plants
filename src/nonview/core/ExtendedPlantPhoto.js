@@ -35,6 +35,10 @@ export default class ExtendedPlantPhoto {
       return 5;
     }
 
+    if (other.plantNetResult.isLowConfidence) {
+      return 6;
+    }
+
     if (this.speciesName === other.speciesName) {
       return 1;
     }
