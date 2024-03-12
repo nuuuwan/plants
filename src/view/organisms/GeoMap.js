@@ -5,7 +5,8 @@ import { PlantPhotoMarker } from "../atoms";
 import "./GeoMap.css";
 
 const TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-
+const TILE_ATTRIBUTION =
+  '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 
 // const TILE_URL = "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}@2x.png"
 
@@ -39,7 +40,7 @@ export default class GeoMap extends Component {
     ]) {
       const layerName = "layer-distance-" + distance;
       return (
-        <LayerGroup key={layerName} name={layerName}>
+        <LayerGroup key={"layer-group-" + distance} name={layerName}>
           {eppListForDistance.map(function (epp) {
             return (
               <PlantPhotoMarker
@@ -60,8 +61,8 @@ export default class GeoMap extends Component {
     const { center, zoom } = this.props;
 
     return (
-      <MapContainer center={center} zoom={zoom} zoomControl={true} >
-        <TileLayer url={TILE_URL}  />
+      <MapContainer center={center} zoom={zoom} zoomControl={true} maxZoom={21}>
+        <TileLayer attribution={TILE_ATTRIBUTION} url={TILE_URL} maxZoom={21} />
         <LayerGroup>{this.renderPlants()}</LayerGroup>
       </MapContainer>
     );
