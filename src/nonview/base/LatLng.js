@@ -13,4 +13,15 @@ export default class LatLng {
     const lngDiff = this.lng - other.lng;
     return latDiff * wLat + lngDiff * wLng;
   }
+
+  get bounds() {
+    const SPAN = 0.00004;
+    return [[
+      this.lat - SPAN,
+      this.lng -SPAN,
+    ], [
+      this.lat +SPAN,
+      this.lng +SPAN,
+    ]];
+  }
 }
