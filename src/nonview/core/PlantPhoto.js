@@ -41,7 +41,7 @@ export default class PlantPhoto {
   }
 
   get latLngStr() {
-    return `${this.latLng.lat.toFixed(2)}°N ${this.latLng.lng.toFixed(2)}°E`;
+    return `${this.latLng.lat.toFixed(3)}°N ${this.latLng.lng.toFixed(3)}°E`;
   }
 
   get directionStr() {
