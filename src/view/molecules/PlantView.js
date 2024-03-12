@@ -1,10 +1,17 @@
 import { LayerGroup } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
 
+const SHOW_PLANT_VIEW = false;
+
 export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
   if (!eppIdx) {
     return null;
   }
+
+  if (!SHOW_PLANT_VIEW) {
+    return null;
+  }
+  
 
   let eppList = Object.values(eppIdx);
 
