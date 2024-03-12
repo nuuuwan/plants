@@ -1,17 +1,12 @@
-import { LayerGroup } from "react-leaflet";
+// import { LayerGroup } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
-
-const SHOW_PLANT_VIEW = false;
 
 export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
   if (!eppIdx) {
     return null;
   }
 
-  if (!SHOW_PLANT_VIEW) {
-    return null;
-  }
-  
+
 
   let eppList = Object.values(eppIdx);
 
@@ -32,20 +27,33 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
     distance,
     eppListForDistance,
   ]) {
-    const layerName = "layer-distance-" + distance;
-    return (
-      <LayerGroup key={"layer-group-" + distance} name={layerName}>
-        {eppListForDistance.map(function (epp) {
-          return (
-            <PlantPhotoMarker
-              key={"plant-photo-" + epp.id}
-              epp={epp}
-              onClick={onClickPlantPhoto}
-              activeEPP={activeEPP}
-            />
-          );
-        })}
-      </LayerGroup>
-    );
+    return eppListForDistance.map(function (epp) {
+        return (
+          <PlantPhotoMarker
+            key={"plant-photo-" + epp.id}
+            epp={epp}
+            onClick={onClickPlantPhoto}
+            activeEPP={activeEPP}
+          />
+        );
+      })
   });
 }
+
+// const layerName = "layer-distance-" + distance;
+    
+
+// return (
+//     <LayerGroup key={"layer-group-" + distance} name={layerName}>
+//       {eppListForDistance.map(function (epp) {
+//         return (
+//           <PlantPhotoMarker
+//             key={"plant-photo-" + epp.id}
+//             epp={epp}
+//             onClick={onClickPlantPhoto}
+//             activeEPP={activeEPP}
+//           />
+//         );
+//       })}
+//     </LayerGroup>
+//   );
