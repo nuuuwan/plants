@@ -4,7 +4,14 @@ import { PlantPhotoMarker } from "../atoms";
 
 import "./GeoMap.css";
 
-const URL_FORMAT = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
+// const TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+// const TILE_ATTRIBUTION = '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+
+const TILE_URL = "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}@2x.png"
+
+const TILE_ATTRIBUTION = '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>';
+
 
 export default class GeoMap extends Component {
   renderPlants() {
@@ -32,16 +39,23 @@ export default class GeoMap extends Component {
 
   render() {
     const { center, zoom } = this.props;
-
+   
     return (
       <MapContainer
         center={center}
         zoom={zoom}
-        zoomControl={false}
-        minZoom={10}
-        maxZoom={22}
+        zoomControl={true}
+
+        maxZoom={21}
+       
       >
-        <TileLayer url={URL_FORMAT} />
+        <TileLayer 
+          attribution={TILE_ATTRIBUTION}
+          url={TILE_URL}  
+     
+          maxZoom={21}
+
+        />
 
         {this.renderPlants()}
       </MapContainer>
