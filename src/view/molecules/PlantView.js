@@ -27,7 +27,7 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
   ]) {
     const invDistance = 9 - distance;
     const layerName = "layer-distance-" + invDistance;
-    console.debug('layerName', layerName);
+
     return (
       <LayerGroup key={layerName} name={layerName}>
         {eppListForDistance.map(function (epp) {
