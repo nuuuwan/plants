@@ -23,7 +23,6 @@ export default class ExtendedPlantPhoto {
       return 0;
     }
 
-
     if (this.plantNetResult.isLowConfidence) {
       return 5;
     }

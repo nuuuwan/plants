@@ -9,13 +9,14 @@ import {
   PlantPhotoView,
   SpeciesView,
   DrawerSettings,
+  GeoMap,
 } from "../molecules";
-import { GeoMap } from "../organisms";
+
 import { SettingsButton } from "../atoms";
 
 import STYLE from "../STYLE";
 
-export const SHOW_MAP = false;
+export const TEST_MODE = true;
 
 export default class HomePage extends Component {
   static DEFAULT_STATE = {
@@ -152,8 +153,7 @@ export default class HomePage extends Component {
           />
         </Box>
 
-          {SHOW_MAP ? (<Box sx={STYLE.HOME_PAGE.BOTTOM}>
-        
+        <Box sx={STYLE.HOME_PAGE.BOTTOM}>
           <GeoMap
             key={`geo-map-${center}-${zoom}-${activeEPPId}`}
             center={center}
@@ -166,7 +166,7 @@ export default class HomePage extends Component {
           <Drawer open={showSettings} onClose={handleCloseSettings}>
             <DrawerSettings eppIdx={eppIdx} />
           </Drawer>
-        </Box>) : (null)}
+        </Box>
       </Box>
     );
   }
