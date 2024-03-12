@@ -99,7 +99,7 @@ STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
   STYLE.PLANT_PHOTO.MARKER.CIRCLE,
-  { color: "black", weight: 3 }
+  { color: "#040", weight: 5 }
 );
 
 STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign({}, STYLE.PLANT_PHOTO.TIME_STR, {
@@ -114,7 +114,7 @@ STYLE.WIKI_LINK = {
 
 STYLE.BACK_COLORS_BY_DISTANCE = [
   // Related
-  "#0a8",
+  "#080",
   "#080",
   "#f80",
   "#800",
