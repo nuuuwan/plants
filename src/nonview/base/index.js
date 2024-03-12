@@ -3,24 +3,9 @@ import Cache from "./Cache";
 import Color from "./Color";
 import Format from "./Format";
 import GeoData from "./GeoData";
-import GeoLocation from "./GeoLocation";
 import LatLng from "./LatLng";
-import MathX from "./MathX";
 import Random from "./Random";
-import TimeX from "./TimeX";
 import URLContext from "./URLContext";
 import WWW from "./WWW";
 
-export {
-  Cache,
-  Color,
-  Format,
-  GeoData,
-  GeoLocation,
-  LatLng,
-  MathX,
-  Random,
-  TimeX,
-  URLContext,
-  WWW,
-};
+export { Cache, Color, Format, GeoData, LatLng, Random, URLContext, WWW };
