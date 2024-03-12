@@ -138,4 +138,18 @@ STYLE.FORE_COLORS_BY_DISTANCE = [
   "gray",
 ];
 
+STYLE.SETTINGS_BUTTON = {
+  position: "absolute",
+  bottom: "5%",
+  right: "2%",
+  backgroundColor: "white",
+};
+
+STYLE.DRAWER_SETTINGS = {
+  margin: 2,
+  padding: 2,
+  minWidth: 320,
+  maxWidth: "67%",
+};
+
 export default STYLE;

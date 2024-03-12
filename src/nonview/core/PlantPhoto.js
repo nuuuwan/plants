@@ -13,7 +13,7 @@ export default class PlantPhoto {
     return `https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data/images/${this.id}.jpg`;
   }
 
-  get timeStr() {
+  get dateStr() {
     const date = new Date(this.ut * 1000);
     let dateOptions = {
       year: "numeric",
@@ -21,12 +21,23 @@ export default class PlantPhoto {
       day: "numeric",
       weekday: "short",
     };
-    let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
 
     let formattedDate = date.toLocaleDateString("en-US", dateOptions);
+
+    return formattedDate;
+  }
+  get timeOnlyStr() {
+    const date = new Date(this.ut * 1000);
+
+    let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
+
     let formattedTime = date.toLocaleTimeString("en-US", timeOptions);
 
-    return `${formattedTime} · ${formattedDate}`;
+    return formattedTime;
+  }
+
+  get timeStr() {
+    return `${this.dateStr} · ${this.timeOnlyStr}`;
   }
 
   get latLngStr() {

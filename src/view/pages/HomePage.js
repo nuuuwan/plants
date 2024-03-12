@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Drawer } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { ExtendedPlantPhoto } from "../../nonview/core";
-import { AlertLowConfidence, PlantPhotoView, SpeciesView } from "../molecules";
+import {
+  AlertLowConfidence,
+  PlantPhotoView,
+  SpeciesView,
+  DrawerSettings,
+} from "../molecules";
 import { GeoMap } from "../organisms";
+import { SettingsButton } from "../atoms";
 
 import STYLE from "../STYLE";
 
@@ -14,6 +20,7 @@ export default class HomePage extends Component {
     center: GeoData.DEFAULT_CENTER,
     zoom: GeoData.DEFAULT_ZOOM,
     activeEPPId: null,
+    showSettings: false,
   };
   static CONTEXT_STATE_KEYS = ["activeEPPId"];
 
@@ -77,6 +84,10 @@ export default class HomePage extends Component {
     this.setStateAndURLContext({ activeEPPId, center });
   }
 
+  setShowSettings(showSettings) {
+    this.setState({ showSettings });
+  }
+
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
     const pX = e.clientX / window.innerWidth;
@@ -101,7 +112,7 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const { center, zoom, eppIdx, activeEPPId } = this.state;
+    const { center, zoom, eppIdx, activeEPPId, showSettings } = this.state;
 
     if (!eppIdx) {
       return <CircularProgress sx={{ m: 2 }} />;
@@ -110,6 +121,15 @@ export default class HomePage extends Component {
     const activeEPP = eppIdx[activeEPPId];
 
     const plantNetResult = activeEPP.plantNetResult;
+
+    const handleCloseSettings = function () {
+      this.setShowSettings(false);
+    }.bind(this);
+
+    const handleOpenSettings = function () {
+      this.setShowSettings(true);
+    }.bind(this);
+
     return (
       <Box>
         <Box sx={STYLE.HOME_PAGE.TOP}>
@@ -139,6 +159,10 @@ export default class HomePage extends Component {
             activeEPP={activeEPP}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
           />
+          <SettingsButton onClick={handleOpenSettings} />
+          <Drawer open={showSettings} onClose={handleCloseSettings}>
+            <DrawerSettings eppIdx={eppIdx} />
+          </Drawer>
         </Box>
       </Box>
     );
