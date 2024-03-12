@@ -51,7 +51,7 @@ export default class HomePage extends Component {
       const activeEPP = eppIdx[activeEPPId];
       title = activeEPP.plantNetResult.speciesName;
     }
-      window.document.title = title;
+    window.document.title = title;
 
     this.setState(
       state,
