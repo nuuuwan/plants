@@ -25,7 +25,9 @@ export default class PlantNetResult {
   }
 
   get speciesNameInitialsIfConfident() {
-    return this.isLowConfidence ? PlantNetResult.EMOJI_UNKNOWN : this.speciesNameInitials;
+    return this.isLowConfidence
+      ? PlantNetResult.EMOJI_UNKNOWN
+      : this.speciesNameInitials;
   }
 
   get confidence() {

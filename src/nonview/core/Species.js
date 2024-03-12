@@ -1,6 +1,6 @@
 import { WWW } from "../base";
 export default class Species {
-  static DELIM_COMMON_NAMES = ", "
+  static DELIM_COMMON_NAMES = ", ";
   constructor(
     name,
     authorship,
@@ -60,9 +60,12 @@ export default class Species {
     const MAX_LEN = 80;
     let commonNamesToDisplay = [];
     for (const commonName of this.commonNames) {
-
-      if (commonName.length + commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES).length > MAX_LEN) {
-        return commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES)+' etc.';
+      if (
+        commonName.length +
+          commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES).length >
+        MAX_LEN
+      ) {
+        return commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES) + " etc.";
       }
       commonNamesToDisplay.push(commonName);
     }
