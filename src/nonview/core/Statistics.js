@@ -1,11 +1,8 @@
 export default class Statistics {
-
-
   static fromExtendedPlantPhotoIdx(eppIdx) {
     const sortedEppList = Object.values(eppIdx).sort(
       (a, b) => a.plantPhoto.ut - b.plantPhoto.ut
     );
-
 
     const getCounts = function (getKey) {
       const counts = Object.values(eppIdx).reduce(function (count, epp) {
@@ -31,13 +28,15 @@ export default class Statistics {
       return getKeys(getKey).length;
     };
 
-    const getBlurb = function(getKey) {
+    const getBlurb = function (getKey) {
       const counts = getCounts(getKey);
       const N_DISPLAY = 5;
-      return Object.entries(counts).slice(0,N_DISPLAY).map(([key, count]) => `${key} (${count})`).join(", ");
-    }
+      return Object.entries(counts)
+        .slice(0, N_DISPLAY)
+        .map(([key, count]) => `${key} (${count})`)
+        .join(", ");
+    };
 
-   
     return {
       nPhotos: sortedEppList.length,
       nPhotoDays: getUnique((epp) => epp.dateStr),
@@ -50,6 +49,4 @@ export default class Statistics {
       familyBlurb: getBlurb((epp) => epp.species.familyName),
     };
   }
-
-
 }
