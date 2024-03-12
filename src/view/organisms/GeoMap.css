@@ -5,5 +5,5 @@
 }
 
 .leaflet-tile-pane {
-  filter: grayscale(100%);
+  filter: grayscale(90%);
 }
