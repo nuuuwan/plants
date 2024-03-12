@@ -6,7 +6,7 @@ const fixedCommon = {
   right: 0,
 };
 
-const RATIOS = [1, 4,3];
+const RATIOS = [1, 4, 3];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
 export const p1 = RATIOS[0] / sum;
 export const p2 = RATIOS[1] / sum;
@@ -41,7 +41,8 @@ STYLE.PLANT_PHOTO = {
     height: p1pct,
     textAlign: "center",
     fontSize: "80%",
-    p:0.5,m:0,
+    p: 0.5,
+    m: 0,
   },
 
   FAMILY: {

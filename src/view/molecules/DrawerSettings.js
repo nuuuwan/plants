@@ -36,7 +36,7 @@ export default function DrawerSettings({ eppIdx }) {
         />
       </Box>
 
-      <Box sx={{ marginBottom:1  }}>
+      <Box sx={{ marginBottom: 1 }}>
         <LabelledStat label="Photos" stat={stats.nPhotos} color="black" />
         <LabelledStat
           label="Days of Photos"
@@ -50,7 +50,7 @@ export default function DrawerSettings({ eppIdx }) {
         />
       </Box>
 
-      <Box sx={{ marginBottom: 1}}>
+      <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="Unique Species"
           stat={stats.nSpecies}
