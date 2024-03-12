@@ -7,7 +7,6 @@ import GeoLocation from "./GeoLocation";
 import LatLng from "./LatLng";
 import MathX from "./MathX";
 import Random from "./Random";
-import StringX from "./StringX";
 import TimeX from "./TimeX";
 import URLContext from "./URLContext";
 import WWW from "./WWW";
@@ -21,7 +20,6 @@ export {
   LatLng,
   MathX,
   Random,
-  StringX,
   TimeX,
   URLContext,
   WWW,
