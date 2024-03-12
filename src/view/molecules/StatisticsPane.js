@@ -19,7 +19,7 @@ function LabelledStat({ label, stat, color, blurb }) {
   );
 }
 
-export default function DrawerSettings({ eppIdx }) {
+export default function StatisticsPane({ eppIdx }) {
   const stats = Statistics.fromExtendedPlantPhotoIdx(eppIdx);
 
   const onClick = function () {

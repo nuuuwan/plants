@@ -8,7 +8,7 @@ import {
   AlertLowConfidence,
   PlantPhotoView,
   SpeciesView,
-  DrawerSettings,
+  StatisticsPane,
   GeoMap,
 } from "../molecules";
 
@@ -164,7 +164,7 @@ export default class HomePage extends Component {
           />
           <SettingsButton onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
-            <DrawerSettings eppIdx={eppIdx} />
+            <StatisticsPane eppIdx={eppIdx} />
           </Drawer>
         </Box>
       </Box>
