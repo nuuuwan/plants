@@ -6,7 +6,7 @@ const fixedCommon = {
   right: 0,
 };
 
-const RATIOS = [1, 3, 2];
+const RATIOS = [1, 4,3];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
 export const p1 = RATIOS[0] / sum;
 export const p2 = RATIOS[1] / sum;
@@ -15,8 +15,8 @@ export const p2 = RATIOS[1] / sum;
 const p1pct = (p1 * 100).toFixed(0) + "%";
 const p2pct = (p2 * 100).toFixed(0) + "%";
 const p12pct = ((p1 + p2) * 100).toFixed(0) + "%";
-const p12apct = ((p1 + p2) * 0.93 * 100).toFixed(0) + "%";
-const p12bpct = (p1 * 1.17 * 100).toFixed(0) + "%";
+const p12apct = ((p1 + p2) * 0.9 * 100).toFixed(0) + "%";
+const p12bpct = (p1 * 1.2 * 100).toFixed(0) + "%";
 
 STYLE.HOME_PAGE = {
   TOP: Object.assign({}, fixedCommon, {
@@ -39,8 +39,9 @@ STYLE.PLANT_PHOTO = {
     flexDirection: "column",
     justifyContent: "center",
     height: p1pct,
-    padding: 0.5,
     textAlign: "center",
+    fontSize: "80%",
+    p:0.5,m:0,
   },
 
   FAMILY: {
