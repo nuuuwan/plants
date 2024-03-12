@@ -1,4 +1,4 @@
-// import { LayerGroup } from "react-leaflet";
+import { LayerGroup } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
 
 export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
@@ -27,33 +27,20 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
     distance,
     eppListForDistance,
   ]) {
-    return eppListForDistance.map(function (epp) {
-        return (
-          <PlantPhotoMarker
-            key={"plant-photo-" + epp.id}
-            epp={epp}
-            onClick={onClickPlantPhoto}
-            activeEPP={activeEPP}
-          />
-        );
-      })
+    const layerName = "layer-distance-" + distance;
+    return (
+      <LayerGroup key={"layer-group-" + distance} name={layerName}>
+        {eppListForDistance.map(function (epp) {
+          return (
+            <PlantPhotoMarker
+              key={"plant-photo-" + epp.id}
+              epp={epp}
+              onClick={onClickPlantPhoto}
+              activeEPP={activeEPP}
+            />
+          );
+        })}
+      </LayerGroup>
+    );
   });
 }
-
-// const layerName = "layer-distance-" + distance;
-    
-
-// return (
-//     <LayerGroup key={"layer-group-" + distance} name={layerName}>
-//       {eppListForDistance.map(function (epp) {
-//         return (
-//           <PlantPhotoMarker
-//             key={"plant-photo-" + epp.id}
-//             epp={epp}
-//             onClick={onClickPlantPhoto}
-//             activeEPP={activeEPP}
-//           />
-//         );
-//       })}
-//     </LayerGroup>
-//   );
