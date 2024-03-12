@@ -6,16 +6,10 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
     return null;
   }
 
-
-
-  let eppList = Object.values(eppIdx);
-
-  eppList = eppList.sort(function (a, b) {
-    return a.getDistance(activeEPP) - b.getDistance(activeEPP);
-  });
+  const eppList = Object.values(eppIdx);
 
   const distanceToEppList = eppList.reduce(function (distanceToEppList, epp) {
-    const distance = 100 - epp.getDistance(activeEPP);
+    const distance = epp.getDistance(activeEPP);
     if (!distanceToEppList[distance]) {
       distanceToEppList[distance] = [];
     }
@@ -23,13 +17,19 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
     return distanceToEppList;
   }, {});
 
-  return Object.entries(distanceToEppList).map(function ([
+  return Object.entries(distanceToEppList).sort(
+    function(entryA, entryB) {
+      return entryB[0] - entryA[0];
+    }
+  ).map(function ([
     distance,
     eppListForDistance,
   ]) {
-    const layerName = "layer-distance-" + distance;
+    const invDistance = 9 - distance;
+    const layerName = "layer-distance-" + invDistance;
+    console.debug('layerName', layerName);
     return (
-      <LayerGroup key={"layer-group-" + distance} name={layerName}>
+      <LayerGroup key={layerName} name={layerName}>
         {eppListForDistance.map(function (epp) {
           return (
             <PlantPhotoMarker
@@ -37,6 +37,7 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
               epp={epp}
               onClick={onClickPlantPhoto}
               activeEPP={activeEPP}
+              distance={distance}
             />
           );
         })}
