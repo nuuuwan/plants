@@ -8,14 +8,9 @@ export default function SpeciesView({ species }) {
     return null;
   }
 
-  const onClick = function () {
-    window.location.reload();
-    localStorage.clear();
-    console.debug("localStorage cleared");
-  };
 
   return (
-    <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} onClick={onClick}>
+    <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} >
       <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
         <WikiLink>{species.familyName}</WikiLink>
       </Typography>
