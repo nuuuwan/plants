@@ -1,21 +1,14 @@
 export default class Statistics {
-  constructor(nPhotos, nPhotoDays, maxPhotoDay, nSpecies, nGenus, nFamily) {
-    this.nPhotos = nPhotos;
-    this.nPhotoDays = nPhotoDays;
-    this.maxPhotoDay = maxPhotoDay;
-    this.nSpecies = nSpecies;
-    this.nGenus = nGenus;
-    this.nFamily = nFamily;
-  }
+
 
   static fromExtendedPlantPhotoIdx(eppIdx) {
     const sortedEppList = Object.values(eppIdx).sort(
       (a, b) => a.plantPhoto.ut - b.plantPhoto.ut
     );
-    const nPhotos = sortedEppList.length;
+
 
     const getCounts = function (getKey) {
-      return Object.values(eppIdx).reduce(function (count, epp) {
+      const counts = Object.values(eppIdx).reduce(function (count, epp) {
         const key = getKey(epp);
         if (!count[key]) {
           count[key] = 0;
@@ -23,6 +16,10 @@ export default class Statistics {
         count[key] += 1;
         return count;
       }, {});
+      const sortedCounts = Object.fromEntries(
+        Object.entries(counts).sort(([, a], [, b]) => b - a)
+      );
+      return sortedCounts;
     };
 
     const getKeys = function (getKey) {
@@ -34,31 +31,25 @@ export default class Statistics {
       return getKeys(getKey).length;
     };
 
-    const nFamily = getUnique((epp) => epp.species.familyName);
-    const nGenus = getUnique((epp) => epp.species.genusName);
-    const nSpecies = getUnique((epp) => epp.species.name);
+    const getBlurb = function(getKey) {
+      const counts = getCounts(getKey);
+      const N_DISPLAY = 5;
+      return Object.entries(counts).slice(0,N_DISPLAY).map(([key, count]) => `${key} (${count})`).join(", ");
+    }
 
-    const nPhotoDays = getUnique((epp) => epp.plantPhoto.dateStr);
-    const maxPhotoDay =
-      sortedEppList[sortedEppList.length - 1].plantPhoto.timeStr;
-    return new Statistics(
-      nPhotos,
-      nPhotoDays,
-      maxPhotoDay,
-      nSpecies,
-      nGenus,
-      nFamily
-    );
-  }
-
-  to_dict() {
+   
     return {
-      nPhotos: this.nPhotos,
-      nPhotoDays: this.nPhotoDays,
-      maxPhotoDay: this.maxPhotoDay,
-      nSpecies: this.nSpecies,
-      nGenus: this.nGenus,
-      nFamily: this.nFamily,
+      nPhotos: sortedEppList.length,
+      nPhotoDays: getUnique((epp) => epp.dateStr),
+      maxPhotoDay: sortedEppList[sortedEppList.length - 1].plantPhoto.dateStr,
+      nSpecies: getUnique((epp) => epp.species.name),
+      speciesBlurb: getBlurb((epp) => epp.species.name),
+      nGenus: getUnique((epp) => epp.species.genusName),
+      genusBlurb: getBlurb((epp) => epp.species.genusName),
+      nFamily: getUnique((epp) => epp.species.familyName),
+      familyBlurb: getBlurb((epp) => epp.species.familyName),
     };
   }
+
+
 }

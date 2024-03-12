@@ -20,7 +20,7 @@ export default class HomePage extends Component {
     center: GeoData.DEFAULT_CENTER,
     zoom: GeoData.DEFAULT_ZOOM,
     activeEPPId: null,
-    showSettings: false,
+    showSettings: true,
   };
   static CONTEXT_STATE_KEYS = ["activeEPPId"];
 
