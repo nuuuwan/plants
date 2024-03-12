@@ -31,7 +31,7 @@ export default function SpeciesView({ species }) {
       </Typography>
 
       <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>
-        {species.commonNamesStr}
+        {species.commonNamesStrShort}
       </Typography>
     </Box>
   );

@@ -56,7 +56,7 @@ STYLE.PLANT_PHOTO = {
   },
 
   COMMON_NAMES: {
-    fontSize: "100%",
+    fontSize: "80%",
     color: "#444",
   },
 

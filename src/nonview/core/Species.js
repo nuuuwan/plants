@@ -1,5 +1,6 @@
 import { WWW } from "../base";
 export default class Species {
+  static DELIM_COMMON_NAMES = ", "
   constructor(
     name,
     authorship,
@@ -55,12 +56,16 @@ export default class Species {
     return await Promise.all(names.map(Species.fromName));
   }
 
-  get commonNamesStr() {
-    const MAX_LEN = 120;
-    let s = this.commonNames.join(", ");
-    if (s.length > MAX_LEN) {
-      s = s.substring(0, MAX_LEN) + "...";
+  get commonNamesStrShort() {
+    const MAX_LEN = 80;
+    let commonNamesToDisplay = [];
+    for (const commonName of this.commonNames) {
+
+      if (commonName.length + commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES).length > MAX_LEN) {
+        return commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES)+' etc.';
+      }
+      commonNamesToDisplay.push(commonName);
     }
-    return s;
+    return commonNamesToDisplay.join(Species.DELIM_COMMON_NAMES);
   }
 }
