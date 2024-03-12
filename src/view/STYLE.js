@@ -40,7 +40,7 @@ STYLE.PLANT_PHOTO = {
     justifyContent: "center",
     height: p1pct,
     textAlign: "center",
-    fontSize: "80%",
+    fontSize: "90%",
     p: 0.5,
     m: 0,
   },
