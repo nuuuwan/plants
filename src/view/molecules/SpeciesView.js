@@ -28,9 +28,6 @@ export default function SpeciesView({ species }) {
           {" "}
           <WikiLink label={species.speciesName}> {species.name}</WikiLink>
         </span>
-        <span style={STYLE.PLANT_PHOTO.AUTHORSHIP}>
-          {"  " + species.authorship}
-        </span>
       </Typography>
 
       <Typography sx={STYLE.PLANT_PHOTO.COMMON_NAMES}>

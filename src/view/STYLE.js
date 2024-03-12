@@ -91,10 +91,6 @@ STYLE.PLANT_PHOTO = {
 STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
   color: "#082",
 });
-STYLE.PLANT_PHOTO.AUTHORSHIP = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
-  color: "gray",
-  fontSize: "67%",
-});
 
 STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
