@@ -138,5 +138,4 @@ STYLE.FORE_COLORS_BY_DISTANCE = [
   "gray",
 ];
 
-
 export default STYLE;

@@ -8,9 +8,7 @@ export default function AlertLowConfidence({ plantNetResult }) {
     <Alert severity="error" sx={{ m: 2, fontSize: "90%" }}>
       Identification Confidence for this Photo is{" "}
       <strong>under {pLimit}</strong>.
-      <p style={{fontSize: "80%"}}>
-      {plantNetResult.confidenceStrImportant}
-      </p>
+      <p style={{ fontSize: "80%" }}>{plantNetResult.confidenceStrImportant}</p>
     </Alert>
   );
 }
