@@ -53,8 +53,7 @@ export default class GeoMap extends Component {
           })}
         </LayerGroup>
       );
-    },
-    this);
+    });
   }
 
   render() {
