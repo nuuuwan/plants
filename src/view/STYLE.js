@@ -140,8 +140,8 @@ STYLE.FORE_COLORS_BY_DISTANCE = [
 
 STYLE.SETTINGS_BUTTON = {
   position: "absolute",
-  bottom: "5%",
-  right: "2%",
+  bottom: "8%",
+  right: "5%",
   backgroundColor: "white",
 };
 
