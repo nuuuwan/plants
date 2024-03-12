@@ -112,16 +112,31 @@ STYLE.WIKI_LINK = {
   textDecoration: "none",
 };
 
-STYLE.COLORS_BY_DISTANCE = [
+STYLE.BACK_COLORS_BY_DISTANCE = [
   // Related
   "#0a8",
   "#080",
   "#f80",
   "#800",
   // Unrelated
-  "#fefeff",
+  "#d0f0ff",
+  // Low Data
   "#fefeff",
   "#fefeff",
 ];
+
+STYLE.FORE_COLORS_BY_DISTANCE = [
+  // Related
+  "white",
+  "white",
+  "white",
+  "white",
+  // Unrelated
+  "gray",
+  // Low Data
+  "gray",
+  "gray",
+];
+
 
 export default STYLE;

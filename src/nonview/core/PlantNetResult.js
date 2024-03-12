@@ -24,6 +24,10 @@ export default class PlantNetResult {
     return words[0].substring(0, 1) + words[1].substring(0, 1);
   }
 
+  get speciesNameInitialsIfConfident() {
+    return this.isLowConfidence ? PlantNetResult.EMOJI_UNKNOWN : this.speciesNameInitials;
+  }
+
   get confidence() {
     return this.speciesNameToScore[this.speciesName];
   }
