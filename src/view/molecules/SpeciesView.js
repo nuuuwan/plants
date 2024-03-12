@@ -8,9 +8,8 @@ export default function SpeciesView({ species }) {
     return null;
   }
 
-
   return (
-    <Box sx={STYLE.PLANT_PHOTO.BOX_INFO} >
+    <Box sx={STYLE.PLANT_PHOTO.BOX_INFO}>
       <Typography sx={STYLE.PLANT_PHOTO.FAMILY}>
         <WikiLink>{species.familyName}</WikiLink>
       </Typography>

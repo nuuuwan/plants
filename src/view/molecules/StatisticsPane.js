@@ -3,7 +3,6 @@ import { Statistics } from "../../nonview/core/index.js";
 import { DATETIME_STR } from "../../nonview/constants/VERSION.js";
 import STYLE from "../STYLE.js";
 
-
 function LabelledStat({ label, stat, color, blurb }) {
   return (
     <Box sx={{ color, marginBottom: 1 }}>
@@ -23,18 +22,15 @@ function LabelledStat({ label, stat, color, blurb }) {
 export default function DrawerSettings({ eppIdx }) {
   const stats = Statistics.fromExtendedPlantPhotoIdx(eppIdx);
 
-
   const onClick = function () {
     window.location.reload();
     localStorage.clear();
     console.debug("localStorage cleared");
   };
 
-
   return (
     <Box sx={STYLE.DRAWER_SETTINGS}>
-
-<Box sx={{ marginBottom: 1 }}>
+      <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="Unique Species"
           stat={stats.nSpecies}
@@ -68,15 +64,12 @@ export default function DrawerSettings({ eppIdx }) {
         />
       </Box>
 
- 
       <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
-
         <LabelledStat
           label="App Version"
           stat={"v" + DATETIME_STR}
           color="#468"
         />
-
       </Box>
     </Box>
   );
