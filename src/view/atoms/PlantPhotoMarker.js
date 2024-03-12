@@ -8,6 +8,9 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
     onClick(epp.id);
   };
   const distance = epp.getDistance(activeEPP);
+
+  const radius = (distance < 3) ? 18 : 12;
+
   const className = ".leaflet-tooltip  .leaflet-tooltip" + distance;
   
 
@@ -21,7 +24,7 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
   return (
     <CircleMarker
       center={epp.plantPhoto.latLng}
-      radius={12}
+      radius={radius}
       key={`circle-${epp.id}`}
       pathOptions={Object.assign({ fillColor: backColor }, styleCircle)}
       eventHandlers={{
