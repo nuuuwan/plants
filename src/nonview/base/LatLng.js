@@ -5,7 +5,7 @@ export default class LatLng {
   }
 
   get position() {
-    return [this.lat - 0.0015, this.lng];
+    return [this.lat - 0.001, this.lng];
   }
 
   distanceTo(other, wLat = 1, wLng = 1) {
