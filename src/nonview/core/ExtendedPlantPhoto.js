@@ -23,20 +23,13 @@ export default class ExtendedPlantPhoto {
       return 0;
     }
 
-    if (!other.plantNetResult.hasResults) {
-      return 5;
-    }
-
-    if (!this.plantNetResult.hasResults) {
-      return 6;
-    }
 
     if (this.plantNetResult.isLowConfidence) {
       return 5;
     }
 
     if (other.plantNetResult.isLowConfidence) {
-      return 6;
+      return 4;
     }
 
     if (this.speciesName === other.speciesName) {
