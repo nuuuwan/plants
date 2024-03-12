@@ -1,4 +1,4 @@
-import { CircleMarker, Tooltip } from "react-leaflet";
+import { CircleMarker, Tooltip, Pane } from "react-leaflet";
 import STYLE from "../STYLE";
 
 import "./PlantPhotoMarker.css";
@@ -21,8 +21,9 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
 
 
-
+  const paneName = 'pane-' + epp.id;
   return (
+    <Pane name={paneName}>
     <CircleMarker
       center={epp.plantPhoto.latLng}
       radius={radius}
@@ -34,9 +35,10 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
       }}
 
     >
-      <Tooltip permanent direction="center" className="leaflet-tooltip" opacity={1} >
+      <Tooltip permanent direction="center" className="leaflet-tooltip">
         {epp.plantNetResult.speciesNameInitialsIfConfident}
       </Tooltip>
     </CircleMarker>
+    </Pane>
   );
 }

@@ -6,15 +6,11 @@
   border: none;
   box-shadow: none;
   background: inherit;
+ 
+  color: black;
 
-  color: #ffff;
+  z-index: 300000;
 
-  z-index: 0;
-}
-
-.leaflet-marker-icon {
-  z-index: 1000;
-  fill-opacity: 1;
 }
 
 
