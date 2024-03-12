@@ -1,6 +1,4 @@
 import { Alert } from "@mui/material";
-import { PlantNetResult } from "../../nonview/core";
-import { Format } from "../../nonview/base";
 
 export default function AlertLowConfidence({ plantNetResult }) {
 
