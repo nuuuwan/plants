@@ -40,7 +40,7 @@ export default class GeoMap extends Component {
     ]) {
       const layerName = "layer-distance-" + distance;
       return (
-        <LayerGroup key={"layer-group-" + distance} name={layerName}>
+        <LayerGroup key={layerName} name={layerName}>
           {eppListForDistance.map(function (epp) {
             return (
               <PlantPhotoMarker

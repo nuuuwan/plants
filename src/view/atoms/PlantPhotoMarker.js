@@ -20,7 +20,7 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
 
   const paneName = "pane-" + epp.id;
   return (
-    <Pane name={paneName}>
+    <Pane key={paneName} name={paneName}>
       <CircleMarker
         center={epp.plantPhoto.latLng}
         radius={radius}
