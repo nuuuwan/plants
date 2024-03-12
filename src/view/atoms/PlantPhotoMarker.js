@@ -11,8 +11,7 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
 
   const radius = (distance < 3) ? 18 : 12;
 
-  const className = ".leaflet-tooltip  .leaflet-tooltip" + distance;
-  
+
 
   const backColor = STYLE.BACK_COLORS_BY_DISTANCE[distance];
 
@@ -21,17 +20,21 @@ export default function PlantPhotoMarker({ epp, onClick, activeEPP }) {
     ? STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE
     : STYLE.PLANT_PHOTO.MARKER.CIRCLE;
 
+
+
   return (
     <CircleMarker
       center={epp.plantPhoto.latLng}
       radius={radius}
       key={`circle-${epp.id}`}
+      className="leaflet-marker-icon"
       pathOptions={Object.assign({ fillColor: backColor }, styleCircle)}
       eventHandlers={{
         click: onClickInner,
       }}
+
     >
-      <Tooltip permanent direction="center" className={className} opacity={1} >
+      <Tooltip permanent direction="center" className="leaflet-tooltip" opacity={1} >
         {epp.plantNetResult.speciesNameInitialsIfConfident}
       </Tooltip>
     </CircleMarker>

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, LayerGroup } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
 
 import "./GeoMap.css";
@@ -56,9 +56,10 @@ export default class GeoMap extends Component {
           maxZoom={21}
 
         />
-
+<LayerGroup>
         {this.renderPlants()}
-      </MapContainer>
+        </LayerGroup>
+        </MapContainer>
     );
   }
 }

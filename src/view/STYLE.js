@@ -84,7 +84,7 @@ STYLE.PLANT_PHOTO = {
   }),
 
   MARKER: {
-    CIRCLE: { color: "#222", weight: 0, fillOpacity: 1 },
+    CIRCLE: { color: "#cccc", weight: 2, fillOpacity: 1 },
   },
 };
 
