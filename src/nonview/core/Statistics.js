@@ -1,5 +1,5 @@
 export default class Statistics {
-  constructor(nPhotos, nPhotoDays,maxPhotoDay, nSpecies, nGenus, nFamily) {
+  constructor(nPhotos, nPhotoDays, maxPhotoDay, nSpecies, nGenus, nFamily) {
     this.nPhotos = nPhotos;
     this.nPhotoDays = nPhotoDays;
     this.maxPhotoDay = maxPhotoDay;
@@ -9,7 +9,9 @@ export default class Statistics {
   }
 
   static fromExtendedPlantPhotoIdx(eppIdx) {
-    const sortedEppList = Object.values(eppIdx).sort((a, b) => a.plantPhoto.ut - b.plantPhoto.ut);
+    const sortedEppList = Object.values(eppIdx).sort(
+      (a, b) => a.plantPhoto.ut - b.plantPhoto.ut
+    );
     const nPhotos = sortedEppList.length;
 
     const getCounts = function (getKey) {
@@ -32,15 +34,21 @@ export default class Statistics {
       return getKeys(getKey).length;
     };
 
-
-
     const nFamily = getUnique((epp) => epp.species.familyName);
     const nGenus = getUnique((epp) => epp.species.genusName);
     const nSpecies = getUnique((epp) => epp.species.name);
 
     const nPhotoDays = getUnique((epp) => epp.plantPhoto.dateStr);
-    const maxPhotoDay = sortedEppList[sortedEppList.length - 1].plantPhoto.timeStr;
-    return new Statistics(nPhotos, nPhotoDays, maxPhotoDay, nSpecies, nGenus, nFamily);
+    const maxPhotoDay =
+      sortedEppList[sortedEppList.length - 1].plantPhoto.timeStr;
+    return new Statistics(
+      nPhotos,
+      nPhotoDays,
+      maxPhotoDay,
+      nSpecies,
+      nGenus,
+      nFamily
+    );
   }
 
   to_dict() {
