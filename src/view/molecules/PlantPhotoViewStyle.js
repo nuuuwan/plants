@@ -1,41 +1,29 @@
 let PlantPhotoViewStyle = {
   IMAGE: {
-    position: "fixed",
-    left: 0,
-    right: 0,
-    top: "12.5%",
-    bottom: "62.5%",
-    width: "100%",
-    height: "50%",
-    margin: 0,
-    textAlign: "center",
+    width: "400px",
+    height: "400px",
     filter: "saturate(1.25) contrast(1.25)",
-    objectFit: "cover",
-    zIndex: -100,
   },
-  TIME_STR: {
+  CONFIDENCE: {
     position: "fixed",
-    left: 0,
-    right: 0,
-    top: "55%",
+    right: 20,
+    top: "110px",
+    maxWidth: "320px",
 
-    margin: "auto",
-    zIndex: 100,
     fontSize: "80%",
-    textAlign: "center",
-    width: "fit-content",
-    padding: 0.5,
-    borderRadius: 2,
+    padding: 0.6,
+    borderRadius: 3,
+
     color: "white",
     backgroundColor: "#0006",
   },
 };
 
-PlantPhotoViewStyle.CONFIDENCE = Object.assign(
+PlantPhotoViewStyle.TIME_STR = Object.assign(
   {},
-  PlantPhotoViewStyle.TIME_STR,
+  PlantPhotoViewStyle.CONFIDENCE,
   {
-    top: "15%",
+    top: "460px",
   }
 );
 

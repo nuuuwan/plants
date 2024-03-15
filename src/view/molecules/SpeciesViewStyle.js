@@ -3,11 +3,12 @@ let SpeciesViewStyle = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    height: "12.5%",
+    height: "80px",
     textAlign: "center",
     fontSize: "90%",
     p: 0.5,
     m: 0,
+    background: "white",
   },
 
   FAMILY: {

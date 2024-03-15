@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Box, CircularProgress, Drawer } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Drawer,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
@@ -101,7 +107,7 @@ export default class HomePage extends Component {
 
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
-    const pX = e.clientX / window.innerWidth;
+    const pX = e.clientX / (window.innerHeight / 2);
 
     if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
@@ -123,6 +129,16 @@ export default class HomePage extends Component {
   }
 
   render() {
+    if (window.innerWidth < HomePageStyle.MIN_SCREEN_WIDTH) {
+      return (
+        <Alert severity="error" sx={HomePageStyle.ALERT_WIDTH}>
+          <AlertTitle>Mobile not supported</AlertTitle>
+          Please use a screen that is at least{" "}
+          <strong>{HomePageStyle.MIN_SCREEN_WIDTH}px</strong> wide.
+        </Alert>
+      );
+    }
+
     const { center, zoom, eppIdx, activeEPPId, showSettings } = this.state;
 
     if (!eppIdx) {
@@ -143,25 +159,7 @@ export default class HomePage extends Component {
 
     return (
       <Box>
-        <Box sx={HomePageStyle.TOP}>
-          {plantNetResult.isLowConfidence ? (
-            <AlertLowConfidence plantNetResult={plantNetResult} />
-          ) : (
-            <SpeciesView
-              species={activeEPP.species}
-              onClickImage={this.onClickImage.bind(this)}
-            />
-          )}
-        </Box>
-
-        <Box sx={HomePageStyle.MIDDLE}>
-          <PlantPhotoView
-            activeEPP={activeEPP}
-            onClickImage={this.onClickImage.bind(this)}
-          />
-        </Box>
-
-        <Box sx={HomePageStyle.BOTTOM}>
+        <Box sx={HomePageStyle.MAP}>
           <GeoMap
             key={`geo-map-${center}-${zoom}-${activeEPPId}`}
             center={center}
@@ -174,6 +172,21 @@ export default class HomePage extends Component {
           <Drawer open={showSettings} onClose={handleCloseSettings}>
             <StatisticsPane eppIdx={eppIdx} />
           </Drawer>
+        </Box>
+
+        <Box sx={HomePageStyle.PLANT}>
+          {plantNetResult.isLowConfidence ? (
+            <AlertLowConfidence plantNetResult={plantNetResult} />
+          ) : (
+            <SpeciesView
+              species={activeEPP.species}
+              onClickImage={this.onClickImage.bind(this)}
+            />
+          )}
+          <PlantPhotoView
+            activeEPP={activeEPP}
+            onClickImage={this.onClickImage.bind(this)}
+          />
         </Box>
       </Box>
     );
