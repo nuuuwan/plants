@@ -13,7 +13,7 @@ import {
   GeoMap,
 } from "../molecules";
 
-import { SettingsButton } from "../atoms";
+import { ButtonSettings } from "../atoms";
 
 import HomePageStyle from "./HomePageStyle";
 
@@ -157,7 +157,7 @@ export default class HomePage extends Component {
             activeEPP={activeEPP}
             onClickPlantPhoto={this.onClickPlantPhoto.bind(this)}
           />
-          <SettingsButton onClick={handleOpenSettings} />
+          <ButtonSettings onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
             <StatisticsPane eppIdx={eppIdx} />
           </Drawer>
