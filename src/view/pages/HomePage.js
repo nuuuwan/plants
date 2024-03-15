@@ -11,6 +11,7 @@ import {
   SpeciesView,
   StatisticsPane,
   GeoMap,
+  IndexTableView,
 } from "../molecules";
 
 import { ButtonSettings } from "../atoms";
@@ -126,13 +127,16 @@ export default class HomePage extends Component {
     this.gotoNew(activeEPPId);
   }
 
+  onClickIndex(id) {
+    this.gotoNew(id);
+  }
+
   render() {
     const { center, zoom, eppIdx, activeEPPId, showSettings } = this.state;
 
     if (!eppIdx) {
       return <CircularProgress sx={{ m: 2 }} />;
     }
-    console.debug(IndexTable.fromEppIdx(eppIdx));
 
     const activeEPP = eppIdx[activeEPPId];
 
@@ -145,6 +149,8 @@ export default class HomePage extends Component {
     const handleOpenSettings = function () {
       this.setShowSettings(true);
     }.bind(this);
+
+    const indexTableIdx = IndexTable.fromEppIdx(eppIdx);
 
     return (
       <Box>
@@ -159,6 +165,10 @@ export default class HomePage extends Component {
           />
           <ButtonSettings onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
+            <IndexTableView
+              idx={indexTableIdx}
+              onClick={this.onClickIndex.bind(this)}
+            />
             <StatisticsPane eppIdx={eppIdx} />
           </Drawer>
         </Box>
