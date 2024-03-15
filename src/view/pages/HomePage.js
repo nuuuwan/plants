@@ -106,7 +106,7 @@ export default class HomePage extends Component {
 
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
-    const imageWidth = 400;
+    const imageWidth = 320;
     const imageLeft = window.innerWidth  - imageWidth;
     const pX = (e.clientX - imageLeft) / imageWidth;
     console.debug({pX});

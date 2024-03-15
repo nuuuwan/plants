@@ -1,7 +1,7 @@
 let PlantPhotoViewStyle = {
   IMAGE: {
-    width: "400px",
-    height: "400px",
+    width: "320px",
+    height: "320px",
     filter: "saturate(1.25) contrast(1.25)",
   },
   CONFIDENCE: {
@@ -23,7 +23,7 @@ PlantPhotoViewStyle.TIME_STR = Object.assign(
   {},
   PlantPhotoViewStyle.CONFIDENCE,
   {
-    top: "460px",
+    top: "380px",
   }
 );
 
