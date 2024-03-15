@@ -1,4 +1,4 @@
-import { LayerGroup, Pane } from "react-leaflet";
+import { LayerGroup } from "react-leaflet";
 import { PlantPhotoMarker } from "../atoms";
 
 export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
@@ -27,7 +27,7 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
 
       return (
         <LayerGroup key={layerName} name={layerName}>
-          <Pane name={layerName}>
+
             {eppListForDistance.map(function (epp) {
               return (
                 <PlantPhotoMarker
@@ -39,7 +39,7 @@ export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
                 />
               );
             })}
-          </Pane>
+
         </LayerGroup>
       );
     });
