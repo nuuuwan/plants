@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Box,
-  CircularProgress,
-  Drawer,
-
-} from "@mui/material";
+import { Box, CircularProgress, Drawer } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
@@ -107,9 +102,9 @@ export default class HomePage extends Component {
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
     const imageWidth = 320;
-    const imageLeft = window.innerWidth  - imageWidth;
+    const imageLeft = window.innerWidth - imageWidth;
     const pX = (e.clientX - imageLeft) / imageWidth;
-    console.debug({pX});
+    console.debug({ pX });
 
     if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
@@ -131,7 +126,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-
     const { center, zoom, eppIdx, activeEPPId, showSettings } = this.state;
 
     if (!eppIdx) {

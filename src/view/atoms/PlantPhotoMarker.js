@@ -24,7 +24,6 @@ export default function PlantPhotoMarker({
   // const paneName = "pane-" + epp.plantPhoto.id;
 
   return (
-
     <CircleMarker
       center={epp.plantPhoto.latLng}
       radius={radius}
@@ -37,6 +36,5 @@ export default function PlantPhotoMarker({
         {epp.plantNetResult.speciesNameInitialsIfConfident}
       </Tooltip>
     </CircleMarker>
-
   );
 }
