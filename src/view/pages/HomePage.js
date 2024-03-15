@@ -165,11 +165,12 @@ export default class HomePage extends Component {
           />
           <ButtonSettings onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
+          <StatisticsPane eppIdx={eppIdx} />
             <IndexTableView
               idx={indexTableIdx}
               onClick={this.onClickIndex.bind(this)}
             />
-            <StatisticsPane eppIdx={eppIdx} />
+           
           </Drawer>
         </Box>
 

@@ -2,6 +2,9 @@ export default class IndexTable {
   static fromEppIdx(eppIdx) {
     const idx = Object.values(eppIdx).reduce(function (idx, epp) {
       const eppId = epp.id;
+
+          
+
       []
         .concat(
           [epp.species.name, epp.species.genusName, epp.species.familyName],
