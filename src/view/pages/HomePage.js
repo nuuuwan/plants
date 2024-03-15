@@ -3,7 +3,7 @@ import { Box, CircularProgress, Drawer } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
-import { ExtendedPlantPhoto } from "../../nonview/core";
+import { ExtendedPlantPhoto, IndexTable } from "../../nonview/core";
 import {
   AlertLowConfidence,
   PlantPhotoViewStyle,
@@ -132,6 +132,7 @@ export default class HomePage extends Component {
     if (!eppIdx) {
       return <CircularProgress sx={{ m: 2 }} />;
     }
+    console.debug(IndexTable.fromEppIdx(eppIdx));
 
     const activeEPP = eppIdx[activeEPPId];
 
