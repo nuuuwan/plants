@@ -3,8 +3,7 @@ import {
   Box,
   CircularProgress,
   Drawer,
-  Alert,
-  AlertTitle,
+
 } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
@@ -132,15 +131,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    if (window.innerWidth < HomePageStyle.MIN_SCREEN_WIDTH) {
-      return (
-        <Alert severity="error" sx={HomePageStyle.ALERT_WIDTH}>
-          <AlertTitle>Mobile not supported</AlertTitle>
-          Please use a screen that is at least{" "}
-          <strong>{HomePageStyle.MIN_SCREEN_WIDTH}px</strong> wide.
-        </Alert>
-      );
-    }
 
     const { center, zoom, eppIdx, activeEPPId, showSettings } = this.state;
 
