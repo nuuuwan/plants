@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { WikiLink } from "../atoms";
 
-import Style from "../Style";
+import SpeciesViewStyle from "./SpeciesViewStyle";
 
 export default function SpeciesView({ species }) {
   if (!species) {
@@ -9,22 +9,22 @@ export default function SpeciesView({ species }) {
   }
 
   return (
-    <Box sx={Style.PLANT_PHOTO.BOX_INFO}>
-      <Typography sx={Style.PLANT_PHOTO.FAMILY}>
+    <Box sx={SpeciesViewStyle.BOX_INFO}>
+      <Typography sx={SpeciesViewStyle.FAMILY}>
         <WikiLink>{species.familyName}</WikiLink>
       </Typography>
 
-      <Typography sx={Style.PLANT_PHOTO.GENUS}>
-        <span style={Style.PLANT_PHOTO.GENUS}>
+      <Typography sx={SpeciesViewStyle.GENUS}>
+        <span style={SpeciesViewStyle.GENUS}>
           <WikiLink> {species.genusName}</WikiLink>
         </span>
-        <span style={Style.PLANT_PHOTO.SPECIES}>
+        <span style={SpeciesViewStyle.SPECIES}>
           {" "}
           <WikiLink label={species.speciesName}> {species.name}</WikiLink>
         </span>
       </Typography>
 
-      <Typography sx={Style.PLANT_PHOTO.COMMON_NAMES}>
+      <Typography sx={SpeciesViewStyle.COMMON_NAMES}>
         {species.commonNamesStrShort}
       </Typography>
     </Box>

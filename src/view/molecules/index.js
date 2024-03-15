@@ -3,18 +3,24 @@ import AlertLowConfidence from "./AlertLowConfidence";
 import ConfidenceView from "./ConfidenceView";
 import GeoMap from "./GeoMap";
 import PlantPhotoView from "./PlantPhotoView";
+import PlantPhotoViewStyle from "./PlantPhotoViewStyle";
 import PlantView from "./PlantView";
 import ShowHide from "./ShowHide";
 import SpeciesView from "./SpeciesView";
+import SpeciesViewStyle from "./SpeciesViewStyle";
 import StatisticsPane from "./StatisticsPane";
+import StatisticsPaneStyle from "./StatisticsPaneStyle";
 
 export {
   AlertLowConfidence,
   ConfidenceView,
   GeoMap,
   PlantPhotoView,
+  PlantPhotoViewStyle,
   PlantView,
   ShowHide,
   SpeciesView,
+  SpeciesViewStyle,
   StatisticsPane,
+  StatisticsPaneStyle,
 };

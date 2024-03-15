@@ -1,6 +1,7 @@
 import { Typography, Box } from "@mui/material";
 
-import Style from "../Style";
+import PlantPhotoViewStyle from "./PlantPhotoViewStyle";
+
 export default function PlantPhotoView({ activeEPP, onClickImage }) {
   const plantPhoto = activeEPP.plantPhoto;
   const plantNetResult = activeEPP.plantNetResult;
@@ -9,13 +10,13 @@ export default function PlantPhotoView({ activeEPP, onClickImage }) {
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}
-        style={Style.PLANT_PHOTO.IMAGE}
+        style={PlantPhotoViewStyle.IMAGE}
         onClick={onClickImage}
       />
-      <Typography sx={Style.PLANT_PHOTO.CONFIDENCE}>
+      <Typography sx={PlantPhotoViewStyle.CONFIDENCE}>
         {plantNetResult.confidenceStrImportant}
       </Typography>
-      <Typography sx={Style.PLANT_PHOTO.TIME_STR}>
+      <Typography sx={PlantPhotoViewStyle.TIME_STR}>
         {plantPhoto.timeStr}
       </Typography>
     </Box>

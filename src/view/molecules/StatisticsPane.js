@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Statistics } from "../../nonview/core/index.js";
 import { DATETIME_STR } from "../../nonview/constants/VERSION.js";
-import Style from "../Style.js";
+import StatisticsPaneStyle from "./StatisticsPaneStyle.js";
 
 function LabelledStat({ label, stat, color, blurb }) {
   return (
@@ -29,7 +29,7 @@ export default function StatisticsPane({ eppIdx }) {
   };
 
   return (
-    <Box sx={Style.DRAWER_SETTINGS}>
+    <Box sx={StatisticsPaneStyle}>
       <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="Unique Species"
