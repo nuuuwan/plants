@@ -14,7 +14,7 @@ import {
 
 import { SettingsButton } from "../atoms";
 
-import STYLE from "../STYLE";
+import Style from "../Style";
 
 export const TEST_MODE = true;
 
@@ -143,7 +143,7 @@ export default class HomePage extends Component {
 
     return (
       <Box>
-        <Box sx={STYLE.HOME_PAGE.TOP}>
+        <Box sx={Style.HOME_PAGE.TOP}>
           {plantNetResult.isLowConfidence ? (
             <AlertLowConfidence plantNetResult={plantNetResult} />
           ) : (
@@ -154,14 +154,14 @@ export default class HomePage extends Component {
           )}
         </Box>
 
-        <Box sx={STYLE.HOME_PAGE.MIDDLE}>
+        <Box sx={Style.HOME_PAGE.MIDDLE}>
           <PlantPhotoView
             activeEPP={activeEPP}
             onClickImage={this.onClickImage.bind(this)}
           />
         </Box>
 
-        <Box sx={STYLE.HOME_PAGE.BOTTOM}>
+        <Box sx={Style.HOME_PAGE.BOTTOM}>
           <GeoMap
             key={`geo-map-${center}-${zoom}-${activeEPPId}`}
             center={center}

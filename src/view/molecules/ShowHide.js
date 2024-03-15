@@ -1,7 +1,7 @@
 import { Box, Grid, IconButton, Paper } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-export const STYLE_PAPER = {
+export const Style_PAPER = {
   width: "fit-content",
   height: "fit-content",
   maxHeight: 600,
@@ -11,12 +11,12 @@ export const STYLE_PAPER = {
   borderRadius: 5,
 };
 
-export const STYLE_BOX_INNER = {
+export const Style_BOX_INNER = {
   padding: 1,
   margin: 1,
 };
 
-const STYLE_HIDE_CONTENT = {
+const Style_HIDE_CONTENT = {
   margin: 1,
   padding: 0,
   borderRadius: 5,
@@ -34,9 +34,9 @@ export default function ShowHide({
   const justifyContent = alignLeft ? "" : "flex-end";
   return (
     <Grid container justifyContent={justifyContent}>
-      <Paper sx={STYLE_PAPER}>
+      <Paper sx={Style_PAPER}>
         {show ? (
-          <Box sx={STYLE_BOX_INNER}>
+          <Box sx={Style_BOX_INNER}>
             <Box display="flex" justifyContent="flex-end">
               <IconButton onClick={onHide} size="small">
                 <CloseIcon fontSize="small" />
@@ -45,7 +45,7 @@ export default function ShowHide({
             {children}
           </Box>
         ) : hideContent ? (
-          <Box sx={STYLE_HIDE_CONTENT} onClick={onShow}>
+          <Box sx={Style_HIDE_CONTENT} onClick={onShow}>
             {hideContent}
           </Box>
         ) : (

@@ -1,4 +1,4 @@
-let STYLE = {};
+let Style = {};
 
 
 
@@ -14,7 +14,7 @@ const p12pct = ((p1 + p2) * 100).toFixed(0) + "%";
 const p12apct = ((p1 + p2) * 0.9 * 100).toFixed(0) + "%";
 const p12bpct = (p1 * 1.2 * 100).toFixed(0) + "%";
 
-STYLE.HOME_PAGE = {
+Style.HOME_PAGE = {
   TOP:{
     position: "fixed",
     left: 0,
@@ -38,7 +38,7 @@ STYLE.HOME_PAGE = {
   },
 };
 
-STYLE.PLANT_PHOTO = {
+Style.PLANT_PHOTO = {
   BOX_INFO: {
     display: "flex",
     flexDirection: "column",
@@ -69,8 +69,8 @@ STYLE.PLANT_PHOTO = {
     position: "fixed",
     left: 0,
     right: 0,
-    top: STYLE.HOME_PAGE.MIDDLE.top,
-    bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
+    top: Style.HOME_PAGE.MIDDLE.top,
+    bottom: Style.HOME_PAGE.MIDDLE.bottom,
     width: "100%",
     height: p2pct,
     margin: 0,
@@ -101,27 +101,27 @@ STYLE.PLANT_PHOTO = {
   },
 };
 
-STYLE.PLANT_PHOTO.SPECIES = Object.assign({}, STYLE.PLANT_PHOTO.GENUS, {
+Style.PLANT_PHOTO.SPECIES = Object.assign({}, Style.PLANT_PHOTO.GENUS, {
   color: "#082",
 });
 
-STYLE.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
+Style.PLANT_PHOTO.MARKER.CIRCLE_ACTIVE = Object.assign(
   {},
-  STYLE.PLANT_PHOTO.MARKER.CIRCLE,
+  Style.PLANT_PHOTO.MARKER.CIRCLE,
   { color: "#040", weight: 5 }
 );
 
-STYLE.PLANT_PHOTO.CONFIDENCE = Object.assign({}, STYLE.PLANT_PHOTO.TIME_STR, {
+Style.PLANT_PHOTO.CONFIDENCE = Object.assign({}, Style.PLANT_PHOTO.TIME_STR, {
   top: p12bpct,
 });
 
-STYLE.WIKI_LINK = {
+Style.WIKI_LINK = {
   color: "inherit",
   fontSize: "inherit",
   textDecoration: "none",
 };
 
-STYLE.BACK_COLORS_BY_DISTANCE = [
+Style.BACK_COLORS_BY_DISTANCE = [
   // Related
   "#080",
   "#080",
@@ -134,7 +134,7 @@ STYLE.BACK_COLORS_BY_DISTANCE = [
   "#fefeff",
 ];
 
-STYLE.FORE_COLORS_BY_DISTANCE = [
+Style.FORE_COLORS_BY_DISTANCE = [
   // Related
   "white",
   "white",
@@ -147,17 +147,17 @@ STYLE.FORE_COLORS_BY_DISTANCE = [
   "gray",
 ];
 
-STYLE.SETTINGS_BUTTON = {
+Style.SETTINGS_BUTTON = {
   position: "absolute",
   bottom: "8%",
   right: "5%",
   backgroundColor: "white",
 };
 
-STYLE.DRAWER_SETTINGS = {
+Style.DRAWER_SETTINGS = {
   margin: 1,
   padding: 1,
   maxWidth: 260,
 };
 
-export default STYLE;
+export default Style;

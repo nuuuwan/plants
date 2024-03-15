@@ -1,4 +1,4 @@
-import STYLE from "../STYLE";
+import Style from "../Style";
 
 export default function WikiLink({ children, label = undefined }) {
   let searchTerm = "";
@@ -17,7 +17,7 @@ export default function WikiLink({ children, label = undefined }) {
   const url =
     "https://en.wikipedia.org/wiki/" + searchTerm.trim().replace(" ", "_");
   return (
-    <a href={url} target="_blank" rel="noreferrer" style={STYLE.WIKI_LINK}>
+    <a href={url} target="_blank" rel="noreferrer" style={Style.WIKI_LINK}>
       {label}
     </a>
   );
