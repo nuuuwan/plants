@@ -67,7 +67,7 @@ STYLE.PLANT_PHOTO = {
     height: p2pct,
     margin: 0,
     textAlign: "center",
-    filter: "saturate(150%)",
+    filter: "saturate(1.25) contrast(1.25)",
     objectFit: "cover",
     zIndex: -100,
   }),
