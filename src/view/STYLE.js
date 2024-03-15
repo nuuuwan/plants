@@ -1,10 +1,6 @@
 let STYLE = {};
 
-const fixedCommon = {
-  position: "fixed",
-  left: 0,
-  right: 0,
-};
+
 
 const RATIOS = [1, 4, 3];
 const sum = RATIOS.reduce((a, b) => a + b, 0);
@@ -19,18 +15,27 @@ const p12apct = ((p1 + p2) * 0.9 * 100).toFixed(0) + "%";
 const p12bpct = (p1 * 1.2 * 100).toFixed(0) + "%";
 
 STYLE.HOME_PAGE = {
-  TOP: Object.assign({}, fixedCommon, {
+  TOP:{
+    position: "fixed",
+    left: 0,
+    right: 0,
     top: 0,
     bottom: p1pct,
-  }),
-  MIDDLE: Object.assign({}, fixedCommon, {
+  },
+  MIDDLE:{
+    position: "fixed",
+    left: 0,
+    right: 0,
     top: p1pct,
     bottom: p12pct,
-  }),
-  BOTTOM: Object.assign({}, fixedCommon, {
+  },
+  BOTTOM:{
+    position: "fixed",
+    left: 0,
+    right: 0,
     top: p12pct,
     bottom: 0,
-  }),
+  },
 };
 
 STYLE.PLANT_PHOTO = {
@@ -60,7 +65,10 @@ STYLE.PLANT_PHOTO = {
     color: "#444",
   },
 
-  IMAGE: Object.assign({}, fixedCommon, {
+  IMAGE:{
+    position: "fixed",
+    left: 0,
+    right: 0,
     top: STYLE.HOME_PAGE.MIDDLE.top,
     bottom: STYLE.HOME_PAGE.MIDDLE.bottom,
     width: "100%",
@@ -70,8 +78,11 @@ STYLE.PLANT_PHOTO = {
     filter: "saturate(1.25) contrast(1.25)",
     objectFit: "cover",
     zIndex: -100,
-  }),
-  TIME_STR: Object.assign({}, fixedCommon, {
+  },
+  TIME_STR:{
+    position: "fixed",
+    left: 0,
+    right: 0,
     top: p12apct,
 
     margin: "auto",
@@ -83,7 +94,7 @@ STYLE.PLANT_PHOTO = {
     borderRadius: 2,
     color: "white",
     backgroundColor: "#0006",
-  }),
+  },
 
   MARKER: {
     CIRCLE: { color: "#cccc", weight: 2, fillOpacity: 1 },
