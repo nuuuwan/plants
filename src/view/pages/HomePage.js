@@ -107,7 +107,10 @@ export default class HomePage extends Component {
 
   onClickImage(e) {
     let { eppIdx, activeEPPId } = this.state;
-    const pX = e.clientX / (window.innerHeight / 2);
+    const imageWidth = 400;
+    const imageLeft = window.innerWidth  - imageWidth;
+    const pX = (e.clientX - imageLeft) / imageWidth;
+    console.debug({pX});
 
     if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
