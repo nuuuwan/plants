@@ -137,7 +137,7 @@ export default class HomePage extends Component {
   }
 
   onClickIndex(indexD) {
-    this.eppIDHistoryList.push(indexD.id);
+
     this.gotoNew(indexD.id);
   }
 
