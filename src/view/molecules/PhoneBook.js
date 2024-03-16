@@ -27,6 +27,10 @@ export default function PhoneBook({
     return getLabel(d).toLowerCase().includes(filterText.toLocaleLowerCase());
   });
 
+  const filteredHistoryDataList = historyDataList.filter(function (d) {
+    return getLabel(d).toLowerCase().includes(filterText.toLocaleLowerCase());
+  });
+
   const idList = filteredDataList.map(function (d) {
     return d.id;
   });
@@ -49,7 +53,7 @@ export default function PhoneBook({
     "Recents",
     Object.keys(groupToDataList).sort()
   );
-  groupToDataList["Recents"] = historyDataList;
+  groupToDataList["Recents"] = filteredHistoryDataList;
 
   return (
     <Box sx={PhoneBookStyle.BOX}>
