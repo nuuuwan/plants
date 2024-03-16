@@ -2,24 +2,31 @@ import { Box, List, ListItem, ListSubheader, Typography } from "@mui/material";
 import PhoneBookStyle from "./PhoneBookStyle.js";
 export default function PhoneBook({
   dataList,
+  historyDataList,
   getLabel,
   getN,
   onClick,
   getStyle,
 }) {
-  const groupToDataList = dataList.reduce(function (groupToDataList, d) {
-    const group = getLabel(d).substring(0, 1).toUpperCase();
-    const isAlpha = /^[a-z]+$/i.test(group);
-    if (isAlpha) {
-      if (!groupToDataList[group]) {
-        groupToDataList[group] = [];
+  const groupToDataList = dataList.reduce(
+    function (groupToDataList, d) {
+      const group = getLabel(d).substring(0, 1).toUpperCase();
+      const isAlpha = /^[a-z]+$/i.test(group);
+      if (isAlpha) {
+        if (!groupToDataList[group]) {
+          groupToDataList[group] = [];
+        }
+        groupToDataList[group].push(d);
       }
-      groupToDataList[group].push(d);
-    }
-    return groupToDataList;
-  }, {});
+      return groupToDataList;
+    },
+    { Recents: historyDataList }
+  );
 
-  const sortedGroups = Object.keys(groupToDataList).sort();
+  const sortedGroups = [].concat(
+    "Recents",
+    Object.keys(groupToDataList).sort()
+  );
 
   return (
     <List sx={PhoneBookStyle}>
@@ -28,6 +35,10 @@ export default function PhoneBook({
         const sortedDataList = dataList.sort(function (a, b) {
           return getLabel(a).localeCompare(getLabel(b));
         });
+        const nDataList = sortedDataList.length;
+        if (nDataList === 0) {
+          return null;
+        }
         const key = `group-${group}`;
         return (
           <Box key={key}>

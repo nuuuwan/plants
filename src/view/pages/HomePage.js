@@ -7,6 +7,7 @@ import {
   ExtendedPlantPhoto,
   IndexTable,
   PlantNetResult,
+  HistoryTable,
 } from "../../nonview/core";
 import {
   AlertLowConfidence,
@@ -74,6 +75,7 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = HomePage.getStateFromContext();
+    this.historyEppIDList = [];
   }
 
   async componentDidMount() {
@@ -101,6 +103,7 @@ export default class HomePage extends Component {
   gotoNew(activeEPPId) {
     let { eppIdx } = this.state;
     const center = eppIdx[activeEPPId].plantPhoto.latLng.position;
+    this.historyEppIDList.push(activeEPPId);
     this.setStateAndURLContext({ activeEPPId, center });
   }
 
@@ -134,6 +137,7 @@ export default class HomePage extends Component {
   }
 
   onClickIndex(indexD) {
+    this.eppIDHistoryList.push(indexD.id);
     this.gotoNew(indexD.id);
   }
 
@@ -157,6 +161,10 @@ export default class HomePage extends Component {
     }.bind(this);
 
     const indexDataList = IndexTable.getDataList(eppIdx);
+    const historyDataList = HistoryTable.getDataList(
+      eppIdx,
+      this.historyEppIDList
+    );
 
     return (
       <Box>
@@ -173,6 +181,7 @@ export default class HomePage extends Component {
           <Drawer open={showSettings} onClose={handleCloseSettings}>
             <PhoneBook
               dataList={indexDataList}
+              historyDataList={historyDataList}
               getLabel={(d) =>
                 d.label +
                 (d.confidence < PlantNetResult.isLowConfidence
