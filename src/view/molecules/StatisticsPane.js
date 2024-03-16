@@ -8,8 +8,8 @@ import SpeciesViewStyle from "./SpeciesViewStyle.js";
 function LabelledStat({ label, stat, color, blurb }) {
   return (
     <Box sx={{ color, marginBottom: 1 }}>
-      <Typography variant="h5">{stat}</Typography>
-      <Typography variant="h6" sx={{ opacity: 0.8 }}>
+      <Typography variant="h6">{stat}</Typography>
+      <Typography variant="body2" sx={{ opacity: 0.7 }}>
         {label}
       </Typography>
       {blurb && (
@@ -32,6 +32,15 @@ export default function StatisticsPane({ eppIdx }) {
 
   return (
     <Paper sx={StatisticsPaneStyle}>
+      
+      <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
+        <LabelledStat
+          label="Lastest Update to App"
+          stat={Format.dateTimeStr(VERSION_DATETIME)}
+          color="#468"
+        />
+      </Box>
+      <Typography variant="h4">Statistics</Typography>
       <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="Unique Species"
@@ -66,13 +75,6 @@ export default function StatisticsPane({ eppIdx }) {
         />
       </Box>
 
-      <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
-        <LabelledStat
-          label="Lastest Update to App"
-          stat={Format.dateTimeStr(VERSION_DATETIME)}
-          color="#468"
-        />
-      </Box>
     </Paper>
   );
 }
