@@ -74,7 +74,7 @@ export default class PlantPhoto {
     const imagePath = d["image_path"];
 
     // const alt = parseFloat(d["alt"]);
-    const direction = parseInt(d["direction"]);
+    const direction = parseFloat(d["direction"]);
 
     return new PlantPhoto(id, ut, latLng, direction, imagePath);
   }
