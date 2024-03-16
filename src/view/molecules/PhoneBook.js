@@ -33,26 +33,23 @@ export default function PhoneBook({
   const uniqueIdList = [...new Set(idList)];
   const nUniqueIdList = uniqueIdList.length;
 
-  let groupToDataList = filteredDataList.reduce(
-    function (groupToDataList, d) {
-      const group = getLabel(d).substring(0, 1).toUpperCase();
-      const isAlpha = /^[a-z]+$/i.test(group);
-      if (isAlpha) {
-        if (!groupToDataList[group]) {
-          groupToDataList[group] = [];
-        }
-        groupToDataList[group].push(d);
+  let groupToDataList = filteredDataList.reduce(function (groupToDataList, d) {
+    const group = getLabel(d).substring(0, 1).toUpperCase();
+    const isAlpha = /^[a-z]+$/i.test(group);
+    if (isAlpha) {
+      if (!groupToDataList[group]) {
+        groupToDataList[group] = [];
       }
-      return groupToDataList;
-    },
-    {  }
-  );
+      groupToDataList[group].push(d);
+    }
+    return groupToDataList;
+  }, {});
 
   const sortedGroups = [].concat(
     "Recents",
     Object.keys(groupToDataList).sort()
   );
-  groupToDataList['Recents'] = historyDataList;
+  groupToDataList["Recents"] = historyDataList;
 
   return (
     <Box sx={PhoneBookStyle.BOX}>
@@ -84,7 +81,7 @@ export default function PhoneBook({
                 const onClickInner = function () {
                   return onClick(d);
                 };
-                const key = "item-" + group + '-' + i;
+                const key = "item-" + group + "-" + i;
                 const label = getLabel(d);
                 const n = getN(d);
                 const labelDisplay = label + (n > 1 ? ` (${n})` : "");
