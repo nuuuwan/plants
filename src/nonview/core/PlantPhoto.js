@@ -1,4 +1,4 @@
-import { LatLng, Random } from "../base";
+import { LatLng, Random, Format } from "../base";
 
 export default class PlantPhoto {
   constructor(id, ut, latLng, direction, imagePath) {
@@ -15,28 +15,14 @@ export default class PlantPhoto {
 
   get dateStr() {
     const date = new Date(this.ut * 1000);
-    let dateOptions = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      weekday: "short",
-    };
-
-    let formattedDate = date.toLocaleDateString("en-US", dateOptions);
-
-    return formattedDate;
+    return Format.dateStr(date);
   }
   get timeOnlyStr() {
     const date = new Date(this.ut * 1000);
-
-    let timeOptions = { hour: "2-digit", minute: "2-digit", hour12: true };
-
-    let formattedTime = date.toLocaleTimeString("en-US", timeOptions);
-
-    return formattedTime;
+    return Format.timeOnlyStr(date);
   }
 
-  get timeStr() {
+  get dateTimeStr() {
     return `${this.dateStr} · ${this.timeOnlyStr}`;
   }
 
