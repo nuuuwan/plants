@@ -32,7 +32,6 @@ export default function StatisticsPane({ eppIdx }) {
 
   return (
     <Paper sx={StatisticsPaneStyle}>
-      
       <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
         <LabelledStat
           label="Lastest Update to App"
@@ -74,7 +73,6 @@ export default function StatisticsPane({ eppIdx }) {
           color="black"
         />
       </Box>
-
     </Paper>
   );
 }
