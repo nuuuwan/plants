@@ -170,12 +170,13 @@ export default class HomePage extends Component {
           />
           <ButtonSettings onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
-            <StatisticsPane eppIdx={eppIdx} />
             <PhoneBook
               dataList={indexDataList}
               getLabel={(d) =>
                 d.label +
-                (d.confidence < 0.2 ? PlantNetResult.EMOJI_UNKNOWN : "")
+                (d.confidence < PlantNetResult.isLowConfidence
+                  ? PlantNetResult.EMOJI_UNKNOWN
+                  : "")
               }
               getN={(d) => d.n}
               getStyle={(d) => ({
@@ -186,6 +187,7 @@ export default class HomePage extends Component {
               })}
               onClick={this.onClickIndex.bind(this)}
             />
+            <StatisticsPane eppIdx={eppIdx} />
           </Drawer>
         </Box>
 
