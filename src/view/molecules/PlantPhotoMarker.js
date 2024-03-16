@@ -1,4 +1,5 @@
 import { CircleMarker, SVGOverlay } from "react-leaflet";
+import { Format } from "../../nonview/base";
 import PlantPhotoMarkerStyle from "./PlantPhotoMarkerStyle";
 
 import "./PlantPhotoMarker.css";
@@ -22,12 +23,39 @@ export default function PlantPhotoMarker({
     ? PlantPhotoMarkerStyle.MARKER.CIRCLE_ACTIVE
     : PlantPhotoMarkerStyle.MARKER.CIRCLE;
 
+  const direction = epp.plantPhoto.direction || 0;
+  const k = 0.01;
+
+  const cx0 = Format.percent(0.5);
+  const cy0 = Format.percent(0.5);
+
+  const cx1 = Format.percent(0.5 + k * Math.sin((direction * Math.PI) / 180));
+  const cy1 = Format.percent(0.5 - k * Math.cos((direction * Math.PI) / 180));
+
   return (
     <>
       <SVGOverlay bounds={epp.plantPhoto.latLng.bounds}>
+        <line
+          x1={cx0}
+          y1={cy0}
+          x2={cx1}
+          y2={cy1}
+          stroke={styleCircle.color}
+          strokeWidth={styleCircle.weight}
+        />
+
         <circle
-          cx="50%"
-          cy="50%"
+          cx={cx1}
+          cy={cy1}
+          r={radius / 2}
+          fill={"black"}
+          stroke={styleCircle.color}
+          strokeWidth={styleCircle.weight}
+        />
+
+        <circle
+          cx={cx0}
+          cy={cy0}
           r={radius}
           fill={backColor}
           stroke={styleCircle.color}
