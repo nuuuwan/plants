@@ -40,7 +40,8 @@ export default class Statistics {
     return {
       nPhotos: sortedEppList.length,
       nPhotoDays: getUnique((epp) => epp.plantPhoto.dateStr),
-      maxPhotoDay: sortedEppList[sortedEppList.length - 1].plantPhoto.dateStr,
+      maxPhotoDateTime:
+        sortedEppList[sortedEppList.length - 1].plantPhoto.dateTimeStr,
       nSpecies: getUnique((epp) => epp.species.name),
       speciesBlurb: getBlurb((epp) => epp.species.name),
       nGenus: getUnique((epp) => epp.species.genusName),
