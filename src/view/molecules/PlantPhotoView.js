@@ -17,7 +17,7 @@ export default function PlantPhotoView({ activeEPP, onClickImage }) {
         {plantNetResult.confidenceStrImportant}
       </Typography>
       <Typography sx={PlantPhotoViewStyle.TIME_STR}>
-        {plantPhoto.timeStr}
+        {plantPhoto.dateTimeStr}
       </Typography>
     </Box>
   );
