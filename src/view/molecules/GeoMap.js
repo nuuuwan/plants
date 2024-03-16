@@ -20,8 +20,8 @@ export default function GeoMap({
   activeEPP,
 }) {
   return (
-    <MapContainer center={center} zoom={zoom} zoomControl={true} maxZoom={21}>
-      <TileLayer attribution={TILE_ATTRIBUTION} url={TILE_URL} maxZoom={21} />
+    <MapContainer center={center} zoom={zoom} zoomControl={true} maxZoom={23}>
+      <TileLayer attribution={TILE_ATTRIBUTION} url={TILE_URL} maxZoom={23} />
       <LayerGroup>
         <PlantView
           eppIdx={eppIdx}
