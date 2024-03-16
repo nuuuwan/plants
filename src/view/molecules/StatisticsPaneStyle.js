@@ -1,6 +1,6 @@
 let StatisticsPaneStyle = {
-  margin: 1,
-  padding: 1,
+  margin: 3,
+  padding: 2,
   maxWidth: 260,
 };
 
