@@ -57,7 +57,7 @@ export default class Species {
   }
 
   get commonNamesStrShort() {
-    const MAX_LEN = 48;
+    const MAX_LEN = 128;
     let commonNamesToDisplay = [];
     for (const commonName of this.commonNames) {
       if (

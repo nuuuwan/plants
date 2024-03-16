@@ -1,3 +1,5 @@
+import PlantPhotoViewStyle from "./PlantPhotoViewStyle";
+
 let SpeciesViewStyle = {};
 
 SpeciesViewStyle.COLOR = {
@@ -8,10 +10,8 @@ SpeciesViewStyle.COLOR = {
 };
 
 SpeciesViewStyle.BOX_INFO = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  height: "80px",
+  height: "105px",
+  width: PlantPhotoViewStyle.IMAGE_WIDTH + "px",
   textAlign: "center",
   fontSize: "90%",
   p: 0.5,
