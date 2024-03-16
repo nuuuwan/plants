@@ -1,7 +1,7 @@
 export default class HistoryTable {
   static getDataList(eppIdx, historyEppIDList) {
     const N_DISPLAY_MAX = 5;
-    const filteredHistoryEppIDList =  historyEppIDList.slice(-N_DISPLAY_MAX);
+    const filteredHistoryEppIDList = historyEppIDList.slice(-N_DISPLAY_MAX);
     const eppIdx2 = filteredHistoryEppIDList.reduce(function (eppIdx2, eppId) {
       const epp = eppIdx[eppId];
 
