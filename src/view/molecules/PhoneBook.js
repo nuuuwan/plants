@@ -33,7 +33,7 @@ export default function PhoneBook({
   const uniqueIdList = [...new Set(idList)];
   const nUniqueIdList = uniqueIdList.length;
 
-  const groupToDataList = filteredDataList.reduce(
+  let groupToDataList = filteredDataList.reduce(
     function (groupToDataList, d) {
       const group = getLabel(d).substring(0, 1).toUpperCase();
       const isAlpha = /^[a-z]+$/i.test(group);
@@ -45,13 +45,14 @@ export default function PhoneBook({
       }
       return groupToDataList;
     },
-    { Recents: historyDataList }
+    {  }
   );
 
   const sortedGroups = [].concat(
     "Recents",
     Object.keys(groupToDataList).sort()
   );
+  groupToDataList['Recents'] = historyDataList;
 
   return (
     <Box sx={PhoneBookStyle.BOX}>
@@ -83,7 +84,7 @@ export default function PhoneBook({
                 const onClickInner = function () {
                   return onClick(d);
                 };
-                const key = "item-" + i;
+                const key = "item-" + group + '-' + i;
                 const label = getLabel(d);
                 const n = getN(d);
                 const labelDisplay = label + (n > 1 ? ` (${n})` : "");
