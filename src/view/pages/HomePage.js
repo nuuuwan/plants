@@ -3,15 +3,20 @@ import { Box, CircularProgress, Drawer } from "@mui/material";
 
 import { URLContext, GeoData, Random } from "../../nonview/base";
 
-import { ExtendedPlantPhoto, IndexTable } from "../../nonview/core";
+import {
+  ExtendedPlantPhoto,
+  IndexTable,
+  PlantNetResult,
+} from "../../nonview/core";
 import {
   AlertLowConfidence,
   PlantPhotoViewStyle,
   PlantPhotoView,
   SpeciesView,
+  SpeciesViewStyle,
   StatisticsPane,
   GeoMap,
-  IndexTableView,
+  PhoneBook,
 } from "../molecules";
 
 import { ButtonSettings } from "../atoms";
@@ -127,8 +132,8 @@ export default class HomePage extends Component {
     this.gotoNew(activeEPPId);
   }
 
-  onClickIndex(id) {
-    this.gotoNew(id);
+  onClickIndex(indexD) {
+    this.gotoNew(indexD.id);
   }
 
   render() {
@@ -150,7 +155,7 @@ export default class HomePage extends Component {
       this.setShowSettings(true);
     }.bind(this);
 
-    const indexTableIdx = IndexTable.fromEppIdx(eppIdx);
+    const indexDataList = IndexTable.getDataList(eppIdx);
 
     return (
       <Box>
@@ -165,12 +170,22 @@ export default class HomePage extends Component {
           />
           <ButtonSettings onClick={handleOpenSettings} />
           <Drawer open={showSettings} onClose={handleCloseSettings}>
-          <StatisticsPane eppIdx={eppIdx} />
-            <IndexTableView
-              idx={indexTableIdx}
+            <StatisticsPane eppIdx={eppIdx} />
+            <PhoneBook
+              dataList={indexDataList}
+              getLabel={(d) =>
+                d.label +
+                (d.confidence < 0.2 ? PlantNetResult.EMOJI_UNKNOWN : "")
+              }
+              getN={(d) => d.n}
+              getStyle={(d) => ({
+                m: 0,
+                fontSize: "60%",
+                cursor: "pointer",
+                color: SpeciesViewStyle.COLOR[d.dataType],
+              })}
               onClick={this.onClickIndex.bind(this)}
             />
-           
           </Drawer>
         </Box>
 
