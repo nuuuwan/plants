@@ -181,7 +181,7 @@ export default class HomePage extends Component {
               getN={(d) => d.n}
               getStyle={(d) => ({
                 m: 0,
-                fontSize: "60%",
+                fontSize: "80%",
                 cursor: "pointer",
                 color: SpeciesViewStyle.COLOR[d.dataType],
               })}
