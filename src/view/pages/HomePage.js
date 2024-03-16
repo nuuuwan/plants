@@ -52,12 +52,14 @@ export default class HomePage extends Component {
   }
 
   setStateAndURLContext(state) {
-    const { activeEPPId, eppIdx } = this.state;
+    const { activeEPPId, eppIdx } = Object.assign({}, this.state, state);
+
     let title = "Plants";
     if (eppIdx) {
       const activeEPP = eppIdx[activeEPPId];
       title = activeEPP.plantNetResult.speciesName;
     }
+
     window.document.title = title;
 
     this.setState(
