@@ -15,7 +15,7 @@ export default class LatLng {
   }
 
   get bounds() {
-    const SPAN = 0.00004;
+    const SPAN = 0.001;
     return [
       [this.lat - SPAN, this.lng - SPAN],
       [this.lat + SPAN, this.lng + SPAN],

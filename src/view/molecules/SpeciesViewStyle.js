@@ -5,10 +5,16 @@ let SpeciesViewStyle = {};
 SpeciesViewStyle.COLOR = {
   family: "#800",
   genus: "#f80",
-  species: "#082",
+  species: "#080",
   commonNames: "#444",
 };
 
+SpeciesViewStyle.FONT_COLOR = {
+  family: "white",
+  genus: "black",
+  species: "black",
+  commonNames: "black",
+};
 SpeciesViewStyle.BOX_INFO = {
   height: "105px",
   width: PlantPhotoViewStyle.IMAGE_WIDTH + "px",

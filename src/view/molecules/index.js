@@ -4,6 +4,8 @@ import ConfidenceView from "./ConfidenceView";
 import GeoMap from "./GeoMap";
 import PhoneBook from "./PhoneBook";
 import PhoneBookStyle from "./PhoneBookStyle";
+import PlantPhotoMarker from "./PlantPhotoMarker";
+import PlantPhotoMarkerStyle from "./PlantPhotoMarkerStyle";
 import PlantPhotoView from "./PlantPhotoView";
 import PlantPhotoViewStyle from "./PlantPhotoViewStyle";
 import PlantView from "./PlantView";
@@ -19,6 +21,8 @@ export {
   GeoMap,
   PhoneBook,
   PhoneBookStyle,
+  PlantPhotoMarker,
+  PlantPhotoMarkerStyle,
   PlantPhotoView,
   PlantPhotoViewStyle,
   PlantView,

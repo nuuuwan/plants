@@ -1,5 +1,5 @@
 import { LayerGroup, Pane } from "react-leaflet";
-import { PlantPhotoMarker } from "../atoms";
+import { PlantPhotoMarker } from "../molecules";
 
 export default function PlantView({ eppIdx, onClickPlantPhoto, activeEPP }) {
   if (!eppIdx) {

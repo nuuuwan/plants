@@ -3,6 +3,7 @@ import { Format } from "../../nonview/base";
 import { Statistics } from "../../nonview/core";
 import { VERSION_DATETIME } from "../../nonview/constants/VERSION.js";
 import StatisticsPaneStyle from "./StatisticsPaneStyle.js";
+import SpeciesViewStyle from "./SpeciesViewStyle.js";
 
 function LabelledStat({ label, stat, color, blurb }) {
   return (
@@ -35,19 +36,19 @@ export default function StatisticsPane({ eppIdx }) {
         <LabelledStat
           label="Unique Species"
           stat={stats.nSpecies}
-          color="#080"
+          color={SpeciesViewStyle.COLOR.species}
           blurb={stats.speciesBlurb}
         />
         <LabelledStat
           label="Unique Genera"
           stat={stats.nGenus}
-          color="#f80"
+          color={SpeciesViewStyle.COLOR.genus}
           blurb={stats.genusBlurb}
         />
         <LabelledStat
           label="Unique Families"
           stat={stats.nFamily}
-          color="#800"
+          color={SpeciesViewStyle.COLOR.family}
           blurb={stats.familyBlurb}
         />
       </Box>
