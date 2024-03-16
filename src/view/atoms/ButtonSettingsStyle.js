@@ -6,7 +6,7 @@ ButtonSettingsStyle.ICON_BUTTON = {
   position: "absolute",
   bottom: "8%",
   right: "5%",
-  
+
   backgroundColor: "white",
 };
 
