@@ -111,7 +111,7 @@ export default class HomePage extends Component {
     const imageWidth = PlantPhotoViewStyle.IMAGE_WIDTH;
     const imageLeft = window.innerWidth - imageWidth;
     const pX = (e.clientX - imageLeft) / imageWidth;
-   
+
     if (pX > 0.33 && pX < 0.67) {
       this.gotoRandom();
       return;

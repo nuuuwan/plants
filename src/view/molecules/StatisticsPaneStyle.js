@@ -1,7 +1,8 @@
+import PhoneBookStyle from "./PhoneBookStyle.js";
 let StatisticsPaneStyle = {
   margin: 3,
   padding: 2,
-  maxWidth: 260,
+  width: PhoneBookStyle.width,
 };
 
 export default StatisticsPaneStyle;

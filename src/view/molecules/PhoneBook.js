@@ -1,5 +1,5 @@
 import { Box, List, ListItem, ListSubheader, Typography } from "@mui/material";
-
+import PhoneBookStyle from "./PhoneBookStyle.js";
 export default function PhoneBook({
   dataList,
   getLabel,
@@ -22,7 +22,7 @@ export default function PhoneBook({
   const sortedGroups = Object.keys(groupToDataList).sort();
 
   return (
-    <List>
+    <List sx={PhoneBookStyle}>
       {sortedGroups.map(function (group) {
         const dataList = groupToDataList[group];
         const sortedDataList = dataList.sort(function (a, b) {

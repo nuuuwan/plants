@@ -7,7 +7,7 @@ export default function SpeciesView({ species }) {
   if (!species) {
     return null;
   }
-  
+
   return (
     <Box sx={SpeciesViewStyle.BOX_INFO}>
       <Typography sx={SpeciesViewStyle.FAMILY}>

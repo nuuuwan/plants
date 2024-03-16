@@ -3,6 +3,7 @@ import AlertLowConfidence from "./AlertLowConfidence";
 import ConfidenceView from "./ConfidenceView";
 import GeoMap from "./GeoMap";
 import PhoneBook from "./PhoneBook";
+import PhoneBookStyle from "./PhoneBookStyle";
 import PlantPhotoView from "./PlantPhotoView";
 import PlantPhotoViewStyle from "./PlantPhotoViewStyle";
 import PlantView from "./PlantView";
@@ -17,6 +18,7 @@ export {
   ConfidenceView,
   GeoMap,
   PhoneBook,
+  PhoneBookStyle,
   PlantPhotoView,
   PlantPhotoViewStyle,
   PlantView,
