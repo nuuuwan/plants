@@ -104,7 +104,7 @@ export default class HomePage extends Component {
     let { eppIdx } = this.state;
     const center = eppIdx[activeEPPId].plantPhoto.latLng.position;
     this.historyEppIDList.push(activeEPPId);
-    this.setStateAndURLContext({ activeEPPId, center });
+    this.setStateAndURLContext({ activeEPPId, center, showSettings: false });
   }
 
   setShowSettings(showSettings) {
@@ -137,7 +137,6 @@ export default class HomePage extends Component {
   }
 
   onClickIndex(indexD) {
-
     this.gotoNew(indexD.id);
   }
 
