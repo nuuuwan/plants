@@ -17,7 +17,6 @@ PhoneBookStyle.LIST_ITEM = {
   paddingTop: 0.5,
 };
 
-
 PhoneBookStyle.LABEL_N_RESULTS = {};
 
 export default PhoneBookStyle;

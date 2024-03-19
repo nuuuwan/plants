@@ -1,5 +1,5 @@
 import { IconButton } from "@mui/material";
-import BugReportIcon from '@mui/icons-material/BugReport';
+import BugReportIcon from "@mui/icons-material/BugReport";
 
 export default function ButtonReportBug() {
   const onClick = function () {

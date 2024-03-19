@@ -53,7 +53,7 @@ export default function PhoneBook({
       groupToDataList[group] = [];
     }
     groupToDataList[group].push(d);
-    
+
     return groupToDataList;
   }, {});
 
@@ -71,7 +71,7 @@ export default function PhoneBook({
         onChange={onChangeTextFieldSearch}
       />
 
-      <List  >
+      <List>
         {sortedGroups.map(function (group) {
           const dataList = groupToDataList[group];
           const sortedDataList = dataList.sort(function (a, b) {
@@ -83,7 +83,7 @@ export default function PhoneBook({
           }
           const key = `group-${group}`;
           return (
-            <Box key={key} >
+            <Box key={key}>
               <ListSubheader sx={PhoneBookStyle.LIST_SUBHEADER}>
                 <Typography variant="h5">{group}</Typography>
               </ListSubheader>
