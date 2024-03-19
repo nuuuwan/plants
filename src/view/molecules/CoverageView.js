@@ -3,7 +3,7 @@ import { LatLng } from "../../nonview/base";
 
 export default function CoverageView({ eppIdx }) {
   const BOX_DIM = 0.001;
-  const N_COLOR_GROUPS = 3;
+
 
   const groupToN = Object.values(eppIdx).reduce(function (groupToN, epp) {
     const latLng = epp.plantPhoto.latLng;
@@ -14,22 +14,31 @@ export default function CoverageView({ eppIdx }) {
     return groupToN;
   }, {});
 
-  const sortedGroupAndN = Object.entries(groupToN).sort(function (
-    [group0, n0],
-    [group1, n1]
-  ) {
-    return n1 - n0;
-  });
-  const nGroups = sortedGroupAndN.length;
-  return sortedGroupAndN.map(function (entry, i) {
-    const group = entry[0];
+
+
+
+  const nGroups = Object.keys(groupToN).length;
+  const sumTotal = Object.keys(eppIdx).length;
+  const meanN = sumTotal /nGroups;
+
+  return Object.entries(groupToN).map(function ([group, n], i) {
     const latLng = LatLng.fromString(group);
     const [lat, lng] = latLng.position;
     const bounds = [
       [lat, lng],
       [lat - BOX_DIM, lng + BOX_DIM],
     ];
-    const h = (360 * parseInt((N_COLOR_GROUPS * i) / nGroups)) / N_COLOR_GROUPS;
+    
+    
+    const z = n / meanN;
+    let h = 120;
+    if (z > 2) {
+      h = 0;
+    } 
+    if (z < 0.5) {
+        h = 240;
+    }
+
     const color = `hsla(${h}, 100%, 50%, 0.2)`;
 
     const key = `coverage-${group}`;
