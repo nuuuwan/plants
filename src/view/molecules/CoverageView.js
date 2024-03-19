@@ -4,7 +4,6 @@ import { LatLng } from "../../nonview/base";
 export default function CoverageView({ eppIdx }) {
   const BOX_DIM = 0.001;
 
-
   const groupToN = Object.values(eppIdx).reduce(function (groupToN, epp) {
     const latLng = epp.plantPhoto.latLng;
     const latLngNorm = latLng.getNormalized(BOX_DIM);
@@ -14,12 +13,9 @@ export default function CoverageView({ eppIdx }) {
     return groupToN;
   }, {});
 
-
-
-
   const nGroups = Object.keys(groupToN).length;
   const sumTotal = Object.keys(eppIdx).length;
-  const meanN = sumTotal /nGroups;
+  const meanN = sumTotal / nGroups;
 
   return Object.entries(groupToN).map(function ([group, n], i) {
     const latLng = LatLng.fromString(group);
@@ -28,15 +24,14 @@ export default function CoverageView({ eppIdx }) {
       [lat, lng],
       [lat - BOX_DIM, lng + BOX_DIM],
     ];
-    
-    
+
     const z = n / meanN;
     let h = 120;
     if (z > 2) {
       h = 0;
-    } 
+    }
     if (z < 0.5) {
-        h = 240;
+      h = 240;
     }
 
     const color = `hsla(${h}, 100%, 50%, 0.2)`;
