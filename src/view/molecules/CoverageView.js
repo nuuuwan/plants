@@ -19,6 +19,10 @@ export default function CoverageView({ eppIdx }) {
   const meanN = sumTotal / nGroups;
 
   return Object.entries(groupToN).map(function ([group, n], i) {
+    const z = n / meanN;
+    if (z > 0.5) {
+      return null;
+    }
     const latLng = LatLng.fromString(group);
     const [lat, lng] = latLng.position;
     const bounds = [
@@ -26,17 +30,7 @@ export default function CoverageView({ eppIdx }) {
       [lat - BOX_DIM, lng + BOX_DIM],
     ];
 
-    const z = n / meanN;
-    let h = 120;
-    if (z > 2) {
-      h = 0;
-    }
-    if (z < 0.5) {
-      h = 240;
-    }
-
-    const color = `hsla(${h}, 100%, 50%, 0.2)`;
-
+    const color = `hsla(210, 100%, 50%, 0.2)`;
     const key = `coverage-${group}`;
     return (
       <SVGOverlay bounds={bounds} key={key}>
