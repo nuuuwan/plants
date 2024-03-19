@@ -22,6 +22,7 @@ export default function GeoMap({
   return (
     <MapContainer center={center} zoom={zoom} zoomControl={true} maxZoom={23}>
       <TileLayer attribution={TILE_ATTRIBUTION} url={TILE_URL} maxZoom={23} />
+      <CoverageView eppIdx={eppIdx} />
       <LayerGroup>
         <PlantView
           eppIdx={eppIdx}
@@ -29,7 +30,7 @@ export default function GeoMap({
           activeEPP={activeEPP}
         />
       </LayerGroup>
-      <CoverageView eppIdx={eppIdx} />
+      
     </MapContainer>
   );
 }
