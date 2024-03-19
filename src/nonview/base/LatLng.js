@@ -21,4 +21,36 @@ export default class LatLng {
       [this.lat + SPAN, this.lng + SPAN],
     ];
   }
+  getNormalized(precision) {
+    const [lat, lng] = [this.lat, this.lng];
+    const latNorm = parseInt(lat / precision) * precision;
+    const lngNorm = parseInt(lng / precision) * precision;
+    return new LatLng(latNorm, lngNorm);
+  }
+
+  toString() {
+    const floatToString = function (x) {
+      const PRECISION = 4;
+      return x.toFixed(PRECISION);
+    };
+    return `${floatToString(this.lat)},${floatToString(this.lng)}`;
+  }
+
+  static fromString(str) {
+    const [lat, lng] = str.split(",").map(parseFloat);
+    return new LatLng(lat, lng);
+  }
+
+  static getBounds(latLngList) {
+    const latList = latLngList.map((latLng) => latLng.lat);
+    const lngList = latLngList.map((latLng) => latLng.lng);
+    const latMin = Math.min(...latList);
+    const latMax = Math.max(...latList);
+    const lngMin = Math.min(...lngList);
+    const lngMax = Math.max(...lngList);
+    return [
+      [latMin, lngMin],
+      [latMax, lngMax],
+    ];
+  }
 }

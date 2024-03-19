@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, LayerGroup } from "react-leaflet";
 
-import { PlantView } from "../molecules";
+import { PlantView, CoverageView } from "../molecules";
 
 import "./GeoMap.css";
 
@@ -29,6 +29,7 @@ export default function GeoMap({
           activeEPP={activeEPP}
         />
       </LayerGroup>
+      <CoverageView eppIdx={eppIdx} />
     </MapContainer>
   );
 }
