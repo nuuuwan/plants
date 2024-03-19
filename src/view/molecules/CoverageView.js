@@ -21,7 +21,8 @@ export default function CoverageView({ eppIdx }) {
     return n1 - n0;
   });
   const nGroups = sortedGroupAndN.length;
-  return sortedGroupAndN.map(function ([group, n], i) {
+  return sortedGroupAndN.map(function (entry, i) {
+    const group = entry[0];
     const latLng = LatLng.fromString(group);
     const [lat, lng] = latLng.position;
     const bounds = [
@@ -31,8 +32,9 @@ export default function CoverageView({ eppIdx }) {
     const h = (360 * parseInt((N_COLOR_GROUPS * i) / nGroups)) / N_COLOR_GROUPS;
     const color = `hsla(${h}, 100%, 50%, 0.2)`;
 
+    const key = `coverage-${group}`;
     return (
-      <SVGOverlay bounds={bounds}>
+      <SVGOverlay bounds={bounds} key={key}>
         <rect
           x={"0%"}
           y={"0%"}

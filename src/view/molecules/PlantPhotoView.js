@@ -6,7 +6,7 @@ export default function PlantPhotoView({ activeEPP, onClickImage }) {
   const plantPhoto = activeEPP.plantPhoto;
   const plantNetResult = activeEPP.plantNetResult;
   return (
-    <Box>
+    <Box sx={PlantPhotoViewStyle.BOX}>
       <img
         src={plantPhoto.urlImage}
         alt={plantPhoto.scientificName}

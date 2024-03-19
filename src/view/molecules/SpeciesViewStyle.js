@@ -15,9 +15,10 @@ SpeciesViewStyle.FONT_COLOR = {
   species: "black",
   commonNames: "black",
 };
+
 SpeciesViewStyle.BOX_INFO = {
   height: "105px",
-  width: PlantPhotoViewStyle.IMAGE_WIDTH + "px",
+  width: (PlantPhotoViewStyle.IMAGE_WIDTH - 7) + "px",
   textAlign: "center",
   fontSize: "90%",
   p: 0.5,

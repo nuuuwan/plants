@@ -2,6 +2,11 @@ let PlantPhotoViewStyle = {};
 
 PlantPhotoViewStyle.IMAGE_WIDTH = 320;
 
+PlantPhotoViewStyle.BOX = {
+  margin: 0,
+  padding: 0,
+}
+
 PlantPhotoViewStyle.IMAGE = {
   width: PlantPhotoViewStyle.IMAGE_WIDTH + "px",
   height: PlantPhotoViewStyle.IMAGE_WIDTH + "px",
