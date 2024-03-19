@@ -4,7 +4,8 @@ import { LatLng } from "../../nonview/base";
 export default function CoverageView({ eppIdx }) {
   const BOX_DIM = 0.001;
 
-  const groupToN = Object.values(eppIdx).reduce(function (groupToN, epp) {
+  const eppList = Object.values(eppIdx)
+  const groupToN = eppList.reduce(function (groupToN, epp) {
     const latLng = epp.plantPhoto.latLng;
     const latLngNorm = latLng.getNormalized(BOX_DIM);
     const group = latLngNorm.toString();
@@ -14,7 +15,7 @@ export default function CoverageView({ eppIdx }) {
   }, {});
 
   const nGroups = Object.keys(groupToN).length;
-  const sumTotal = Object.keys(eppIdx).length;
+  const sumTotal = eppList.length;
   const meanN = sumTotal / nGroups;
 
   return Object.entries(groupToN).map(function ([group, n], i) {

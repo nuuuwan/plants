@@ -68,7 +68,7 @@ export default class ExtendedPlantPhoto {
           new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
         ];
       })
-      // .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
+      .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
     );
   }
 }
