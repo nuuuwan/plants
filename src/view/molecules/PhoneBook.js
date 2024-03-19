@@ -38,14 +38,22 @@ export default function PhoneBook({
   const nUniqueIdList = uniqueIdList.length;
 
   let groupToDataList = filteredDataList.reduce(function (groupToDataList, d) {
-    const group = getLabel(d).substring(0, 1).toUpperCase();
-    const isAlpha = /^[a-z]+$/i.test(group);
-    if (isAlpha) {
-      if (!groupToDataList[group]) {
-        groupToDataList[group] = [];
-      }
-      groupToDataList[group].push(d);
+    const label = getLabel(d);
+    const words = label.split(" ");
+    if (words[0].length <= 1) {
+      return groupToDataList;
     }
+
+    const group = label.substring(0, 1).toUpperCase();
+    const isAlpha = /^[a-z]+$/i.test(group);
+    if (!isAlpha) {
+      return groupToDataList;
+    }
+    if (!groupToDataList[group]) {
+      groupToDataList[group] = [];
+    }
+    groupToDataList[group].push(d);
+    
     return groupToDataList;
   }, {});
 
@@ -63,7 +71,7 @@ export default function PhoneBook({
         onChange={onChangeTextFieldSearch}
       />
 
-      <List>
+      <List  >
         {sortedGroups.map(function (group) {
           const dataList = groupToDataList[group];
           const sortedDataList = dataList.sort(function (a, b) {
@@ -75,8 +83,8 @@ export default function PhoneBook({
           }
           const key = `group-${group}`;
           return (
-            <Box key={key}>
-              <ListSubheader>
+            <Box key={key} >
+              <ListSubheader sx={PhoneBookStyle.LIST_SUBHEADER}>
                 <Typography variant="h5">{group}</Typography>
               </ListSubheader>
               {sortedDataList.map(function (d, i) {
@@ -88,7 +96,7 @@ export default function PhoneBook({
                 const n = getN(d);
                 const labelDisplay = label + (n > 1 ? ` (${n})` : "");
                 return (
-                  <ListItem key={key} sx={{ m: 0.5, marginLeft: 3, p: 0 }}>
+                  <ListItem key={key} sx={PhoneBookStyle.LIST_ITEM}>
                     <Typography sx={getStyle(d)} onClick={onClickInner}>
                       {labelDisplay}
                     </Typography>
