@@ -4,7 +4,7 @@ import { LatLng } from "../../nonview/base";
 export default function CoverageView({ eppIdx }) {
   const BOX_DIM = 0.001;
 
-  const eppList = Object.values(eppIdx)
+  const eppList = Object.values(eppIdx);
   const groupToN = eppList.reduce(function (groupToN, epp) {
     const latLng = epp.plantPhoto.latLng;
     const latLngNorm = latLng.getNormalized(BOX_DIM);
