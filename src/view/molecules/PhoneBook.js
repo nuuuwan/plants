@@ -62,9 +62,7 @@ export default function PhoneBook({
         sx={PhoneBookStyle.TEXT_FIELD_SEARCH}
         onChange={onChangeTextFieldSearch}
       />
-      <Typography variant="body2" sx={PhoneBookStyle.LABEL_N_RESULTS}>
-        {nUniqueIdList} species found.
-      </Typography>
+
       <List>
         {sortedGroups.map(function (group) {
           const dataList = groupToDataList[group];
@@ -101,6 +99,9 @@ export default function PhoneBook({
           );
         })}
       </List>
+      <Typography variant="body2" sx={PhoneBookStyle.LABEL_N_RESULTS}>
+        {nUniqueIdList} species found.
+      </Typography>
     </Box>
   );
 }

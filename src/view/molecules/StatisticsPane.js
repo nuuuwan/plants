@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Statistics } from "../../nonview/core";
 import { VERSION_DATETIME } from "../../nonview/constants/VERSION.js";
@@ -31,15 +31,7 @@ export default function StatisticsPane({ eppIdx }) {
   };
 
   return (
-    <Paper sx={StatisticsPaneStyle}>
-      <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
-        <LabelledStat
-          label="Lastest Update to App"
-          stat={Format.dateTimeStr(VERSION_DATETIME)}
-          color="#468"
-        />
-      </Box>
-      <Typography variant="h4">Statistics</Typography>
+    <Box sx={StatisticsPaneStyle.BOX}>
       <Box sx={{ marginBottom: 1 }}>
         <LabelledStat
           label="Unique Species"
@@ -73,6 +65,13 @@ export default function StatisticsPane({ eppIdx }) {
           color="black"
         />
       </Box>
-    </Paper>
+      <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
+        <LabelledStat
+          label="Lastest Update to App"
+          stat={Format.dateTimeStr(VERSION_DATETIME)}
+          color="#468"
+        />
+      </Box>
+    </Box>
   );
 }

@@ -30,7 +30,6 @@ export default function GeoMap({
           activeEPP={activeEPP}
         />
       </LayerGroup>
-      
     </MapContainer>
   );
 }

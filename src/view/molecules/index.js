@@ -3,6 +3,8 @@ import AlertLowConfidence from "./AlertLowConfidence";
 import ConfidenceView from "./ConfidenceView";
 import CoverageView from "./CoverageView";
 import GeoMap from "./GeoMap";
+import LeftDrawerView from "./LeftDrawerView";
+import LeftDrawerViewStyle from "./LeftDrawerViewStyle";
 import PhoneBook from "./PhoneBook";
 import PhoneBookStyle from "./PhoneBookStyle";
 import PlantPhotoMarker from "./PlantPhotoMarker";
@@ -21,6 +23,8 @@ export {
   ConfidenceView,
   CoverageView,
   GeoMap,
+  LeftDrawerView,
+  LeftDrawerViewStyle,
   PhoneBook,
   PhoneBookStyle,
   PlantPhotoMarker,
