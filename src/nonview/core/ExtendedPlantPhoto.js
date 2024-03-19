@@ -57,19 +57,18 @@ export default class ExtendedPlantPhoto {
   static async idx() {
     const idxRaw = await ExtendedPlantPhoto.idxRaw();
     return Object.fromEntries(
-      Object.entries(idxRaw)
-        .map(function ([id, eppRaw]) {
-          const plantPhoto = PlantPhoto.fromDict(eppRaw);
-          const plantNetResult = PlantNetResult.fromDict(
-            eppRaw["plant_net_result"]
-          );
-          const species = Species.fromDict(eppRaw["species"]);
-          return [
-            id,
-            new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
-          ];
-        })
-        // .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
+      Object.entries(idxRaw).map(function ([id, eppRaw]) {
+        const plantPhoto = PlantPhoto.fromDict(eppRaw);
+        const plantNetResult = PlantNetResult.fromDict(
+          eppRaw["plant_net_result"]
+        );
+        const species = Species.fromDict(eppRaw["species"]);
+        return [
+          id,
+          new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
+        ];
+      })
+      // .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
     );
   }
 }
