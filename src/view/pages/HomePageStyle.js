@@ -3,6 +3,7 @@ let HomePageStyle = {
     margin: 1,
   },
   PLANT: {
+    margin: 0,
     position: "fixed",
     top: 10,
     right: 10,
