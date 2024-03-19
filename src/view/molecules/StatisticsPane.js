@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Statistics } from "../../nonview/core";
-import { ButtonRefreshApp } from "../atoms";
+import { ButtonRefreshApp, ButtonReportBug } from "../atoms";
 import { VERSION_DATETIME } from "../../nonview/constants/VERSION.js";
 import { SpeciesViewStyle, StatisticsPaneStyle } from "../molecules";
 
@@ -67,6 +67,7 @@ export default function StatisticsPane({ eppIdx }) {
         />
       </Box>
       <ButtonRefreshApp />
+      <ButtonReportBug />
     </Box>
   );
 }
