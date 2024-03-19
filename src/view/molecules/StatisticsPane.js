@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Statistics } from "../../nonview/core";
+import { ButtonRefreshApp } from "../atoms";
 import { VERSION_DATETIME } from "../../nonview/constants/VERSION.js";
-import StatisticsPaneStyle from "./StatisticsPaneStyle.js";
-import SpeciesViewStyle from "./SpeciesViewStyle.js";
+import { SpeciesViewStyle, StatisticsPaneStyle } from "../molecules";
 
 function LabelledStat({ label, stat, color, blurb }) {
   return (
@@ -23,12 +23,6 @@ function LabelledStat({ label, stat, color, blurb }) {
 
 export default function StatisticsPane({ eppIdx }) {
   const stats = Statistics.fromExtendedPlantPhotoIdx(eppIdx);
-
-  const onClick = function () {
-    window.location.reload();
-    localStorage.clear();
-    console.debug("localStorage cleared");
-  };
 
   return (
     <Box sx={StatisticsPaneStyle.BOX}>
@@ -65,13 +59,14 @@ export default function StatisticsPane({ eppIdx }) {
           color="black"
         />
       </Box>
-      <Box sx={{ marginBottom: 1, cursor: "pointer" }} onClick={onClick}>
+      <Box sx={{ marginBottom: 1, cursor: "pointer" }}>
         <LabelledStat
           label="Lastest Update to App"
           stat={Format.dateTimeStr(VERSION_DATETIME)}
           color="#468"
         />
       </Box>
+      <ButtonRefreshApp />
     </Box>
   );
 }
