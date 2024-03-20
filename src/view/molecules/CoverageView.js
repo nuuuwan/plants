@@ -1,28 +1,12 @@
 import { SVGOverlay } from "react-leaflet";
 import { LatLng } from "../../nonview/base";
-
+import { Coverage } from "../../nonview/core";
 export default function CoverageView({ eppIdx }) {
   const BOX_DIM = 0.001;
 
-  const eppList = Object.values(eppIdx);
-  const groupToN = eppList.reduce(function (groupToN, epp) {
-    const latLng = epp.plantPhoto.latLng;
-    const latLngNorm = latLng.getNormalized(BOX_DIM);
-    const group = latLngNorm.toString();
-    const n = groupToN[group] || 0;
-    groupToN[group] = n + 1;
-    return groupToN;
-  }, {});
+  const { groupToN, meanN } = Coverage.getStats(eppIdx);
 
-  const nGroups = Object.keys(groupToN).length;
-  const sumTotal = eppList.length;
-  const meanN = sumTotal / nGroups;
-
-  return Object.entries(groupToN).map(function ([group, n], i) {
-    const z = n / meanN;
-    if (z > 0.5) {
-      return null;
-    }
+  return Object.entries(groupToN).map(function ([group, n]) {
     const latLng = LatLng.fromString(group);
     const [lat, lng] = latLng.position;
     const bounds = [
@@ -30,7 +14,7 @@ export default function CoverageView({ eppIdx }) {
       [lat - BOX_DIM, lng + BOX_DIM],
     ];
 
-    const color = `hsla(210, 100%, 50%, 0.2)`;
+    const color = Coverage.getColor(n, meanN);
     const key = `coverage-${group}`;
     return (
       <SVGOverlay bounds={bounds} key={key}>
