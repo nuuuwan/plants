@@ -5,7 +5,7 @@ export default class LatLng {
   }
 
   get position() {
-    return [this.lat + 0.0011, this.lng];
+    return [this.lat, this.lng];
   }
 
   distanceTo(other, wLat = 1, wLng = 1) {
@@ -21,12 +21,6 @@ export default class LatLng {
       [this.lat + SPAN, this.lng + SPAN],
     ];
   }
-  getNormalized(precision) {
-    const [lat, lng] = [this.lat, this.lng];
-    const latNorm = parseInt(lat / precision) * precision;
-    const lngNorm = parseInt(lng / precision) * precision;
-    return new LatLng(latNorm, lngNorm);
-  }
 
   toString() {
     const floatToString = function (x) {
@@ -39,18 +33,5 @@ export default class LatLng {
   static fromString(str) {
     const [lat, lng] = str.split(",").map(parseFloat);
     return new LatLng(lat, lng);
-  }
-
-  static getBounds(latLngList) {
-    const latList = latLngList.map((latLng) => latLng.lat);
-    const lngList = latLngList.map((latLng) => latLng.lng);
-    const latMin = Math.min(...latList);
-    const latMax = Math.max(...latList);
-    const lngMin = Math.min(...lngList);
-    const lngMax = Math.max(...lngList);
-    return [
-      [latMin, lngMin],
-      [latMax, lngMax],
-    ];
   }
 }

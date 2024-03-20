@@ -2,16 +2,16 @@ import { SVGOverlay } from "react-leaflet";
 import { LatLng } from "../../nonview/base";
 import { Coverage } from "../../nonview/core";
 export default function CoverageView({ eppIdx }) {
-  const BOX_DIM = 0.001;
-
   const { groupToN, meanN } = Coverage.getStats(eppIdx);
 
   return Object.entries(groupToN).map(function ([group, n]) {
     const latLng = LatLng.fromString(group);
     const [lat, lng] = latLng.position;
+
+    const span = Coverage.BOX_DIM;
     const bounds = [
       [lat, lng],
-      [lat - BOX_DIM, lng + BOX_DIM],
+      [lat + span, lng + span],
     ];
 
     const color = Coverage.getColor(n, meanN);
@@ -26,6 +26,16 @@ export default function CoverageView({ eppIdx }) {
           fill={color}
           stroke="black"
         />
+        <text
+          x={"50%"}
+          y={"50%"}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="black"
+          fontFamily="ABeeZee"
+        >
+          {n}
+        </text>
       </SVGOverlay>
     );
   });
