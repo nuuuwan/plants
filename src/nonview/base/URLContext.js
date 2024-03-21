@@ -5,7 +5,11 @@ export default class URLContext {
   }
 
   static strToContext(contextStr) {
-    return JSON.parse(atob(decodeURIComponent(contextStr)));
+    try {
+      return JSON.parse(atob(decodeURIComponent(contextStr)));
+    } catch (e) {
+      return {};
+    }
   }
 
   static contextToURL(context) {
@@ -15,7 +19,7 @@ export default class URLContext {
   }
 
   static urlToContext(url) {
-    const urlTokens = url.split("?");
+    const urlTokens = url.split("&")[0].split("?");
     if (urlTokens.length !== 2) {
       return {};
     }
