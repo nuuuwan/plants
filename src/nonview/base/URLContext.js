@@ -1,15 +1,22 @@
 const DELIM = "/?";
 export default class URLContext {
   static contextToStr(context) {
-    return encodeURIComponent(btoa(JSON.stringify(context)));
+    return Object.entries(context).map(
+      function([key, value]) {
+        return key + "=" + value;
+      },
+    ).join("&");
   }
 
   static strToContext(contextStr) {
-    try {
-      return JSON.parse(atob(decodeURIComponent(contextStr)));
-    } catch (e) {
-      return {};
-    }
+    return Object.fromEntries(
+      contextStr.split("&").map(
+        function(token) {
+          const [key, value] = token.split("=");
+          return [key, value];
+        },
+      ),
+    )
   }
 
   static contextToURL(context) {
