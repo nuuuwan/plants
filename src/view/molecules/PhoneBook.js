@@ -108,7 +108,7 @@ export default function PhoneBook({
         })}
       </List>
       <Typography variant="body2" sx={PhoneBookStyle.LABEL_N_RESULTS}>
-        {nUniqueIdList} species found.
+        {nUniqueIdList} photos found.
       </Typography>
     </Box>
   );
