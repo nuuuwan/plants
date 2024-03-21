@@ -75,8 +75,6 @@ export default class HomePage extends Component {
     let { activeEPPId, center } = this.state;
     const eppIdx = await ExtendedPlantPhoto.idx();
     if (!activeEPPId) {
-      localStorage.clear()
-      console.debug('localStorage.clear()')
       activeEPPId = Object.keys(eppIdx)[0];
       center = eppIdx[activeEPPId].plantPhoto.latLng.position;
     }
