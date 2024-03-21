@@ -29,7 +29,7 @@ export default class IndexTable {
         const eppB = eppIdx[b.id];
         const confA = eppA.plantNetResult.confidence;
         const confB = eppB.plantNetResult.confidence;
-        return confA - confB;
+        return confB - confA;
       });
       let d = sortedDataList[0];
       const confidence = eppIdx[d.id].plantNetResult.confidence;
