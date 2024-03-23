@@ -1,6 +1,6 @@
 import { LatLng } from "../base";
 export default class Coverage {
-  static BOX_DIM = 0.0005;
+  static BOX_DIM = 0.0004;
 
   static getNormalized(latLng) {
     const precision = Coverage.BOX_DIM;

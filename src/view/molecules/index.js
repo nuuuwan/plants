@@ -2,6 +2,7 @@
 import AlertLowConfidence from "./AlertLowConfidence";
 import ConfidenceView from "./ConfidenceView";
 import CoverageView from "./CoverageView";
+import CoverageViewStyle from "./CoverageViewStyle";
 import GeoMap from "./GeoMap";
 import LeftDrawerView from "./LeftDrawerView";
 import LeftDrawerViewStyle from "./LeftDrawerViewStyle";
@@ -22,6 +23,7 @@ export {
   AlertLowConfidence,
   ConfidenceView,
   CoverageView,
+  CoverageViewStyle,
   GeoMap,
   LeftDrawerView,
   LeftDrawerViewStyle,

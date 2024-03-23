@@ -24,7 +24,7 @@ export default class LatLng {
 
   toString() {
     const floatToString = function (x) {
-      const PRECISION = 4;
+      const PRECISION = 6;
       return x.toFixed(PRECISION);
     };
     return `${floatToString(this.lat)},${floatToString(this.lng)}`;
