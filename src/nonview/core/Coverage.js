@@ -1,6 +1,6 @@
 import { LatLng } from "../base";
 export default class Coverage {
-  static BOX_DIM = 0.0004;
+  static BOX_DIM = 0.0003;
 
   static getNormalized(latLng) {
     const precision = Coverage.BOX_DIM;
@@ -60,20 +60,20 @@ export default class Coverage {
 
   static getColor(n, meanN) {
     const z = n / meanN;
-    let hue, sat;
+    let hue;
+    let sat = 100;
+    let alpha = 0.05;
     if (z > 2) {
-      hue = 2;
-      sat = 100;
-    } else if (z > 0.5) {
-      hue = 120;
-      sat = 100;
+      hue = 0;
+     } else if (z > 0.5) {
+      hue = 30;
     } else if (z > 0) {
-      hue = 210;
-      sat = 100;
+      hue = 120;
+      alpha = 0.2;
     } else {
-      hue = 210;
-      sat = 50;
+      hue = 140;
+      alpha = 0.2;
     }
-    return `hsla(${hue},${sat}%,50%,0.2)`;
+    return `hsla(${hue},${sat}%,50%,${alpha})`;
   }
 }
