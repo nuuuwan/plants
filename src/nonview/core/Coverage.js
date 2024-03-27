@@ -65,7 +65,7 @@ export default class Coverage {
     let alpha = 0.05;
     if (z > 2) {
       hue = 0;
-     } else if (z > 0.5) {
+    } else if (z > 0.5) {
       hue = 30;
     } else if (z > 0) {
       hue = 120;

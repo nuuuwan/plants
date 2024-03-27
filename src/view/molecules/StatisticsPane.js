@@ -3,7 +3,7 @@ import { Format } from "../../nonview/base";
 import { Statistics } from "../../nonview/core";
 import { ButtonRefreshApp, ButtonReportBug } from "../atoms";
 import { VERSION_DATETIME } from "../../nonview/constants/VERSION.js";
-import { SpeciesViewStyle, StatisticsPaneStyle } from "../molecules";
+import { StatisticsPaneStyle } from "../molecules";
 
 function LabelledStat({ label, stat, color, blurb }) {
   return (
@@ -26,26 +26,6 @@ export default function StatisticsPane({ eppIdx }) {
 
   return (
     <Box sx={StatisticsPaneStyle.BOX}>
-      <Box sx={{ marginBottom: 1 }}>
-        <LabelledStat
-          label="Unique Species"
-          stat={stats.nSpecies}
-          color={SpeciesViewStyle.COLOR.species}
-          blurb={stats.speciesBlurb}
-        />
-        <LabelledStat
-          label="Unique Genera"
-          stat={stats.nGenus}
-          color={SpeciesViewStyle.COLOR.genus}
-          blurb={stats.genusBlurb}
-        />
-        <LabelledStat
-          label="Unique Families"
-          stat={stats.nFamily}
-          color={SpeciesViewStyle.COLOR.family}
-          blurb={stats.familyBlurb}
-        />
-      </Box>
       <Box sx={{ marginBottom: 1 }}>
         <LabelledStat label="Photos" stat={stats.nPhotos} color="black" />
         <LabelledStat

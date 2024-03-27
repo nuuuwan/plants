@@ -46,4 +46,9 @@ SpeciesViewStyle.SPECIES = Object.assign({}, SpeciesViewStyle.GENUS, {
   color: SpeciesViewStyle.COLOR.species,
 });
 
+SpeciesViewStyle.CONFIDENCE_WARNING = {
+  color: "red",
+  fontSize: "80%",
+};
+
 export default SpeciesViewStyle;

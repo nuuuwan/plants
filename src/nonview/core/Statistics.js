@@ -28,26 +28,11 @@ export default class Statistics {
       return getKeys(getKey).length;
     };
 
-    const getBlurb = function (getKey) {
-      const counts = getCounts(getKey);
-      const N_DISPLAY = 5;
-      return Object.entries(counts)
-        .slice(0, N_DISPLAY)
-        .map(([key, count]) => `${key} (${count})`)
-        .join(", ");
-    };
-
     return {
       nPhotos: sortedEppList.length,
       nPhotoDays: getUnique((epp) => epp.plantPhoto.dateStr),
       maxPhotoDateTime:
         sortedEppList[sortedEppList.length - 1].plantPhoto.dateTimeStr,
-      nSpecies: getUnique((epp) => epp.species.name),
-      speciesBlurb: getBlurb((epp) => epp.species.name),
-      nGenus: getUnique((epp) => epp.species.genusName),
-      genusBlurb: getBlurb((epp) => epp.species.genusName),
-      nFamily: getUnique((epp) => epp.species.familyName),
-      familyBlurb: getBlurb((epp) => epp.species.familyName),
     };
   }
 }

@@ -16,7 +16,7 @@ PlantPhotoViewStyle.IMAGE = {
 PlantPhotoViewStyle.CONFIDENCE = {
   position: "fixed",
   right: "20px",
-  top: "135px",
+  top: "130px",
   maxWidth: PlantPhotoViewStyle.IMAGE_WIDTH * 0.9 + "px",
 
   fontSize: "80%",
@@ -32,7 +32,7 @@ PlantPhotoViewStyle.TIME_STR = Object.assign(
   {},
   PlantPhotoViewStyle.CONFIDENCE,
   {
-    top: "405px",
+    top: "400px",
   }
 );
 

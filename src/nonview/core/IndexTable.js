@@ -2,6 +2,10 @@ export default class IndexTable {
   static getDataList(eppIdx) {
     const eppList = Object.values(eppIdx);
     const idx = eppList.reduce(function (idx, epp) {
+      if (!epp.species) {
+        return idx;
+      }
+
       const addData = function (label, dataType) {
         if (!idx[label]) {
           idx[label] = [];

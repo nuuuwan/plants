@@ -51,25 +51,32 @@ export default class ExtendedPlantPhoto {
   static async idxRaw() {
     const urlIdx =
       "https://raw.githubusercontent.com/nuuuwan/lk_plants/main/data_app/ext_plant_photo_idx.json";
-    return await WWW.json(urlIdx);
+    const idxRaw = await WWW.json(urlIdx);
+    const n = Object.keys(idxRaw).length;
+    console.log(`Loaded ${n} Raw ExtendedPlantPhotos`);
+    return idxRaw;
   }
 
   static async idx() {
     const idxRaw = await ExtendedPlantPhoto.idxRaw();
-    return Object.fromEntries(
-      Object.entries(idxRaw)
-        .map(function ([id, eppRaw]) {
-          const plantPhoto = PlantPhoto.fromDict(eppRaw);
-          const plantNetResult = PlantNetResult.fromDict(
-            eppRaw["plant_net_result"]
-          );
-          const species = Species.fromDict(eppRaw["species"]);
-          return [
-            id,
-            new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
-          ];
-        })
-        // .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
+    const idx = Object.fromEntries(
+      Object.entries(idxRaw).map(function ([id, eppRaw]) {
+        const plantPhoto = PlantPhoto.fromDict(eppRaw);
+        const plantNetResult = PlantNetResult.fromDict(
+          eppRaw["plant_net_result"]
+        );
+        const species = eppRaw["species"]
+          ? Species.fromDict(eppRaw["species"])
+          : undefined;
+        return [
+          id,
+          new ExtendedPlantPhoto(plantPhoto, plantNetResult, species),
+        ];
+      })
+      // .filter((entry) => !entry[1].plantNetResult.isLowConfidence)
     );
+    const n = Object.keys(idx).length;
+    console.log(`Loaded ${n} ExtendedPlantPhotos`);
+    return idx;
   }
 }

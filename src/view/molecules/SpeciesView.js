@@ -3,10 +3,9 @@ import { WikiLink } from "../atoms";
 
 import SpeciesViewStyle from "./SpeciesViewStyle";
 
-export default function SpeciesView({ species }) {
-  if (!species) {
-    return null;
-  }
+export default function SpeciesView({ activeEPP }) {
+  const species = activeEPP.species;
+  const plantNetResult = activeEPP.plantNetResult;
 
   return (
     <Box sx={SpeciesViewStyle.BOX_INFO}>
@@ -21,6 +20,9 @@ export default function SpeciesView({ species }) {
         <span style={SpeciesViewStyle.SPECIES}>
           {" "}
           <WikiLink label={species.speciesName}> {species.name}</WikiLink>
+          <span style={SpeciesViewStyle.CONFIDENCE_WARNING}>
+            {plantNetResult.confidenceWarning}
+          </span>
         </span>
       </Typography>
 

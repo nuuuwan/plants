@@ -5,7 +5,6 @@ import { URLContext, GeoData, Random } from "../../nonview/base";
 
 import { ExtendedPlantPhoto } from "../../nonview/core";
 import {
-  AlertLowConfidence,
   PlantPhotoViewStyle,
   PlantPhotoView,
   SpeciesView,
@@ -142,8 +141,6 @@ export default class HomePage extends Component {
 
     const activeEPP = eppIdx[activeEPPId];
 
-    const plantNetResult = activeEPP.plantNetResult;
-
     const handleCloseSettings = function () {
       this.setShowSettings(false);
     }.bind(this);
@@ -174,14 +171,10 @@ export default class HomePage extends Component {
         </Box>
 
         <Box sx={HomePageStyle.PLANT}>
-          {plantNetResult.isLowConfidence ? (
-            <AlertLowConfidence plantNetResult={plantNetResult} />
-          ) : (
-            <SpeciesView
-              species={activeEPP.species}
-              onClickImage={this.onClickImage.bind(this)}
-            />
-          )}
+          <SpeciesView
+            activeEPP={activeEPP}
+            onClickImage={this.onClickImage.bind(this)}
+          />
           <PlantPhotoView
             activeEPP={activeEPP}
             onClickImage={this.onClickImage.bind(this)}

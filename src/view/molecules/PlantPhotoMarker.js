@@ -71,7 +71,7 @@ export default function PlantPhotoMarker({
           fontFamily="ABeeZee"
           dominantBaseline="middle"
         >
-          {epp.plantNetResult.speciesNameInitialsIfConfident}
+          {epp.plantNetResult.speciesNameInitials}
         </text>
       </SVGOverlay>
       <CircleMarker

@@ -3,7 +3,7 @@ import { Format } from "../base";
 export default class PlantNetResult {
   static LIMIT_LOW_CONFIDENCE = 0.2;
   static MAX_DISPLAY_COUNT = 2;
-  static EMOJI_UNKNOWN = "❔";
+  static EMOJI_UNKNOWN = "❓";
 
   constructor(utAPICall, plantPhotoId, speciesNameToScore) {
     this.utAPICall = utAPICall;
@@ -28,6 +28,14 @@ export default class PlantNetResult {
     return this.isLowConfidence
       ? PlantNetResult.EMOJI_UNKNOWN
       : this.speciesNameInitials;
+  }
+
+  get confidenceWarning() {
+    if (!this.isLowConfidence) {
+      return "";
+    }
+
+    return ` ${PlantNetResult.EMOJI_UNKNOWN}`;
   }
 
   get confidence() {
