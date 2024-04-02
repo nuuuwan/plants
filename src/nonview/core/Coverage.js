@@ -69,10 +69,10 @@ export default class Coverage {
       hue = 30;
     } else if (z > 0) {
       hue = 120;
-      alpha = 0.5;
+     
     } else {
-      hue = 140;
-      alpha = 0.5;
+      hue = 180;
+      
     }
     return `hsla(${hue},${sat}%,50%,${alpha})`;
   }
