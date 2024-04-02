@@ -62,17 +62,17 @@ export default class Coverage {
     const z = n / meanN;
     let hue;
     let sat = 100;
-    let alpha = 0.05;
+    let alpha = 0.2;
     if (z > 2) {
       hue = 0;
     } else if (z > 0.5) {
       hue = 30;
     } else if (z > 0) {
       hue = 120;
-      alpha = 0.2;
+      alpha = 0.5;
     } else {
       hue = 140;
-      alpha = 0.2;
+      alpha = 0.5;
     }
     return `hsla(${hue},${sat}%,50%,${alpha})`;
   }
