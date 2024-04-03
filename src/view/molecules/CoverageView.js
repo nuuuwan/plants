@@ -17,6 +17,7 @@ export default function CoverageView({ eppIdx }) {
 
     const color = Coverage.getColor(n, meanN);
     const key = `coverage-${group}`;
+    const label = n > 0 ? n.toString() : "None";
     return (
       <SVGOverlay bounds={bounds} key={key}>
         <rect
@@ -34,8 +35,9 @@ export default function CoverageView({ eppIdx }) {
           dominantBaseline="middle"
           fill={CoverageViewStyle.TEXT.COLOR}
           fontFamily="ABeeZee"
+
         >
-          {n}
+          {label}
         </text>
       </SVGOverlay>
     );

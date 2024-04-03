@@ -60,20 +60,13 @@ export default class Coverage {
 
   static getColor(n, meanN) {
     const z = n / meanN;
-    let hue;
-    let sat = 100;
-    let alpha = 0.2;
-    if (z > 2) {
-      hue = 0;
-    } else if (z > 0.5) {
-      hue = 30;
-    } else if (z > 0) {
-      hue = 120;
-     
-    } else {
-      hue = 180;
-      
+    
+    if (z > 0.5) {
+      return '#FFF0';
     }
-    return `hsla(${hue},${sat}%,50%,${alpha})`;
+    if (z > 0) {
+      return '#0804';
+    }
+    return '#8884'
   }
 }

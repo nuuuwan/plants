@@ -1,11 +1,11 @@
 let CoverageViewStyle = {};
 
 CoverageViewStyle.TEXT = {
-  COLOR: "#ccc",
+  COLOR: "#888",
 };
 
 CoverageViewStyle.RECT = {
-  BORDER_COLOR: "#ccc",
+  BORDER_COLOR: "#888",
 };
 
 export default CoverageViewStyle;
