@@ -35,7 +35,6 @@ export default function CoverageView({ eppIdx }) {
           dominantBaseline="middle"
           fill={CoverageViewStyle.TEXT.COLOR}
           fontFamily="ABeeZee"
-
         >
           {label}
         </text>

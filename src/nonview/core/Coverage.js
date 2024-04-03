@@ -60,13 +60,13 @@ export default class Coverage {
 
   static getColor(n, meanN) {
     const z = n / meanN;
-    
+
     if (z > 0.5) {
-      return '#FFF0';
+      return "#FFF0";
     }
     if (z > 0) {
-      return '#0804';
+      return "#0804";
     }
-    return '#8884'
+    return "#8884";
   }
 }
